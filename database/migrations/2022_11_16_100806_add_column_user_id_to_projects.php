@@ -12,10 +12,10 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->unsignedBigInteger("role_id")->default(1);
-            $table->index("role_id", "user_role_idx");
-            $table->foreign("role_id", "user_role_fk")->on('roles')->references('id');
+        Schema::table('projects', function (Blueprint $table) {
+            $table->unsignedBigInteger("user_id")->default(1);
+            $table->index("user_id", "project_user_idx");
+            $table->foreign("user_id", "project_user_fk")->on('users')->references('id');
         });
     }
 
@@ -26,8 +26,8 @@ return new class extends Migration {
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn("role_id");
+        Schema::table('projects', function (Blueprint $table) {
+            $table->dropColumn("user_id");
         });
     }
 };
