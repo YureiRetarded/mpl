@@ -14,12 +14,14 @@ use App\Http\Controllers\Private\News\CreateController as PrivateNewsCreateContr
 use App\Http\Controllers\Private\News\EditController as PrivateNewsEditController;
 use App\Http\Controllers\Private\News\IndexController as PrivateNewsIndexController;
 use App\Http\Controllers\Private\News\ShowController as PrivateNewsShowController;
+use App\Http\Controllers\Private\Page\IndexController as AdminPanelIndexController;
 use App\Http\Controllers\Private\Project\CreateController as PrivateProjectCreateController;
 use App\Http\Controllers\Private\Project\EditController as PrivateProjectEditController;
 use App\Http\Controllers\Private\Project\IndexController as PrivateProjectIndexController;
 use App\Http\Controllers\Private\Project\ShowController as PrivateProjectShowController;
 use App\Http\Controllers\Project\IndexController as ProjectIndexController;
 use App\Http\Controllers\Project\ShowController as ProjectShowController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,13 +39,11 @@ use Illuminate\Support\Facades\Route;
 //Public
 //HomePage
 Route::get('/', HomeController::class)->name('index');
+Route::redirect('/home', '/');
 
 //About me
+Route::get('/about_me', AboutController::class)->name('about');
 
-
-Route::middleware('adminPanel')->group(function (){
-    Route::get('/about_me', AboutController::class)->name('about');
-});
 //News
 Route::prefix('news')->group(function () {
     Route::get('/', NewsIndexController::class)->name('news.index');
@@ -89,7 +89,9 @@ Route::prefix('private')->group(function () {
 
 });
 
+Route::middleware('adminPanel')->group(function () {
+    Route::get('/adminpanel', AdminPanelIndexController::class)->name('adminPanel');
+});
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
