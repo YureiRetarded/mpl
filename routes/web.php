@@ -39,8 +39,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', HomeController::class)->name('index');
 
 //About me
-Route::get('/about_me', AboutController::class)->name('about');
 
+
+Route::middleware('adminPanel')->group(function (){
+    Route::get('/about_me', AboutController::class)->name('about');
+});
 //News
 Route::prefix('news')->group(function () {
     Route::get('/', NewsIndexController::class)->name('news.index');
