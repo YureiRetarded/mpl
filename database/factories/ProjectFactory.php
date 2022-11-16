@@ -5,6 +5,7 @@ namespace Database\Factories;
 use App\Models\Project;
 use App\Models\PublicAccessLevel;
 use App\Models\Status;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -25,10 +26,11 @@ class ProjectFactory extends Factory
             'title' => $this->faker->linuxProcessor,
             'text' => $this->faker->text,
             'status_id' => Status::get()->random()->id,
-            'description'=>$this->faker->text,
+            'description' => $this->faker->text,
             'public_access_level_id' => PublicAccessLevel::get()->random()->id,
             'github_link' => $this->faker->url,
             'url' => $this->faker->url,
+            'user_id' => User::get()->random()->id,
         ];
     }
 }

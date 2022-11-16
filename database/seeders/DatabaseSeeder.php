@@ -10,7 +10,9 @@ use App\Models\Project;
 use App\Models\PublicAccessLevel;
 use App\Models\Role;
 use App\Models\Status;
+use App\Models\Tag;
 use App\Models\Technology;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -37,6 +39,20 @@ class DatabaseSeeder extends Seeder
             [
                 'name' => 'admin',
                 'access_level' => '9'
+            ],
+        ];
+        $users = [
+            [
+                "name" => "admin",
+                "email" => "admin@mail.ru",
+                "password" => bcrypt("12345678"),
+                "role_id" => 2,
+            ],
+            [
+                "name" => "user",
+                "email" => "user@mail.ru",
+                "password" => bcrypt("12345678"),
+                "role_id" => 1,
             ],
         ];
         $contactInformations = [
@@ -88,6 +104,7 @@ class DatabaseSeeder extends Seeder
         foreach ($roles as $role) {
             Role::create($role);
         }
+
         foreach ($contactInformations as $contactInformation) {
             ContactInformation::create($contactInformation);
         }
@@ -103,16 +120,28 @@ class DatabaseSeeder extends Seeder
         foreach ($languages as $language) {
             Language::create($language);
         }
-        $projects = Project::factory(10)->create();
+        for ($i = 0; $i < 50; $i++) {
+            Tag::create(['name' => fake()->word]);
+        }
         $technologies = Technology::all();
         $languages = Language::all();
+        $tags = Tag::all();
+        foreach ($users as $user) {
+            User::create($user);
+        }
+        $projects = Project::factory(100)->create();
         foreach ($projects as $project) {
             $technologyIds = $technologies->random(2)->pluck('id');
             $languageIds = $languages->random(2)->pluck('id');
+            $tagsIds=$tags->random(5)->pluck('id');
             $project->languages()->attach($languageIds);
             $project->technologies()->attach($technologyIds);
+            $project->tags()->attach($tagsIds);
         }
-        News::factory(20)->create();
-
+        $news=News::factory(50)->create();
+        foreach ($news as $newsOne){
+            $tagsIds=$tags->random(5)->pluck('id');
+            $newsOne->tags()->attach($tagsIds);
+        }
     }
 }
