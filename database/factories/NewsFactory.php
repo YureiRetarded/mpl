@@ -21,6 +21,7 @@ class NewsFactory extends Factory
             'title' => $this->faker->macProcessor,
             'text' => $this->faker->text,
             'project_id' => Project::get()->random()->id,
+            'link'=>$this->faker->sha256,
         ];
     }
 }

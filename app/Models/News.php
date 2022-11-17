@@ -12,7 +12,7 @@ class News extends Model
     use SoftDeletes;
 
     protected $table = 'news';
-    protected $fillable = ['title', 'text', 'project_id'];
+    protected $fillable = ['title', 'text', 'project_id','link_page'];
 
     public function project()
     {

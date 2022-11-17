@@ -1,19 +1,16 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-        <a class="navbar-brand" href="{{route('index')}}">YureiDeveloper</a>
+        <a class="navbar-brand" href="{{route('index')}}">MyProjectList</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".dual-collapse2">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse order-0 dual-collapse2">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('news.index')}}">Новости</a>
+                    <a class="nav-link" href="{{route('users')}}">Пользователи</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('project.index')}}">Проекты</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{route('about')}}">Обо мне</a>
+                    <a class="nav-link" href="{{route('aboutProject')}}">О проекте</a>
                 </li>
                 @can('view',auth()->user())
                     <li class="nav-item">
@@ -38,7 +35,8 @@
                     @endif
                 @else
                     <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                           data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->name }}
                         </a>
 

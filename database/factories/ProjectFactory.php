@@ -31,6 +31,7 @@ class ProjectFactory extends Factory
             'github_link' => $this->faker->url,
             'url' => $this->faker->url,
             'user_id' => User::get()->random()->id,
+            'link'=>$this->faker->sha256,
         ];
     }
 }
