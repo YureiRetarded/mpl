@@ -1,4 +1,10 @@
 <?php
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\User\Information\IndexController as UserInformationIndexController;
+use App\Http\Controllers\User\Information\Contact\IndexController as UserContactIndexController;
+use App\Http\Controllers\User\Project\IndexController as UserProjectIndexController;
+use App\Http\Controllers\User\News\IndexController as UserNewsIndexController;
 
 use App\Http\Controllers\News\IndexController as NewsIndexController;
 use App\Http\Controllers\News\ShowController as NewsShowController;
@@ -21,8 +27,9 @@ use App\Http\Controllers\Private\Project\IndexController as PrivateProjectIndexC
 use App\Http\Controllers\Private\Project\ShowController as PrivateProjectShowController;
 use App\Http\Controllers\Project\IndexController as ProjectIndexController;
 use App\Http\Controllers\Project\ShowController as ProjectShowController;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Route;
+
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -35,12 +42,28 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
-//Public
 //HomePage
 Route::get('/', HomeController::class)->name('index');
 Route::redirect('/home', '/');
 
+//Auth
+Auth::routes();
+
+//Admin
+Route::middleware('adminPanel')->group(function () {
+    Route::get('admin/adminpanel', AdminPanelIndexController::class)->name('adminPanel');
+});
+
+//Users
+Route::prefix('{user}')->group(function () {
+    Route::get('/', UserInformationIndexController::class);
+    Route::get('/contacts',UserContactIndexController::class)->name('user.contact.index');
+    Route::get('/projects', UserProjectIndexController::class)->name('user.project.index');
+    Route::get('/news',UserNewsIndexController::class)->name('user.news.index');
+
+});
+
+//ПЕРЕРАБОТАТЬ всё снизу
 //About me
 Route::get('/about_me', AboutController::class)->name('about');
 
@@ -89,9 +112,7 @@ Route::prefix('private')->group(function () {
 
 });
 
-Route::middleware('adminPanel')->group(function () {
-    Route::get('/adminpanel', AdminPanelIndexController::class)->name('adminPanel');
-});
 
-Auth::routes();
+
+
 

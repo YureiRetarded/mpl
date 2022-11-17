@@ -1,9 +1,9 @@
-@extends('layouts.public')
+@extends('layouts.user.user')
 @section('title','Проекты')
-@section('content')
+@section('userContent')
     @foreach($projects as $project)
 
-        <div role="button" class="card mb-4" onclick="location.href='{{route('project.show',$project->id)}}'">
+        <div role="button" class="card mb-4" onclick="location.href='{{$user->name.'/projects'.$project->id}}'">
             <div class="card-header">
                 {{$project->title}}
             </div>

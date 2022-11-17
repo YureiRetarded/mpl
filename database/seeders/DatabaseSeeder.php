@@ -133,15 +133,22 @@ class DatabaseSeeder extends Seeder
         foreach ($projects as $project) {
             $technologyIds = $technologies->random(2)->pluck('id');
             $languageIds = $languages->random(2)->pluck('id');
-            $tagsIds=$tags->random(5)->pluck('id');
+            $tagsIds = $tags->random(5)->pluck('id');
             $project->languages()->attach($languageIds);
             $project->technologies()->attach($technologyIds);
             $project->tags()->attach($tagsIds);
         }
-        $news=News::factory(50)->create();
-        foreach ($news as $newsOne){
-            $tagsIds=$tags->random(5)->pluck('id');
+        $news = News::factory(500)->create();
+        foreach ($news as $newsOne) {
+            $tagsIds = $tags->random(5)->pluck('id');
             $newsOne->tags()->attach($tagsIds);
         }
+        $users = User::all();
+        $contatsInfromations = ContactInformation::factory(1000)->create();
+        foreach ($users as $user) {
+            $ciIds = $contatsInfromations->random(500)->pluck('id');
+            $user->contactInformation()->attach($ciIds);
+        }
+
     }
 }
