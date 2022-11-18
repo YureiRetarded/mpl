@@ -41,12 +41,17 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{route('user.project.create',auth()->user()->name)}}">
+                                Создать проект
+                            </a>
+                            <a class="dropdown-item" href="{{route('user.news.create',auth()->user()->name)}}">
+                                Создать новость
+                            </a>
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                {{ __('Logout') }}
+                                {{ __('Выход') }}
                             </a>
-
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                 @csrf
                             </form>
