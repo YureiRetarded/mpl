@@ -12,7 +12,7 @@ class Project extends Model
     use SoftDeletes;
 
     protected $table = 'projects';
-    protected $fillable = ['title', 'text', 'status_id', 'public_access_level_id', 'github_link', 'url'];
+    protected $fillable = ['title', 'text', 'status_id', 'public_access_level_id', 'github_link', 'url','link','user_id'];
 
     public function status()
     {

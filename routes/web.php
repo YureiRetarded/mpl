@@ -6,14 +6,15 @@ use App\Http\Controllers\Pages\UsersController;
 use App\Http\Controllers\Private\Page\IndexController as AdminPanelIndexController;
 use App\Http\Controllers\User\Information\Contact\IndexController as UserContactIndexController;
 use App\Http\Controllers\User\Information\IndexController as UserInformationIndexController;
+use App\Http\Controllers\User\News\CreateController as UserNewsCreateController;
 use App\Http\Controllers\User\News\IndexController as UserNewsIndexController;
+use App\Http\Controllers\User\News\NewsProjectController as NewsProjectIndexController;
 use App\Http\Controllers\User\News\ShowController as UserNewsShowController;
 use App\Http\Controllers\User\News\StoreController as UserNewsStoreController;
-use App\Http\Controllers\User\News\CreateController as UserNewsCreateController;
+use App\Http\Controllers\User\Project\CreateController as UserProjectCreateController;
 use App\Http\Controllers\User\Project\IndexController as UserProjectIndexController;
 use App\Http\Controllers\User\Project\ShowController as UserProjectShowController;
 use App\Http\Controllers\User\Project\StoreController as UserProjectStoreController;
-use App\Http\Controllers\User\Project\CreateController as UserProjectCreateController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -53,18 +54,20 @@ Route::prefix('user')->group(function () {
         Route::get('/contacts', UserContactIndexController::class)->name('user.contact.index');
         Route::get('/projects', UserProjectIndexController::class)->name('user.project.index');
         Route::get('/news', UserNewsIndexController::class)->name('user.news.index');
-
+        Route::get('/projects/{project}/news/', NewsProjectIndexController::class)->name('user.project.news.index');
         //Show pages
         Route::get('/projects/{project}', UserProjectShowController::class)->name('user.project.show');
         Route::get('/news/{news}', UserNewsShowController::class)->name('user.news.show');
 
-        Route::middleware('checkUser')->group(function (){
+        Route::middleware('checkUser')->group(function () {
             //Create pages
-            Route::get('/create/project',UserProjectCreateController::class)->name('user.project.create');
-            Route::get('/create/news',UserNewsCreateController::class)->name('user.news.create');
+            Route::get('/create/project', UserProjectCreateController::class)->name('user.project.create');
+            Route::get('/create/news', UserNewsCreateController::class)->name('user.news.create');
             //Edit pages
 
             // Store&Destroy&Update
+            Route::post('/create/project', UserProjectStoreController::class)->name('user.project.store');
+            Route::post('/create/news', UserNewsStoreController::class)->name('user.news.store');
         });
     });
 });
