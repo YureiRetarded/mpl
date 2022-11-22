@@ -24,16 +24,6 @@ class Project extends Model
         return $this->belongsTo(PublicAccessLevel::class);
     }
 
-    public function technologies()
-    {
-        return $this->belongsToMany(Technology::class);
-    }
-
-    public function languages()
-    {
-        return $this->belongsToMany(Language::class);
-    }
-
     public function news()
     {
         return $this->hasMany(News::class);

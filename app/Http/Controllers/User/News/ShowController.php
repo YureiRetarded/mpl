@@ -7,13 +7,10 @@ use App\Models\User;
 
 class ShowController extends Controller
 {
-    public function __invoke($user, $news_link)
+    public function __invoke($username, $link)
     {
-        $username = explode('/', strip_tags($user));
-        $username = $username[0];
         if (User::where('name', $username)->exists()) {
-            $user = User::where('name', $username)->firstOrFail();
-            $link = strip_tags($news_link);
+            $user = User::where('name', $username)->first();
             if (count($user->news->where('link', $link)) === 1) {
                 $news = $user->news->where('link', $link)->first();
                 return view('public.user.news.show', compact('news', 'user'));

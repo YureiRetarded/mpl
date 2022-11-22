@@ -8,10 +8,8 @@ use App\Models\User;
 
 class IndexController extends Controller
 {
-    public function __invoke($request)
+    public function __invoke($username)
     {
-        $username = explode('/', strip_tags($request));
-        $username = $username[0];
         if (User::where('name', $username)->exists()) {
             $user = User::where('name', $username)->first();
             $news = $this->paginate($user->news, 10, '', ["path" => url()->current()]);

@@ -89,18 +89,7 @@ class DatabaseSeeder extends Seeder
             ['name' => 'Открыт'],
             ['name' => 'Закрыт'],
         ];
-        $technologies = [
-            ['name' => 'laravel'],
-            ['name' => 'skynet'],
-            ['name' => 'legion'],
-        ];
-        $languages = [
-            ['name' => 'php'],
-            ['name' => 'blade'],
-            ['name' => 'c++'],
-            ['name' => 'c--'],
-            ['name' => 'assEmbler'],
-        ];
+
         foreach ($roles as $role) {
             Role::create($role);
         }
@@ -114,28 +103,16 @@ class DatabaseSeeder extends Seeder
         foreach ($puplicAccessLeveles as $puplicAccessLevel) {
             PublicAccessLevel::create($puplicAccessLevel);
         }
-        foreach ($technologies as $technology) {
-            Technology::create($technology);
-        }
-        foreach ($languages as $language) {
-            Language::create($language);
-        }
         for ($i = 0; $i < 50; $i++) {
             Tag::create(['name' => fake()->word]);
         }
-        $technologies = Technology::all();
-        $languages = Language::all();
         $tags = Tag::all();
         foreach ($users as $user) {
             User::create($user);
         }
         $projects = Project::factory(100)->create();
         foreach ($projects as $project) {
-            $technologyIds = $technologies->random(2)->pluck('id');
-            $languageIds = $languages->random(2)->pluck('id');
             $tagsIds = $tags->random(5)->pluck('id');
-            $project->languages()->attach($languageIds);
-            $project->technologies()->attach($technologyIds);
             $project->tags()->attach($tagsIds);
         }
         $news = News::factory(500)->create();

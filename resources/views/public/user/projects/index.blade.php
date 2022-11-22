@@ -11,13 +11,8 @@
                 <blockquote class="blockquote mb-0">
                     <p>{{$project->description}}</p>
                     <footer class="blockquote-footer">
-                        @foreach($project->languages as $language)
-                            {{$language->name}}
-                        @endforeach
-                    </footer>
-                    <footer class="blockquote-footer">
-                        @foreach($project->technologies as $technology)
-                            {{$technology->name}}
+                        @foreach($project->tags as $tag)
+                            {{$tag->name}}
                         @endforeach
                     </footer>
                 </blockquote>
