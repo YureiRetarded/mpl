@@ -2,7 +2,7 @@
 @section('title','Редактировать проект')
 @section('userContent')
 
-    <form method="POST" action="{{'/user/'.$user->name.'/create/project'}}">
+    <form method="POST" action="{{route('user.project.update',['user'=>auth()->user()->name,'project'=>$project->link])}}">
         @csrf
         @method('patch')
         <div class="mb-3">
@@ -78,6 +78,15 @@
         @error('url')
         <p class="text-danger">{{$message}}</p>
         @enderror
+        <div class="mb-3">
+            <label for="projectTags" class="form-label">Теги</label>
+            <input type="text" name="tags" class="form-control" id="projectTags" value="{{$tags}}"
+                   aria-describedby="projectTags">
+            @error('tags')
+            <p class="text-danger">{{$message}}</p>
+            @enderror
+            <div id="projectTags" class="form-text">Используемые технологии, языки, сферы направления и т.д</div>
+        </div>
         <button type="submit" class="btn btn-primary">Редактировать</button>
     </form>
 @endsection

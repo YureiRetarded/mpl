@@ -77,6 +77,15 @@
         @error('url')
         <p class="text-danger">{{$message}}</p>
         @enderror
+        <div class="mb-3">
+            <label for="projectTags" class="form-label">Теги</label>
+            <input type="text" name="tags" class="form-control" id="projectTags" value="{{old('tags')}}"
+                   aria-describedby="projectTags">
+            @error('tags')
+            <p class="text-danger">{{$message}}</p>
+            @enderror
+            <div id="projectTags" class="form-text">Используемые технологии, языки, сферы направления и т.д</div>
+        </div>
         <button type="submit" class="btn btn-primary">Создать</button>
     </form>
 @endsection

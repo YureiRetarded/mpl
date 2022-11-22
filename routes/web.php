@@ -7,14 +7,15 @@ use App\Http\Controllers\Private\Page\IndexController as AdminPanelIndexControll
 use App\Http\Controllers\User\Information\Contact\IndexController as UserContactIndexController;
 use App\Http\Controllers\User\Information\IndexController as UserInformationIndexController;
 use App\Http\Controllers\User\News\CreateController as UserNewsCreateController;
-use App\Http\Controllers\User\News\IndexController as UserNewsIndexController;
 use App\Http\Controllers\User\News\EditController as UserNewsEditController;
+use App\Http\Controllers\User\News\IndexController as UserNewsIndexController;
 use App\Http\Controllers\User\News\NewsProjectController as NewsProjectIndexController;
 use App\Http\Controllers\User\News\ShowController as UserNewsShowController;
 use App\Http\Controllers\User\News\StoreController as UserNewsStoreController;
 use App\Http\Controllers\User\Project\CreateController as UserProjectCreateController;
-use App\Http\Controllers\User\Project\IndexController as UserProjectIndexController;
 use App\Http\Controllers\User\Project\EditController as UserProjectEditController;
+use App\Http\Controllers\User\Project\UpdateController as UserUpdateController;
+use App\Http\Controllers\User\Project\IndexController as UserProjectIndexController;
 use App\Http\Controllers\User\Project\ShowController as UserProjectShowController;
 use App\Http\Controllers\User\Project\StoreController as UserProjectStoreController;
 use Illuminate\Support\Facades\Auth;
@@ -41,7 +42,7 @@ Auth::routes();
 
 //Admin
 Route::middleware('adminPanel')->group(function () {
-    Route::get('admin/adminpanel', AdminPanelIndexController::class)->name('adminPanel');
+    Route::get('/adminpanel', AdminPanelIndexController::class)->name('adminPanel');
 });
 //AnotherPages
 Route::get('/about', AboutController::class)->name('aboutProject');
@@ -59,7 +60,7 @@ Route::prefix('user')->group(function () {
         Route::get('/projects/{project}/news/', NewsProjectIndexController::class)->name('user.project.news.index');
         //Show pages
         Route::get('/projects/{project}', UserProjectShowController::class)->name('user.project.show');
-        Route::get('/projects/news/{news}', UserNewsShowController::class)->name('user.news.show');
+        Route::get('/news/{news}', UserNewsShowController::class)->name('user.news.show');
 
         Route::middleware('checkUser')->group(function () {
             //Create pages
@@ -68,6 +69,7 @@ Route::prefix('user')->group(function () {
             //Edit pages
             Route::get('/projects/{project}/edit', UserProjectEditController::class)->name('user.project.edit');
             Route::get('/news/{project}/edit', UserNewsEditController::class)->name('user.news.edit');
+            Route::patch('/projects/{project}',UserUpdateController::class)->name('user.project.update');
             // Store&Destroy&Update
             Route::post('/create/project', UserProjectStoreController::class)->name('user.project.store');
             Route::post('/create/news', UserNewsStoreController::class)->name('user.news.store');

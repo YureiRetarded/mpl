@@ -116,10 +116,6 @@ class DatabaseSeeder extends Seeder
             $project->tags()->attach($tagsIds);
         }
         $news = News::factory(500)->create();
-        foreach ($news as $newsOne) {
-            $tagsIds = $tags->random(5)->pluck('id');
-            $newsOne->tags()->attach($tagsIds);
-        }
         $users = User::all();
         $contatsInfromations = ContactInformation::factory(1000)->create();
         foreach ($users as $user) {

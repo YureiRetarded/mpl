@@ -17,7 +17,11 @@ class EditController extends Controller
         $levels=PublicAccessLevel::all();
         if (Project::where('user_id', $user->id)->where('link', $link)->exists()) {
             $project = Project::where('user_id', $user->id)->where('link', $link)->first();
-            return view('public.user.projects.edit', compact('project', 'user','statuses', 'levels'));
+            $tags='';
+            foreach ($project->tags as $tag){
+                $tags=$tags.' '.$tag->name;
+            }
+            return view('public.user.projects.edit', compact('project', 'user','statuses', 'levels','tags'));
         }
         return view('public.error.project404', compact('user', 'statuses'));
     }
