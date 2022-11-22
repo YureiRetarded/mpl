@@ -55,28 +55,7 @@ class DatabaseSeeder extends Seeder
                 "role_id" => 1,
             ],
         ];
-        $contactInformations = [
-            [
-                'name' => 'vk1',
-                'value' => 'vk1.com',
-            ],
-            [
-                'name' => 'vk2',
-                'value' => 'vk2.com',
-            ],
-            [
-                'name' => 'vk3',
-                'value' => 'vk3.com',
-            ],
-            [
-                'name' => 'vk4',
-                'value' => 'vk4.com',
-            ],
-            [
-                'name' => 'vk5',
-                'value' => 'vk5.com',
-            ]
-        ];
+
         $statuses = [
             ['name' => 'В разработке'],
             ['name' => 'Заморожен'],
@@ -94,34 +73,16 @@ class DatabaseSeeder extends Seeder
             Role::create($role);
         }
 
-        foreach ($contactInformations as $contactInformation) {
-            ContactInformation::create($contactInformation);
-        }
+
         foreach ($statuses as $status) {
             Status::create($status);
         }
         foreach ($puplicAccessLeveles as $puplicAccessLevel) {
             PublicAccessLevel::create($puplicAccessLevel);
         }
-        for ($i = 0; $i < 50; $i++) {
-            Tag::create(['name' => fake()->word]);
-        }
-        $tags = Tag::all();
+
         foreach ($users as $user) {
             User::create($user);
         }
-        $projects = Project::factory(100)->create();
-        foreach ($projects as $project) {
-            $tagsIds = $tags->random(5)->pluck('id');
-            $project->tags()->attach($tagsIds);
-        }
-        $news = News::factory(500)->create();
-        $users = User::all();
-        $contatsInfromations = ContactInformation::factory(1000)->create();
-        foreach ($users as $user) {
-            $ciIds = $contatsInfromations->random(500)->pluck('id');
-            $user->contactInformation()->attach($ciIds);
-        }
-
     }
 }

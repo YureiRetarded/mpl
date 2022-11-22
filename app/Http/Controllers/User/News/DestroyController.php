@@ -8,7 +8,6 @@ class DestroyController extends Controller
 {
     public function __invoke($user_, $project_link, $news_link)
     {
-
         $user = auth()->user();
         if (count($user->news->where('link', $news_link)) === 1) {
             $news = $user->news->where('link', $news_link)->first();

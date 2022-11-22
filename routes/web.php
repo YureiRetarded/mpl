@@ -6,6 +6,11 @@ use App\Http\Controllers\Pages\UsersController;
 use App\Http\Controllers\Private\Page\IndexController as AdminPanelIndexController;
 use App\Http\Controllers\User\Information\Contact\IndexController as UserContactIndexController;
 use App\Http\Controllers\User\Information\IndexController as UserInformationIndexController;
+use App\Http\Controllers\User\Information\Contact\CreateController as UserInformationCreateController;
+use App\Http\Controllers\User\Information\Contact\StoreController as UserInformationStoreController;
+use App\Http\Controllers\User\Information\Contact\EditController as UserInformationEditController;
+use App\Http\Controllers\User\Information\Contact\UpdateController as UserInformationUpdateController;
+use App\Http\Controllers\User\Information\Contact\DestroyController as UserInformationDestroyController;
 use App\Http\Controllers\User\News\CreateController as UserNewsCreateController;
 use App\Http\Controllers\User\News\EditController as UserNewsEditController;
 use App\Http\Controllers\User\News\IndexController as UserNewsIndexController;
@@ -55,9 +60,19 @@ Route::get('/about', AboutController::class)->name('aboutProject');
 Route::prefix('user')->group(function () {
     Route::get('/', UsersController::class)->name('users');
     Route::prefix('{user}')->group(function () {
-        //Indexes pages
         Route::get('/', UserInformationIndexController::class);
-        Route::get('/contacts', UserContactIndexController::class)->name('user.contact.index');
+        Route::prefix('contacts')->group(function (){
+            Route::get('/', UserContactIndexController::class)->name('user.contact.index');
+            Route::middleware('checkUser')->group(function () {
+                Route::get('/create',UserInformationCreateController::class)->name('user.contact.create');
+                Route::post('/',UserInformationStoreController::class)->name('user.contact.store');
+                Route::prefix('{contact}')->group(function (){
+                    Route::get('/edit',UserInformationEditController::class)->name('user.contact.edit');
+                    Route::patch('/',UserInformationUpdateController::class)->name('user.contact.update');
+                    Route::delete('/',UserInformationDestroyController::class)->name('user.contact.delete');
+                });
+            });
+        });
         Route::get('/news', UserNewsIndexController::class)->name('user.news.index');
         Route::prefix('projects')->group(function () {
             Route::get('/', UserProjectIndexController::class)->name('user.project.index');
