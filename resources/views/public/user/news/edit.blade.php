@@ -2,8 +2,10 @@
 @section('title','Редактировать новость')
 @section('userContent')
 
-    <form method="POST" action="{{'/user/'.$user->name.'/create/news'}}">
+    <form method="POST"
+          action="{{route('user.news.update',['user'=>auth()->user()->name,'project'=>$news->project->link,'news'=>$news->link])}}">
         @csrf
+        @method('patch')
         <div class="mb-3">
             <label for="newsName" class="form-label">Заголовок новости</label>
             <input type="text" name="title" class="form-control" id="newsName" value="{{$news->title}}"

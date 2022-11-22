@@ -11,4 +11,15 @@
             <li>{{$tag->name}}</li>
         @endforeach
     </ul>
+    <a class="btn btn-primary" href="{{url()->current().'/news'}}" role="button">Просмотреть все новости этого
+        проекта</a><br>
+    @if(auth()->user()->name===$project->user->name)
+        <a class="btn btn-primary" href="{{url()->current().'/edit'}}" role="button">Редактировать</a><br>
+        <form method="POST"
+              action="{{route('user.project.delete',['user'=>auth()->user()->name,'project'=>$project->link])}}">
+            @csrf
+            @method('delete')
+            <button class="btn btn-primary" type="submit">Удались</button>
+        </form>
+    @endif
 @endsection

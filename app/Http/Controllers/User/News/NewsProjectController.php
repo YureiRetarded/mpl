@@ -8,16 +8,18 @@ use App\Models\User;
 
 class NewsProjectController extends Controller
 {
-    public function __invoke($user, $project)
+    public function __invoke($username, $project_link)
     {
-        $username = $user;
-        if (User::where('name', $username)->exists() && Project::where('link', $project)->exists()) {
+        if (User::where('name', $username)->exists()) {
             $user = User::where('name', $username)->first();
-            $project = Project::where('link', $project)->first();
-            $news = $user->news->where('project_id', $project->id);
-            dd(0);
-            $news = $this->paginate($news, 10, '', ["path" => url()->current()]);
-            return view('public.user.news.newsProject', compact('news', 'user'));
+            if (Project::where('user_id', $user->id)->where('link', $project_link)->exists()) {
+                $project = Project::where('user_id', $user->id)->where('link', $project_link)->first();
+                $news = $project->news;
+                $news = $this->paginate($news, 10, '', ["path" => url()->current()]);
+                return view('public.user.news.newsProject', compact('news', 'user'));
+            } else {
+                return view('public.error.project404');
+            }
         } else {
             return view('public.error.user404');
         }

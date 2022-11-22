@@ -12,12 +12,15 @@ use App\Http\Controllers\User\News\IndexController as UserNewsIndexController;
 use App\Http\Controllers\User\News\NewsProjectController as NewsProjectIndexController;
 use App\Http\Controllers\User\News\ShowController as UserNewsShowController;
 use App\Http\Controllers\User\News\StoreController as UserNewsStoreController;
+use App\Http\Controllers\User\News\UpdateController as UserNewsUpdateController;
+use App\Http\Controllers\User\News\DestroyController as UserNewsDestroyController;
 use App\Http\Controllers\User\Project\CreateController as UserProjectCreateController;
 use App\Http\Controllers\User\Project\EditController as UserProjectEditController;
-use App\Http\Controllers\User\Project\UpdateController as UserUpdateController;
 use App\Http\Controllers\User\Project\IndexController as UserProjectIndexController;
 use App\Http\Controllers\User\Project\ShowController as UserProjectShowController;
 use App\Http\Controllers\User\Project\StoreController as UserProjectStoreController;
+use App\Http\Controllers\User\Project\UpdateController as UserProjectUpdateController;
+use App\Http\Controllers\User\Project\DestroyController as UserProjectDestroyController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -55,22 +58,36 @@ Route::prefix('user')->group(function () {
         //Indexes pages
         Route::get('/', UserInformationIndexController::class);
         Route::get('/contacts', UserContactIndexController::class)->name('user.contact.index');
-        Route::get('/projects', UserProjectIndexController::class)->name('user.project.index');
         Route::get('/news', UserNewsIndexController::class)->name('user.news.index');
-        Route::get('/projects/{project}/news/', NewsProjectIndexController::class)->name('user.project.news.index');
-        //Show pages
-        Route::get('/projects/{project}', UserProjectShowController::class)->name('user.project.show');
-        Route::get('/news/{news}', UserNewsShowController::class)->name('user.news.show');
+        Route::prefix('projects')->group(function () {
+            Route::get('/', UserProjectIndexController::class)->name('user.project.index');
+            Route::prefix('{project}')->group(function () {
+                Route::get('/', UserProjectShowController::class)->name('user.project.show');
+                Route::middleware('checkUser')->group(function () {
+                    Route::get('/edit', UserProjectEditController::class)->name('user.project.edit');
+                    Route::patch('/', UserProjectUpdateController::class)->name('user.project.update');
+                    Route::delete('/',UserProjectDestroyController::class)->name('user.project.delete');
+                });
+                Route::prefix('news')->group(function () {
+                    Route::get('/', NewsProjectIndexController::class)->name('user.project.news.index');
+                    Route::get('/{news}', UserNewsShowController::class)->name('user.news.show');
+                    Route::middleware('checkUser')->group(function () {
+                        Route::prefix('{news}')->group(function (){
+                            Route::get('/edit', UserNewsEditController::class)->name('user.news.edit');
+                            Route::patch('/', UserNewsUpdateController::class)->name('user.news.update');
+                            Route::delete('/',UserNewsDestroyController::class)->name('user.news.delete');
+                        });
+                    });
+                });
 
+            });
+
+        });
         Route::middleware('checkUser')->group(function () {
             //Create pages
             Route::get('/create/project', UserProjectCreateController::class)->name('user.project.create');
             Route::get('/create/news', UserNewsCreateController::class)->name('user.news.create');
-            //Edit pages
-            Route::get('/projects/{project}/edit', UserProjectEditController::class)->name('user.project.edit');
-            Route::get('/news/{project}/edit', UserNewsEditController::class)->name('user.news.edit');
-            Route::patch('/projects/{project}',UserUpdateController::class)->name('user.project.update');
-            // Store&Destroy&Update
+            // Store
             Route::post('/create/project', UserProjectStoreController::class)->name('user.project.store');
             Route::post('/create/news', UserNewsStoreController::class)->name('user.news.store');
         });

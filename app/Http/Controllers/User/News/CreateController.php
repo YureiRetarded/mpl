@@ -8,8 +8,8 @@ class CreateController extends Controller
 {
     public function __invoke()
     {
-        $user=auth()->user();
-        $projects=$user->projects;
-        return view('public.user.news.create',compact('user','projects'));
+        $user = auth()->user();
+        $projects = $user->projects;
+        return view('public.user.news.create', compact('user', 'projects'));
     }
 }

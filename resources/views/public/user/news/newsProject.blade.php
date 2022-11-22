@@ -3,7 +3,7 @@
 @section('userContent')
     @foreach($news as $newsCard)
         <div role="button" class="card mb-4"
-             onclick="location.href='{{'/user/'.$newsCard->project->user->name.'/news/'.$newsCard->link}}'">
+             onclick="location.href='{{'/user/'.$newsCard->project->user->name.'/projects/'.$newsCard->project->link.'/news/'.$newsCard->link}}'">
             <div class="card-header">
                 {{$newsCard->title}}
             </div>

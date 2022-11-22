@@ -2,7 +2,8 @@
 @section('title','Редактировать проект')
 @section('userContent')
 
-    <form method="POST" action="{{route('user.project.update',['user'=>auth()->user()->name,'project'=>$project->link])}}">
+    <form method="POST"
+          action="{{route('user.project.update',['user'=>auth()->user()->name,'project'=>$project->link])}}">
         @csrf
         @method('patch')
         <div class="mb-3">
