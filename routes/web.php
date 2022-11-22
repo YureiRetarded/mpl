@@ -95,42 +95,6 @@ Route::prefix('user')->group(function () {
 });
 
 
-//ПЕРЕРАБОТАТЬ всё снизу
-
-//Private
-//Route::prefix('private')->group(function () {
-//
-//    //News
-//    Route::prefix('news')->group(function () {
-//        Route::get('/', PrivateNewsIndexController::class)->name('private.news.index');
-//        Route::get('/create', PrivateNewsCreateController::class)->name('private.news.create');
-//        Route::get('/{news}', PrivateNewsShowController::class)->name('private.news.show');
-//        Route::get('/{news}/edit', PrivateNewsEditController::class)->name('private.news.edit');
-//
-//    });
-//    //Projects
-//    Route::prefix('projects')->group(function () {
-//        Route::get('/', PrivateProjectIndexController::class)->name('private.projects.index');
-//        Route::get('/create', PrivateProjectCreateController::class)->name('private.projects.create');
-//        Route::get('/{project}', PrivateProjectShowController::class)->name('private.projects.show');
-//        Route::get('/{project}/edit', PrivateProjectEditController::class)->name('private.projects.edit');
-//    });
-//    //About
-//    Route::prefix('about')->group(function () {
-//        Route::get('/', PrivateAboutIndexController::class)->name('private.about.index');
-//        Route::get('/{id}/edit', PrivateAboutEditController::class)->name('private.about.edit');
-//    });
-//    //Contacts
-//    Route::prefix('contacts')->group(function () {
-//        Route::get('/', PrivateContactInformationIndexController::class)->name('private.contacts.index');
-//        Route::get('/create', PrivateContactInformationCreateController::class)->name('private.contacts.create');
-//        Route::get('/{contact}', PrivateContactInformationShowController::class)->name('private.contacts.show');
-//        Route::get('/{contact}/edit', PrivateContactInformationEditController::class)->name('private.contacts.edit');
-//    });
-//
-//});
-
-
 
 
 
