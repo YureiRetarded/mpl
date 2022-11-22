@@ -1,5 +1,5 @@
 @extends('layouts.public')
-@section('title','YureiDeveloper')
+@section('title','MPL')
 @section('content')
     Главная
 @endsection

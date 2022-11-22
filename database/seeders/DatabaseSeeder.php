@@ -55,28 +55,7 @@ class DatabaseSeeder extends Seeder
                 "role_id" => 1,
             ],
         ];
-        $contactInformations = [
-            [
-                'name' => 'vk1',
-                'value' => 'vk1.com',
-            ],
-            [
-                'name' => 'vk2',
-                'value' => 'vk2.com',
-            ],
-            [
-                'name' => 'vk3',
-                'value' => 'vk3.com',
-            ],
-            [
-                'name' => 'vk4',
-                'value' => 'vk4.com',
-            ],
-            [
-                'name' => 'vk5',
-                'value' => 'vk5.com',
-            ]
-        ];
+
         $statuses = [
             ['name' => 'В разработке'],
             ['name' => 'Заморожен'],
@@ -89,59 +68,21 @@ class DatabaseSeeder extends Seeder
             ['name' => 'Открыт'],
             ['name' => 'Закрыт'],
         ];
-        $technologies = [
-            ['name' => 'laravel'],
-            ['name' => 'skynet'],
-            ['name' => 'legion'],
-        ];
-        $languages = [
-            ['name' => 'php'],
-            ['name' => 'blade'],
-            ['name' => 'c++'],
-            ['name' => 'c--'],
-            ['name' => 'assEmbler'],
-        ];
+
         foreach ($roles as $role) {
             Role::create($role);
         }
 
-        foreach ($contactInformations as $contactInformation) {
-            ContactInformation::create($contactInformation);
-        }
+
         foreach ($statuses as $status) {
             Status::create($status);
         }
         foreach ($puplicAccessLeveles as $puplicAccessLevel) {
             PublicAccessLevel::create($puplicAccessLevel);
         }
-        foreach ($technologies as $technology) {
-            Technology::create($technology);
-        }
-        foreach ($languages as $language) {
-            Language::create($language);
-        }
-        for ($i = 0; $i < 50; $i++) {
-            Tag::create(['name' => fake()->word]);
-        }
-        $technologies = Technology::all();
-        $languages = Language::all();
-        $tags = Tag::all();
+
         foreach ($users as $user) {
             User::create($user);
-        }
-        $projects = Project::factory(100)->create();
-        foreach ($projects as $project) {
-            $technologyIds = $technologies->random(2)->pluck('id');
-            $languageIds = $languages->random(2)->pluck('id');
-            $tagsIds=$tags->random(5)->pluck('id');
-            $project->languages()->attach($languageIds);
-            $project->technologies()->attach($technologyIds);
-            $project->tags()->attach($tagsIds);
-        }
-        $news=News::factory(50)->create();
-        foreach ($news as $newsOne){
-            $tagsIds=$tags->random(5)->pluck('id');
-            $newsOne->tags()->attach($tagsIds);
         }
     }
 }

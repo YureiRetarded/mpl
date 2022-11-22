@@ -12,7 +12,7 @@ class News extends Model
     use SoftDeletes;
 
     protected $table = 'news';
-    protected $fillable = ['title', 'text', 'project_id'];
+    protected $fillable = ['title', 'text', 'project_id', 'link'];
 
     public function project()
     {
@@ -23,4 +23,5 @@ class News extends Model
     {
         return $this->belongsToMany(Tag::class);
     }
+
 }

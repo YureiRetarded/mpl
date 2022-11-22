@@ -1,28 +1,34 @@
 <?php
 
-use App\Http\Controllers\News\IndexController as NewsIndexController;
-use App\Http\Controllers\News\ShowController as NewsShowController;
 use App\Http\Controllers\Pages\AboutController;
 use App\Http\Controllers\Pages\HomeController;
-use App\Http\Controllers\Private\About\ContactInformation\CreateController as PrivateContactInformationCreateController;
-use App\Http\Controllers\Private\About\ContactInformation\EditController as PrivateContactInformationEditController;
-use App\Http\Controllers\Private\About\ContactInformation\IndexController as PrivateContactInformationIndexController;
-use App\Http\Controllers\Private\About\ContactInformation\ShowController as PrivateContactInformationShowController;
-use App\Http\Controllers\Private\About\EditController as PrivateAboutEditController;
-use App\Http\Controllers\Private\About\IndexController as PrivateAboutIndexController;
-use App\Http\Controllers\Private\News\CreateController as PrivateNewsCreateController;
-use App\Http\Controllers\Private\News\EditController as PrivateNewsEditController;
-use App\Http\Controllers\Private\News\IndexController as PrivateNewsIndexController;
-use App\Http\Controllers\Private\News\ShowController as PrivateNewsShowController;
+use App\Http\Controllers\Pages\UsersController;
 use App\Http\Controllers\Private\Page\IndexController as AdminPanelIndexController;
-use App\Http\Controllers\Private\Project\CreateController as PrivateProjectCreateController;
-use App\Http\Controllers\Private\Project\EditController as PrivateProjectEditController;
-use App\Http\Controllers\Private\Project\IndexController as PrivateProjectIndexController;
-use App\Http\Controllers\Private\Project\ShowController as PrivateProjectShowController;
-use App\Http\Controllers\Project\IndexController as ProjectIndexController;
-use App\Http\Controllers\Project\ShowController as ProjectShowController;
+use App\Http\Controllers\User\Information\Contact\IndexController as UserContactIndexController;
+use App\Http\Controllers\User\Information\IndexController as UserInformationIndexController;
+use App\Http\Controllers\User\Information\Contact\CreateController as UserInformationCreateController;
+use App\Http\Controllers\User\Information\Contact\StoreController as UserInformationStoreController;
+use App\Http\Controllers\User\Information\Contact\EditController as UserInformationEditController;
+use App\Http\Controllers\User\Information\Contact\UpdateController as UserInformationUpdateController;
+use App\Http\Controllers\User\Information\Contact\DestroyController as UserInformationDestroyController;
+use App\Http\Controllers\User\News\CreateController as UserNewsCreateController;
+use App\Http\Controllers\User\News\EditController as UserNewsEditController;
+use App\Http\Controllers\User\News\IndexController as UserNewsIndexController;
+use App\Http\Controllers\User\News\NewsProjectController as NewsProjectIndexController;
+use App\Http\Controllers\User\News\ShowController as UserNewsShowController;
+use App\Http\Controllers\User\News\StoreController as UserNewsStoreController;
+use App\Http\Controllers\User\News\UpdateController as UserNewsUpdateController;
+use App\Http\Controllers\User\News\DestroyController as UserNewsDestroyController;
+use App\Http\Controllers\User\Project\CreateController as UserProjectCreateController;
+use App\Http\Controllers\User\Project\EditController as UserProjectEditController;
+use App\Http\Controllers\User\Project\IndexController as UserProjectIndexController;
+use App\Http\Controllers\User\Project\ShowController as UserProjectShowController;
+use App\Http\Controllers\User\Project\StoreController as UserProjectStoreController;
+use App\Http\Controllers\User\Project\UpdateController as UserProjectUpdateController;
+use App\Http\Controllers\User\Project\DestroyController as UserProjectDestroyController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -35,63 +41,75 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
-//Public
 //HomePage
 Route::get('/', HomeController::class)->name('index');
 Route::redirect('/home', '/');
 
-//About me
-Route::get('/about_me', AboutController::class)->name('about');
+//Auth
+Auth::routes();
 
-//News
-Route::prefix('news')->group(function () {
-    Route::get('/', NewsIndexController::class)->name('news.index');
-    Route::get('/{news}', NewsShowController::class)->name('news.show');
-});
-
-//Projects
-Route::prefix('projects')->group(function () {
-    Route::get('/', ProjectIndexController::class)->name('project.index');
-    Route::get('/{project}', ProjectShowController::class)->name('project.show');
-});
-
-//Private
-Route::prefix('private')->group(function () {
-
-    //News
-    Route::prefix('news')->group(function () {
-        Route::get('/', PrivateNewsIndexController::class)->name('private.news.index');
-        Route::get('/create', PrivateNewsCreateController::class)->name('private.news.create');
-        Route::get('/{news}', PrivateNewsShowController::class)->name('private.news.show');
-        Route::get('/{news}/edit', PrivateNewsEditController::class)->name('private.news.edit');
-
-    });
-    //Projects
-    Route::prefix('projects')->group(function () {
-        Route::get('/', PrivateProjectIndexController::class)->name('private.projects.index');
-        Route::get('/create', PrivateProjectCreateController::class)->name('private.projects.create');
-        Route::get('/{project}', PrivateProjectShowController::class)->name('private.projects.show');
-        Route::get('/{project}/edit', PrivateProjectEditController::class)->name('private.projects.edit');
-    });
-    //About
-    Route::prefix('about')->group(function () {
-        Route::get('/', PrivateAboutIndexController::class)->name('private.about.index');
-        Route::get('/{id}/edit', PrivateAboutEditController::class)->name('private.about.edit');
-    });
-    //Contacts
-    Route::prefix('contacts')->group(function () {
-        Route::get('/', PrivateContactInformationIndexController::class)->name('private.contacts.index');
-        Route::get('/create', PrivateContactInformationCreateController::class)->name('private.contacts.create');
-        Route::get('/{contact}', PrivateContactInformationShowController::class)->name('private.contacts.show');
-        Route::get('/{contact}/edit', PrivateContactInformationEditController::class)->name('private.contacts.edit');
-    });
-
-});
-
+//Admin
 Route::middleware('adminPanel')->group(function () {
     Route::get('/adminpanel', AdminPanelIndexController::class)->name('adminPanel');
 });
+//AnotherPages
+Route::get('/about', AboutController::class)->name('aboutProject');
 
-Auth::routes();
+
+//Users
+Route::prefix('user')->group(function () {
+    Route::get('/', UsersController::class)->name('users');
+    Route::prefix('{user}')->group(function () {
+        Route::get('/', UserInformationIndexController::class);
+        Route::prefix('contacts')->group(function (){
+            Route::get('/', UserContactIndexController::class)->name('user.contact.index');
+            Route::middleware('checkUser')->group(function () {
+                Route::get('/create',UserInformationCreateController::class)->name('user.contact.create');
+                Route::post('/',UserInformationStoreController::class)->name('user.contact.store');
+                Route::prefix('{contact}')->group(function (){
+                    Route::get('/edit',UserInformationEditController::class)->name('user.contact.edit');
+                    Route::patch('/',UserInformationUpdateController::class)->name('user.contact.update');
+                    Route::delete('/',UserInformationDestroyController::class)->name('user.contact.delete');
+                });
+            });
+        });
+        Route::get('/news', UserNewsIndexController::class)->name('user.news.index');
+        Route::prefix('projects')->group(function () {
+            Route::get('/', UserProjectIndexController::class)->name('user.project.index');
+            Route::prefix('{project}')->group(function () {
+                Route::get('/', UserProjectShowController::class)->name('user.project.show');
+                Route::middleware('checkUser')->group(function () {
+                    Route::get('/edit', UserProjectEditController::class)->name('user.project.edit');
+                    Route::patch('/', UserProjectUpdateController::class)->name('user.project.update');
+                    Route::delete('/',UserProjectDestroyController::class)->name('user.project.delete');
+                });
+                Route::prefix('news')->group(function () {
+                    Route::get('/', NewsProjectIndexController::class)->name('user.project.news.index');
+                    Route::get('/{news}', UserNewsShowController::class)->name('user.news.show');
+                    Route::middleware('checkUser')->group(function () {
+                        Route::prefix('{news}')->group(function (){
+                            Route::get('/edit', UserNewsEditController::class)->name('user.news.edit');
+                            Route::patch('/', UserNewsUpdateController::class)->name('user.news.update');
+                            Route::delete('/',UserNewsDestroyController::class)->name('user.news.delete');
+                        });
+                    });
+                });
+
+            });
+
+        });
+        Route::middleware('checkUser')->group(function () {
+            //Create pages
+            Route::get('/create/project', UserProjectCreateController::class)->name('user.project.create');
+            Route::get('/create/news', UserNewsCreateController::class)->name('user.news.create');
+            // Store
+            Route::post('/create/project', UserProjectStoreController::class)->name('user.project.store');
+            Route::post('/create/news', UserNewsStoreController::class)->name('user.news.store');
+        });
+    });
+});
+
+
+
+
 

@@ -1,5 +1,5 @@
 @extends('layouts.public')
-@section('title','Обо мне')
+@section('title','О проекте')
 @section('content')
-    Обо мне
+    О проекте
 @endsection

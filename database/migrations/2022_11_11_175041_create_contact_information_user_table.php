@@ -18,7 +18,7 @@ return new class extends Migration {
             $table->index('user_id', 'contact_information_user_user_idx');
             $table->index('contact_information_id', 'contact_information_contact_information_user_idx');
             $table->foreign('user_id', 'contact_information_user_user_fk')->on('users')->references('id');
-            $table->foreign('contact_information_id', 'contact_information_contact_information_user_fk')->on('contact_information')->references('id');
+            $table->foreign('contact_information_id', 'contact_information_contact_information_user_fk')->on('contact_information')->references('id')->onDelete('cascade');
         });
     }
 
