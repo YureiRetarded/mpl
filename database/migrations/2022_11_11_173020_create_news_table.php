@@ -15,7 +15,7 @@ return new class extends Migration {
         Schema::create('news', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->text('text')->nullable();
+            $table->longText('text')->nullable();
             $table->unsignedBigInteger('project_id');
             $table->index('project_id', 'news_project_idx');
             $table->foreign('project_id', 'news_project_fk')->on('projects')->references('id');

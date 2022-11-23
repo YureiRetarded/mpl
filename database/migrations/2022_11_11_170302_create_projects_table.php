@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->id();
             $table->string('title');
             $table->unsignedBigInteger('status_id');
-            $table->text('text')->nullable();
+            $table->longText('text')->nullable();
             $table->text('description')->nullable();
             $table->unsignedBigInteger('public_access_level_id');
             $table->string('github_link')->nullable();

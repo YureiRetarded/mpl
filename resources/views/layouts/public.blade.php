@@ -11,7 +11,7 @@
 <body>
 <div class="container">
     @include('includes.publicNavbar')
-    <div class="container">
+    <div class="container-fluid" >
         @yield('content')
     </div>
 </div>

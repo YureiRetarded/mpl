@@ -1,7 +1,6 @@
 @extends('layouts.user.user')
 @section('title','Редактировать новость')
 @section('userContent')
-
     <form method="POST"
           action="{{route('user.news.update',['user'=>auth()->user()->name,'project'=>$news->project->link,'news'=>$news->link])}}">
         @csrf

@@ -61,7 +61,7 @@ class Controller extends BaseController
             'ш' => 'sh',
             'щ' => 'shch',
             'ъ' => '',
-            'ы' => 'y',
+            'ы' => 'iy',
             'ь' => '',
             'э' => 'e',
             'ю' => 'yu',
@@ -103,6 +103,8 @@ class Controller extends BaseController
             '7'=>7,
             '8'=>8,
             '9'=>9,
+            '#'=>'#',
+            '@'=>'@',
         ];
         $changedString = '';
         foreach ($stringArr as $character) {

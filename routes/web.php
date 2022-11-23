@@ -60,7 +60,7 @@ Route::get('/about', AboutController::class)->name('aboutProject');
 Route::prefix('user')->group(function () {
     Route::get('/', UsersController::class)->name('users');
     Route::prefix('{user}')->group(function () {
-        Route::get('/', UserInformationIndexController::class);
+        Route::get('/', UserInformationIndexController::class)->name('user.index');
         Route::prefix('contacts')->group(function (){
             Route::get('/', UserContactIndexController::class)->name('user.contact.index');
             Route::middleware('checkUser')->group(function () {
@@ -78,13 +78,13 @@ Route::prefix('user')->group(function () {
             Route::get('/', UserProjectIndexController::class)->name('user.project.index');
             Route::prefix('{project}')->group(function () {
                 Route::get('/', UserProjectShowController::class)->name('user.project.show');
+                Route::get('/news', NewsProjectIndexController::class)->name('user.project.news.index');
                 Route::middleware('checkUser')->group(function () {
                     Route::get('/edit', UserProjectEditController::class)->name('user.project.edit');
                     Route::patch('/', UserProjectUpdateController::class)->name('user.project.update');
                     Route::delete('/',UserProjectDestroyController::class)->name('user.project.delete');
                 });
                 Route::prefix('news')->group(function () {
-                    Route::get('/', NewsProjectIndexController::class)->name('user.project.news.index');
                     Route::get('/{news}', UserNewsShowController::class)->name('user.news.show');
                     Route::middleware('checkUser')->group(function () {
                         Route::prefix('{news}')->group(function (){
