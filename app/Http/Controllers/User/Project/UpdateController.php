@@ -15,7 +15,7 @@ class UpdateController extends Controller
         if (count($user->projects->where('link', $project_link)) === 1) {
             $project = $user->projects->where('link', $project_link)->first();
             $data = request()->validate([
-                'title' => 'string|required|max:255|min:2|regex:/^([a-zA-Z0-9а-яА-Я]+\s?)*$/ui',
+                'title' => 'string|required|max:90|min:2|regex:/^([a-zA-Z0-9а-яА-Я]+\s?)*$/ui',
                 'description' => 'string|nullable|max:65535',
                 'text' => 'string|nullable|max:4294967000',
                 'public_access_level_id' => 'int|required',
