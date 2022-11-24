@@ -17,6 +17,6 @@ class UpdateController extends Controller
         ]);
         $contact=ContactInformation::findOrFail($contactId);
         $contact->update($data);
-        return redirect('/user/' . $user->name . '/contacts');
+        return redirect('/users/' . $user->name . '/contacts');
     }
 }

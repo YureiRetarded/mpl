@@ -12,6 +12,6 @@ class DestroyController extends Controller
         $contact = ContactInformation::findOrFail($contactId);
         $contact->delete();
         $user = auth()->user();
-        return redirect('/user/' . $user->name . '/contacts');
+        return redirect('/users/' . $user->name . '/contacts');
     }
 }

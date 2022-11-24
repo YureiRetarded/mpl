@@ -16,6 +16,6 @@ class StoreController extends Controller
         ]);
         $contact = ContactInformation::create($data);
         $user->contactInformation()->attach($contact->id);
-        return redirect('/user/' . $user->name . '/contacts');
+        return redirect('/users/' . $user->name . '/contacts');
     }
 }

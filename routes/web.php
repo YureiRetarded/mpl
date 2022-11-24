@@ -57,7 +57,7 @@ Route::get('/about', AboutController::class)->name('aboutProject');
 
 
 //Users
-Route::prefix('user')->group(function () {
+Route::prefix('users')->group(function () {
     Route::get('/', UsersController::class)->name('users');
     Route::prefix('{user}')->group(function () {
         Route::get('/', UserInformationIndexController::class)->name('user.index');

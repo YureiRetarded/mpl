@@ -10,7 +10,6 @@ class NewsProjectController extends Controller
 {
     public function __invoke($username, $project_link)
     {
-
         if (User::where('name', $username)->exists()) {
             $user = User::where('name', $username)->first();
             if (Project::where('user_id', $user->id)->where('link', $project_link)->exists()) {
@@ -19,10 +18,10 @@ class NewsProjectController extends Controller
                 $news = $this->paginate($news, 10, '', ["path" => url()->current()]);
                 return view('public.user.news.newsProject', compact('news', 'user'));
             } else {
-                return view('public.error.project404');
+                abort(420);
             }
         } else {
-            return view('public.error.user404');
+            abort(418);
         }
     }
 }

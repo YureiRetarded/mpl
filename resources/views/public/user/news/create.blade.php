@@ -1,7 +1,7 @@
 @extends('layouts.user.user')
 @section('title','Создать новость')
 @section('userContent')
-    <form method="POST" action="{{'/user/'.$user->name.'/create/news'}}">
+    <form method="POST" action="{{route('user.news.store',['user'=>$user->name])}}">
         @csrf
         <div class="mb-3">
             <label for="newsName" class="form-label">Заголовок новости</label>

@@ -15,9 +15,7 @@ class IndexController extends Controller
             $news = $this->paginate($user->news, 10, '', ["path" => url()->current()]);
             return view('public.user.news.index', compact('user', 'news'));
         } else {
-            return view('public.error.user404');
+            abort(418);
         }
     }
-
-
 }
