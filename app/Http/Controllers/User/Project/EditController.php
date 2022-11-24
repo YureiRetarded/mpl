@@ -9,7 +9,7 @@ use App\Models\Status;
 
 class EditController extends Controller
 {
-    public function __invoke($user_, $project_link)
+    public function __invoke($username, $project_link)
     {
         $user = auth()->user();
         $link = strip_tags($project_link);
@@ -23,6 +23,6 @@ class EditController extends Controller
             }
             return view('public.user.projects.edit', compact('project', 'user', 'statuses', 'levels', 'tags'));
         }
-        return view('public.error.project404', compact('user', 'statuses'));
+        abort(420);
     }
 }

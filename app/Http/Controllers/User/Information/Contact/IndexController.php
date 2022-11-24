@@ -13,7 +13,7 @@ class IndexController extends Controller
             $user = User::where('name', $username)->first();
             return view('public.user.contactInformation.index', compact('user'));
         } else {
-            return view('public.error.user404');
+            abort(418);
         }
     }
 }

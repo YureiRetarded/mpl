@@ -15,18 +15,17 @@ class ShowController extends Controller
             $user = User::where('name', $username)->first();
             if (Project::where('user_id', $user->id)->where('link', $project_link)->exists()) {
                 $project = Project::where('user_id', $user->id)->where('link', $project_link)->first();
-                $project_title = $project->title;
                 if (News::where('project_id', $project->id)->where('link', $news_link)->exists()) {
                     $news = News::where('project_id', $project->id)->where('link', $news_link)->first();
                     return view('public.user.news.show', compact('news', 'user'));
                 } else {
-                    return view('public.error.news404', compact('username', 'project_title'));
+                    abort(421);
                 }
             } else {
-                return view('public.error.project404');
+               abort(420);
             }
         } else {
-            return view('public.error.user404');
+            abort(418);
         }
     }
 }

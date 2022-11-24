@@ -7,14 +7,14 @@ use App\Models\Project;
 
 class DestroyController extends Controller
 {
-    public function __invoke($user_, $link)
+    public function __invoke($username, $project_link)
     {
         $user = auth()->user();
-        if (Project::where('user_id', $user->id)->where('link', $link)->exists()) {
-            $project = Project::where('user_id', $user->id)->where('link', $link)->first();
+        if (Project::where('user_id', $user->id)->where('link', $project_link)->exists()) {
+            $project = Project::where('user_id', $user->id)->where('link', $project_link)->first();
             $project->delete();
             return redirect('/user/' . $user->name . '/projects/');
         }
-        return view('public.error.project404', compact('user', 'link'));
+        abort(420);
     }
 }
