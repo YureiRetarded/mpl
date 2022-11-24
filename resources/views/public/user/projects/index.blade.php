@@ -1,32 +1,15 @@
 @extends('layouts.user.user')
 @section('title','Проекты')
 @section('userContent')
-    @foreach($projects as $project)
-        <div role="button" class="card mb-4"
-             onclick="location.href='{{'/user/'.$project->user->name.'/projects/'.$project->link}}'">
-            <div class="card-header">
-                {{$project->title}}
-            </div>
-            <div class="card-body">
-                <blockquote class="blockquote mb-0">
-                    <p>{{$project->description}}</p>
-                    <footer class="blockquote-footer">
-                        @foreach($project->tags as $tag)
-                            {{$tag->name}}
-                        @endforeach
-                    </footer>
-                </blockquote>
-                @if(auth()->user()->name===$project->user->name)
-                    <form method="POST"
-                          action="{{route('user.project.delete',['user'=>auth()->user()->name,'project'=>$project->link])}}">
-                        <a class="btn btn-primary" href="{{url()->current().'/'.$project->link.'/edit'}}" role="button">Изменить</a>
-                        @csrf
-                        @method('delete')
-                        <button class="btn btn-danger" type="submit">Удались</button>
-                    </form>
-                @endif
-            </div>
-        </div>
-    @endforeach
-    {{$projects->links()}}
+    @include('includes.project.projectIndexToolbar')
+    @if(count($projects)==0)
+        <h3 class="badText">
+            У пользователя {{$user->name}} нет проектов
+        </h3>
+    @else
+        @foreach($projects as $project)
+            @include('includes.project.card')
+        @endforeach
+        {{$projects->links()}}
+    @endif
 @endsection

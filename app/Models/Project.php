@@ -12,7 +12,16 @@ class Project extends Model
     use SoftDeletes;
 
     protected $table = 'projects';
-    protected $fillable = ['title', 'text', 'status_id', 'public_access_level_id', 'github_link', 'url','link','user_id'];
+    protected $fillable = ['title', 'text', 'status_id', 'public_access_level_id','description', 'github_link', 'url','link','user_id'];
+
+    public static function getTagsString($tags): string
+    {
+        $string = '';
+        foreach ($tags as $tag) {
+            $string = $string. $tag->name . ' ';
+        }
+        return mb_strimwidth($string, 0, 90, '...');
+    }
 
     public function status()
     {

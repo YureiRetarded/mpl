@@ -13,8 +13,8 @@ class StoreController extends Controller
     {
         $user = auth()->user();
         $data = request()->validate([
-            'title' => 'string|required|max:255|min:2|regex:/^([a-zA-Z0-9а-яА-Я]+\s?)*$/ui',
-            'text' => 'string',
+            'title' => 'string|required|max:1000|min:2|regex:/^([a-zA-Z0-9а-яА-Я]+\s?)*$/ui',
+            'text' => 'string|required|max:4294967000',
             'project_id' => 'int|required',
         ]);
         $error = ValidationException::withMessages([
@@ -24,10 +24,7 @@ class StoreController extends Controller
             throw $error;
         }
         $data['link'] = $this->toEnglishCharacters($data['title']);
-
         $news = News::firstOrCreate($data);
-
-        return view('public.user.news.show', compact('news', 'user'));
-
+        return redirect('/user/' . $user->name . '/projects/' . $news->project->link . '/news/' . $news->link);
     }
 }

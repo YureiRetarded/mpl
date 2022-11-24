@@ -1,7 +1,6 @@
 @extends('layouts.user.user')
 @section('title','Создать новость')
 @section('userContent')
-
     <form method="POST" action="{{'/user/'.$user->name.'/create/news'}}">
         @csrf
         <div class="mb-3">

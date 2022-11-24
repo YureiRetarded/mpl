@@ -19,25 +19,25 @@ class UpdateController extends Controller
                 $projects = $user->projects;
                 $news = $project->news()->where('link', $news_link)->first();
                 $data = request()->validate([
-                    'title' => 'string|required|max:255|min:2|regex:/^([a-zA-Z0-9а-яА-Я]+\s?)*$/ui',
-                    'text' => 'string',
+                    'title' => 'string|required|max:1000|min:2|regex:/^([a-zA-Z0-9а-яА-Я]+\s?)*$/ui',
+                    'text' => 'string|required|max:4294967000',
                     'project_id' => 'int|required',
                 ]);
                 $error = ValidationException::withMessages([
                     'title' => ['У этого проекта уже есть новсть с таким названием'],
                 ]);
 
-                if ($news->link !== $this->toEnglishCharacters($data['title']) && $news->project_id !== $data['project_id']) {
-                    //Поменялся и имя и проект
+                if ($news->link !== $this->toEnglishCharacters($data['title']) && $news->project_id !== (int)$data['project_id']) {
+                    //поменялось имя и проект
                     if (count($project->news->where('link', $this->toEnglishCharacters($data['title']))) === 1 || count(Project::where('id', $data['project_id'])->first()->news->where('link', $this->toEnglishCharacters($data['title']))) === 1) {
                         throw $error;
                     }
-                } elseif ($news->link !== $this->toEnglishCharacters($data['title']) && $news->project_id === $data['project_id']) {
+                } elseif ($news->link !== $this->toEnglishCharacters($data['title']) && $news->project_id === (int)$data['project_id']) {
                     //поменялось имя
                     if (count($project->news->where('link', $this->toEnglishCharacters($data['title']))) === 1) {
                         throw $error;
                     }
-                } elseif ($news->link === $this->toEnglishCharacters($data['title']) && $news->project_id !== $data['project_id']) {
+                } elseif ($news->link === $this->toEnglishCharacters($data['title']) && $news->project_id !== (int)$data['project_id']) {
                     // поменялся проект
                     if (count(Project::where('id', $data['project_id'])->first()->news->where('link', $this->toEnglishCharacters($data['title']))) === 1) {
                         throw $error;

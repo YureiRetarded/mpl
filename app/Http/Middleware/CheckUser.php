@@ -25,7 +25,7 @@ class CheckUser
                 return redirect()->back();
             }
         } else {
-            dd('Пользователь НЕ авторизирован');
+            return redirect()->back();
         }
 
     }
