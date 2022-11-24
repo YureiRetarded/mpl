@@ -1,5 +1,5 @@
 @extends('layouts.public')
-@section('title','Пользователи')
+@section('title','Проекты')
 @section('content')
     @include('includes.searchForm')
     <div class="container-fluid">

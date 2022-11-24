@@ -11,7 +11,6 @@ class News extends Model
 {
     use HasFactory;
     use SoftDeletes;
-    use Searchable;
 
     protected $table = 'news';
     protected $fillable = ['title', 'text', 'project_id', 'link'];

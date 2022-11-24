@@ -9,7 +9,11 @@ class UsersController extends Controller
 {
     public function __invoke()
     {
-        $users = User::paginate(10);
-        return view('public.users', compact('users'));
+        if (isset($_GET['query'])) {
+            $users = $this->paginate(User::where('name', 'like', '%' . $_GET['query'] . '%')->get(),10, '', ["path" => url()->current()]);
+            return view('public.search.indexUsers', compact('users'));
+        }
+        $users = $this->paginate(User::all(),10, '', ["path" => url()->current()]);
+        return view('public.search.indexUsers', compact('users'));
     }
 }
