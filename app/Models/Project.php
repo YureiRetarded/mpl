@@ -5,11 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Laravel\Scout\Searchable;
 
 class Project extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    use Searchable;
 
     protected $table = 'projects';
     protected $fillable = ['title', 'text', 'status_id', 'public_access_level_id','description', 'github_link', 'url','link','user_id'];
