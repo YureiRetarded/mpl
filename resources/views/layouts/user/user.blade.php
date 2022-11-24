@@ -5,15 +5,15 @@
         <div class="container">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link {{ (request()->is('user/*/news') == 'news') ? 'active' : '' }}"
+                    <a class="nav-link {{ (request()->is('users/*/news') == 'news') ? 'active' : '' }}"
                        href="{{route('user.news.index',['user'=>$user->name])}}">Новости</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ (request()->is('user/*/projects') == 'projects') ? 'active' : '' }}"
+                    <a class="nav-link {{ (request()->is('users/*/projects') == 'projects') ? 'active' : '' }}"
                        href="{{route('user.project.index',['user'=>$user->name])}}">Проекты</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ (request()->is('user/*/contacts') == 'contacts') ? 'active' : '' }}"
+                    <a class="nav-link {{ (request()->is('users/*/contacts') == 'contacts') ? 'active' : '' }}"
                        href="{{route('user.contact.index',['user'=>$user->name])}}">Контакты</a>
                 </li>
 

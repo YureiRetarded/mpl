@@ -12,7 +12,7 @@ class DestroyController extends Controller
         if (count($user->news->where('link', $news_link)) === 1) {
             $news = $user->news->where('link', $news_link)->first();
             $news->delete();
-            return redirect('/user/' . $user->name . '/news/');
+            return redirect('/users/' . $user->name . '/news/');
         } else {
             abort(421);
         }

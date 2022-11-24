@@ -1,5 +1,5 @@
 <div role="button" class="card mb-4"
-     onclick="location.href='{{'/user/'.$newsCard->project->user->name.'/projects/'.$newsCard->project->link.'/news/'.$newsCard->link}}'">
+    onclick="location.href='{{route('user.news.show',['user'=>$newsCard->project->user->name,'project'=>$newsCard->project->link,'news'=>$newsCard->link])}}'">
     <div class="card-body">
         <div class="card-text ">
             <h3>
@@ -20,7 +20,7 @@
                 @csrf
                 @method('delete')
                 <a class="btn btn-primary"
-                   href="{{'/user/'.auth()->user()->name.'/projects/'.$newsCard->project->link.'/news/'.$newsCard->link.'/edit'}}"
+                   href="{{'/users/'.auth()->user()->name.'/projects/'.$newsCard->project->link.'/news/'.$newsCard->link.'/edit'}}"
                    role="button">Изменить</a>
                 <button class="btn btn-danger" type="submit">Удались</button>
             </form>

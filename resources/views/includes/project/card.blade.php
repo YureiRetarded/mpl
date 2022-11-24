@@ -1,5 +1,5 @@
 <div role="button" class="card mb-4"
-     onclick="location.href='{{'/user/'.$project->user->name.'/projects/'.$project->link}}'">
+    onclick="location.href='{{route('user.project.show',['user'=>$project->user->name,'project'=>$project->link])}}'">
     <div class="card-body">
         <div class="card-text ">
             <h3>

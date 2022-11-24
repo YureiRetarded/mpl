@@ -25,6 +25,6 @@ class StoreController extends Controller
         }
         $data['link'] = $this->toEnglishCharacters($data['title']);
         $news = News::firstOrCreate($data);
-        return redirect('/user/' . $user->name . '/projects/' . $news->project->link . '/news/' . $news->link);
+        return redirect('/users/' . $user->name . '/projects/' . $news->project->link . '/news/' . $news->link);
     }
 }

@@ -13,7 +13,7 @@
         @else
             <h5>
                 Новостей: <a class=""
-                             href="{{url()->current().'/news'}}">{{$project->news->count()}}</a>
+                             href="{{route('user.project.news.index',['user'=>$project->user->name,'project'=>$project->link])}}">{{$project->news->count()}}</a>
             </h5>
             <h5>
                 @foreach($project->tags as $tag)

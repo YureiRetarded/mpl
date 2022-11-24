@@ -1,4 +1,4 @@
-<div class="card p-2 text-center">
+<div class="card p-2 text-center mb-2">
     <div class="card-text badText">
         <h5>
             {{$contact->name}}
