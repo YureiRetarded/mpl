@@ -6,8 +6,8 @@
     </div>
     <div class="card-text badText">
         @if(filter_var($contact->value,FILTER_VALIDATE_URL))
-                <a class="btn btn-primary" role="button" target="_blank" href="{{$contact->value}}">Связаться</a>
-            @else
+            <a class="btn btn-primary" role="button" target="_blank" href="{{$contact->value}}">Связаться</a>
+        @else
             <h5>
                 {{$contact->value}}
             </h5>
