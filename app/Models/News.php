@@ -5,7 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Laravel\Scout\Searchable;
 
 class News extends Model
 {
@@ -17,12 +16,8 @@ class News extends Model
 
     public function project()
     {
-        return $this->belongsTo(Project::class);
+        return $this->belongsTo(Project::class,);
     }
 
-    public function tags()
-    {
-        return $this->belongsToMany(Tag::class);
-    }
 
 }

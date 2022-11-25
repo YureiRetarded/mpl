@@ -1,4 +1,4 @@
-@extends('public.search.news')
+@extends('public.search.projects')
 @section('searchContent')
     @foreach($projects as $project)
         @include('includes.project.card')

@@ -2,7 +2,5 @@
 @section('title','Новости')
 @section('content')
     @include('includes.searchForm')
-    <div class="container-fluid">
-        @yield('searchContent')
-    </div>
+    @yield('searchContent')
 @endsection
