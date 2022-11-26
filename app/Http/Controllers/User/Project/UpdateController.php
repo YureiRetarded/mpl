@@ -37,12 +37,9 @@ class UpdateController extends Controller
             $data['link'] = $this->toEnglishCharacters($data['title']);
             $data['user_id'] = $user->id;
             $tags = [];
-            if(isset($data['tags'])){
+            if (isset($data['tags'])) {
 
                 $rawTags = explode(' ', $data['tags']);
-                foreach ($rawTags as $key => $tag) {
-                    $rawTags[$key] = $this->toEnglishCharacters($tag);
-                }
                 foreach (array_unique($rawTags) as $tag) {
                     $tags[] = Tag::firstOrCreate(['name' => $tag]);
                 }
