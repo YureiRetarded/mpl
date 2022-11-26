@@ -11,6 +11,7 @@ class ShowController extends Controller
 
     public function __invoke($username, $project_link)
     {
+
         if (User::where('name', $username)->exists()) {
             $user = User::where('name', $username)->firstOrFail();
             if (Project::where('user_id', $user->id)->where('link', $project_link)->exists()) {

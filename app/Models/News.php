@@ -5,13 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Laravel\Scout\Searchable;
 
 class News extends Model
 {
     use HasFactory;
     use SoftDeletes;
-    use Searchable;
 
     protected $table = 'news';
     protected $fillable = ['title', 'text', 'project_id', 'link'];
@@ -21,9 +19,5 @@ class News extends Model
         return $this->belongsTo(Project::class);
     }
 
-    public function tags()
-    {
-        return $this->belongsToMany(Tag::class);
-    }
 
 }

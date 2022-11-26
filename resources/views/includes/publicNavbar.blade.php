@@ -7,6 +7,14 @@
         <div class="collapse navbar-collapse order-0 dual-collapse1">
             <ul class="navbar-nav">
                 <li class="nav-item">
+                    <a class="nav-link {{ (request()->is('projects')) ? 'active' : '' }}"
+                       href="{{route('projects')}}">Проекты</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ (request()->is('news')) ? 'active' : '' }}"
+                       href="{{route('news')}}">Новости</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link {{ (request()->is('user')) ? 'active' : '' }}" href="{{route('users')}}">Пользователи</a>
                 </li>
                 <li class="nav-item">

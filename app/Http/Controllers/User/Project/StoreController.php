@@ -35,9 +35,6 @@ class StoreController extends Controller
         if(isset($data['tags'])){
 
             $rawTags = explode(' ', $data['tags']);
-            foreach ($rawTags as $key => $tag) {
-                $rawTags[$key] = $this->toEnglishCharacters($tag);
-            }
             foreach (array_unique($rawTags) as $tag) {
                 $tags[] = Tag::firstOrCreate(['name' => $tag]);
             }

@@ -20,7 +20,7 @@
             </ul>
         </div>
     </nav>
-    <div class="container-fluid">
+    <div class="">
         @yield('userContent')
     </div>
 @endsection
