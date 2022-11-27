@@ -38,9 +38,9 @@
 
             <div class="mb-3">
                 <label for="newsNameInput" class="form-label">Новое имя</label>
-                <input name="new_name" type="text" class="form-control" id="newsNameInput"
+                <input name="name" type="text" class="form-control" id="newsNameInput"
                        placeholder="Новое имя">
-                @error('new_name')
+                @error('name')
                 <span class="text-danger">{{ $message }}</span>
                 @enderror
             </div>

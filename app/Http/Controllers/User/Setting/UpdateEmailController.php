@@ -9,6 +9,6 @@ class UpdateEmailController extends Controller
 {
     public function __invoke()
     {
-        dd('Обновления почты');
+       return redirect()->back();
     }
 }

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\User\Setting;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 
 class UpdateAboutController extends Controller
 {
