@@ -9,8 +9,12 @@
         <h5>
             Новостей: {{$user->news->count()}}
         </h5>
-        @if(isset($user->about))
-
-        @endif
+        <div>
+            @if(isset($user->about))
+                <p>{{$user->about}}</p>
+            @else
+                <p>{{$user->name}} не написал информации о себе </p>
+            @endif
+        </div>
     </div>
 @endsection
