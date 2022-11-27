@@ -63,6 +63,9 @@
                             <a class="dropdown-item" href="{{route('user.index',auth()->user()->name)}}">
                                 Моя страница
                             </a>
+                            <a class="dropdown-item" href="{{route('user.setting')}}">
+                                Настройки
+                            </a>
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

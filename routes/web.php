@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Pages\AboutController;
 use App\Http\Controllers\Pages\HomeController;
 use App\Http\Controllers\Pages\NewsPageController;
@@ -28,6 +29,11 @@ use App\Http\Controllers\User\Project\IndexController as UserProjectIndexControl
 use App\Http\Controllers\User\Project\ShowController as UserProjectShowController;
 use App\Http\Controllers\User\Project\StoreController as UserProjectStoreController;
 use App\Http\Controllers\User\Project\UpdateController as UserProjectUpdateController;
+use App\Http\Controllers\User\Setting\IndexController as UserSettingIndexController;
+use App\Http\Controllers\User\Setting\UpdateAboutController as UserUpdateAboutController;
+use App\Http\Controllers\User\Setting\UpdateEmailController as UserUpdateEmailController;
+use App\Http\Controllers\User\Setting\UpdateNameController as UserUpdateNameController;
+use App\Http\Controllers\User\Setting\UpdatePasswordController as UserUpdatePasswordController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -45,11 +51,22 @@ use Illuminate\Support\Facades\Route;
 
 //HomePage
 Route::get('/', HomeController::class)->name('index');
-Route::redirect('/home', '/');
 
 //Auth
 Auth::routes();
+Route::post('/logout', LogoutController::class)->name('logout');
 
+//Setting
+Route::middleware('auth')->group(function () {
+
+    Route::prefix('setting')->group(function () {
+        Route::get('/', UserSettingIndexController::class)->name('user.setting');
+        Route::post('/about', UserUpdateAboutController::class)->name('user.updateAbout');
+        Route::post('/email', UserUpdateEmailController::class)->name('user.updateEmail');
+        Route::post('/name', UserUpdateNameController::class)->name('user.updateName');
+        Route::post('/password', UserUpdatePasswordController::class)->name('user.updatePassword');
+    });
+});
 //Admin
 Route::middleware('adminPanel')->group(function () {
     Route::get('/adminpanel', AdminPanelIndexController::class)->name('adminPanel');
@@ -59,11 +76,9 @@ Route::get('/about', AboutController::class)->name('aboutProject');
 
 
 //Projects
-Route::get('/projects',ProjectsPageController::class)->name('projects');
+Route::get('/projects', ProjectsPageController::class)->name('projects');
 //News
-Route::get('/news',NewsPageController::class)->name('news');
-
-
+Route::get('/news', NewsPageController::class)->name('news');
 
 
 //Data with users

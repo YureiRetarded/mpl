@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Providers\RouteServiceProvider;
 use Closure;
 use Illuminate\Http\Request;
 
@@ -25,8 +26,7 @@ class CheckUser
                 return redirect()->back();
             }
         } else {
-            return redirect()->back();
+            return redirect(RouteServiceProvider::LOGIN);
         }
-
     }
 }

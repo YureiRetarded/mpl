@@ -32,7 +32,7 @@ class StoreController extends Controller
         $data['user_id'] = $user->id;
 
         $tags = [];
-        if(isset($data['tags'])){
+        if (isset($data['tags'])) {
 
             $rawTags = explode(' ', $data['tags']);
             foreach (array_unique($rawTags) as $tag) {
