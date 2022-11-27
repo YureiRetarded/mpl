@@ -13,9 +13,7 @@ use App\Http\Controllers\User\Information\Contact\EditController as UserInformat
 use App\Http\Controllers\User\Information\Contact\IndexController as UserContactIndexController;
 use App\Http\Controllers\User\Information\Contact\StoreController as UserInformationStoreController;
 use App\Http\Controllers\User\Information\Contact\UpdateController as UserInformationUpdateController;
-use App\Http\Controllers\User\Information\EditController as UserAboutPageController;
 use App\Http\Controllers\User\Information\IndexController as UserInformationIndexController;
-use App\Http\Controllers\User\Information\UpdateController as UserAboutUpdateController;
 use App\Http\Controllers\User\News\CreateController as UserNewsCreateController;
 use App\Http\Controllers\User\News\DestroyController as UserNewsDestroyController;
 use App\Http\Controllers\User\News\EditController as UserNewsEditController;
@@ -31,8 +29,11 @@ use App\Http\Controllers\User\Project\IndexController as UserProjectIndexControl
 use App\Http\Controllers\User\Project\ShowController as UserProjectShowController;
 use App\Http\Controllers\User\Project\StoreController as UserProjectStoreController;
 use App\Http\Controllers\User\Project\UpdateController as UserProjectUpdateController;
-use App\Http\Controllers\User\Setting\EditController as UserSettingEditController;
-use App\Http\Controllers\User\Setting\UpdateController as UserSettingUpdateController;
+use App\Http\Controllers\User\Setting\IndexController as UserSettingIndexController;
+use App\Http\Controllers\User\Setting\UpdatePasswordController as UserUpdatePasswordController;
+use App\Http\Controllers\User\Setting\UpdateAboutController as UserUpdateAboutController;
+use App\Http\Controllers\User\Setting\UpdateEmailController as UserUpdateEmailController;
+use App\Http\Controllers\User\Setting\UpdateNameController as UserUpdateNameController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -57,8 +58,14 @@ Route::post('/logout', LogoutController::class)->name('logout');
 
 //Setting
 Route::middleware('auth')->group(function () {
-    Route::get('/setting', UserSettingEditController::class);
-    Route::patch('/setting', UserSettingUpdateController::class);
+
+    Route::prefix('setting')->group(function (){
+        Route::get('/', UserSettingIndexController::class)->name('user.setting');
+        Route::post('/about', UserUpdateAboutController::class)->name('user.updateAbout');
+        Route::post('/email', UserUpdateEmailController::class)->name('user.updateEmail');
+        Route::post('/name', UserUpdateNameController::class)->name('user.updateName');
+        Route::post('/password', UserUpdatePasswordController::class)->name('user.updatePassword');
+    });
 });
 //Admin
 Route::middleware('adminPanel')->group(function () {
@@ -78,10 +85,6 @@ Route::get('/news', NewsPageController::class)->name('news');
 Route::prefix('users')->group(function () {
     Route::get('/', UsersController::class)->name('users');
     Route::prefix('{user}')->group(function () {
-        Route::middleware('checkUser')->group(function () {
-            Route::get('/edit', UserAboutPageController::class)->name('user.edit');
-            Route::patch('/', UserAboutUpdateController::class)->name('user.update');
-        });
         Route::get('/', UserInformationIndexController::class)->name('user.index');
         Route::prefix('contacts')->group(function () {
             Route::get('/', UserContactIndexController::class)->name('user.contact.index');
