@@ -19,7 +19,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{ (request()->is('about')) ? 'active' : '' }}"
-                       href="{{route('aboutProject')}}">О проекте</a>
+                       href="{{route('aboutProject')}}">Контакты</a>
                 </li>
                 @can('view',auth()->user())
                     <li class="nav-item">
