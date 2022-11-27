@@ -13,7 +13,7 @@ class NewsPageController extends Controller
             $news = $this->paginate(News::where('title', 'like', '%' . $_GET['query'] . '%')->get(), 10, '', ["path" => url()->current()]);
             return view('public.search.indexNews', compact('news'));
         }
-        $news = $this->paginate(News::all());
+        $news = $this->paginate(News::all()->reverse());
         return view('public.search.indexNews', compact('news'));
     }
 }

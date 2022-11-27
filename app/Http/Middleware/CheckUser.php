@@ -27,7 +27,6 @@ class CheckUser
             }
         } else {
             return redirect(RouteServiceProvider::LOGIN);
-            return redirect()->back();
         }
     }
 }

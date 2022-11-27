@@ -23,7 +23,7 @@ class ProjectsPageController extends Controller
             $projects = $this->paginate($projectsAll, 10, '', ["path" => url()->current()]);
             return view('public.search.indexProjects', compact('projects'));
         }
-        $projects = $this->paginate(Project::all(), 10, '', ["path" => url()->current()]);
+        $projects = $this->paginate(Project::all()->reverse(), 10, '', ["path" => url()->current()]);
         return view('public.search.indexProjects', compact('projects'));
     }
 }

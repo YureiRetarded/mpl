@@ -32,7 +32,7 @@ class IndexController extends Controller
                 $news = $this->paginate($news, 10, '', ["path" => url()->current()]);
                 return view('public.user.news.index', compact('user', 'news'));
             }
-            $news = $this->paginate($user->news, 10, '', ["path" => url()->current()]);
+            $news = $this->paginate($user->news->reverse(), 10, '', ["path" => url()->current()]);
             return view('public.user.news.index', compact('user', 'news'));
         } else {
             abort(418);
