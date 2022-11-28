@@ -11,9 +11,9 @@ class IndexController extends Controller
     {
         if (isset($_GET['query'])) {
             $statuses = $this->paginate(Status::where('name', 'like', '%' . $_GET['query'] . '%')->get(), 10, '', ["path" => url()->current()]);
-            return view('private.roles.index', compact('statuses'));
+            return view('private.statuses.index', compact('statuses'));
         }
         $statuses = $this->paginate(Status::all(), 10, '', ["path" => url()->current()]);
-        return view('private.roles.index', compact('statuses'));
+        return view('private.statuses.index', compact('statuses'));
     }
 }

@@ -25,6 +25,10 @@
                     <a class="nav-link {{ (request()->is('roles')) ? 'active' : '' }}"
                        href="{{route('admin.roles')}}">Роли</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ (request()->is('statuses')) ? 'active' : '' }}"
+                       href="{{route('admin.statuses')}}">Статусы</a>
+                </li>
             </ul>
         </div>
     </div>
