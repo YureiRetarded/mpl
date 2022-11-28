@@ -26,6 +26,10 @@
                         <a class="nav-link {{ (request()->is('adminpanel')) ? 'active' : '' }}"
                            href="{{route('adminPanel')}}">Админ панель</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ (request()->is('telescope')) ? 'active' : '' }}"
+                           href="{{'/telescope'}}" target="_blank" >Telescope</a>
+                    </li>
                 @endcan
             </ul>
         </div>
