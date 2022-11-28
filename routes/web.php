@@ -6,7 +6,27 @@ use App\Http\Controllers\Pages\HomeController;
 use App\Http\Controllers\Pages\NewsPageController;
 use App\Http\Controllers\Pages\ProjectsPageController;
 use App\Http\Controllers\Pages\UsersController;
+use App\Http\Controllers\Private\News\DestroyController as AdminDestroyNewsController;
+use App\Http\Controllers\Private\News\IndexController as AdminIndexNewsController;
 use App\Http\Controllers\Private\Page\IndexController as AdminPanelIndexController;
+use App\Http\Controllers\Private\Project\DestroyController as AdminDestroyProjectController;
+use App\Http\Controllers\Private\Project\IndexController as AdminIndexProjectController;
+use App\Http\Controllers\Private\Role\CreateController as AdminCreateRoleController;
+use App\Http\Controllers\Private\Role\DestroyController as AdminDestroyRoleController;
+use App\Http\Controllers\Private\Role\EditController as AdminEditRoleController;
+use App\Http\Controllers\Private\Role\IndexController as AdminIndexRoleController;
+use App\Http\Controllers\Private\Role\StoreController as AdminStoreRoleController;
+use App\Http\Controllers\Private\Role\UpdateController as AdminUpdateRoleController;
+use App\Http\Controllers\Private\Tag\CreateController as AdminCreateTagController;
+use App\Http\Controllers\Private\Tag\DestroyController as AdminDestroyTagController;
+use App\Http\Controllers\Private\Tag\EditController as AdminEditTagController;
+use App\Http\Controllers\Private\Tag\IndexController as AdminIndexTagController;
+use App\Http\Controllers\Private\Tag\StoreController as AdminStoreTagController;
+use App\Http\Controllers\Private\Tag\UpdateController as AdminUpdateTagController;
+use App\Http\Controllers\Private\User\DestroyController as AdminDestroyUserController;
+use App\Http\Controllers\Private\User\EditController as AdminEditUserController;
+use App\Http\Controllers\Private\User\IndexController as AdminIndexUserController;
+use App\Http\Controllers\Private\User\UpdateController as AdminUpdateUserController;
 use App\Http\Controllers\User\Information\Contact\CreateController as UserInformationCreateController;
 use App\Http\Controllers\User\Information\Contact\DestroyController as UserInformationDestroyController;
 use App\Http\Controllers\User\Information\Contact\EditController as UserInformationEditController;
@@ -69,7 +89,55 @@ Route::middleware('auth')->group(function () {
 });
 //Admin
 Route::middleware('adminPanel')->group(function () {
-    Route::get('/adminpanel', AdminPanelIndexController::class)->name('adminPanel');
+    Route::prefix('adminpanel')->group(function () {
+        Route::get('/', AdminPanelIndexController::class)->name('adminPanel');
+
+        //Users
+        Route::prefix('users')->group(function () {
+            Route::get('/', AdminIndexUserController::class)->name('admin.users');
+            Route::prefix('{user}')->group(function () {
+                Route::get('/edit', AdminEditUserController::class)->name('admin.user.edit');
+                Route::patch('/', AdminUpdateUserController::class)->name('admin.user.update');
+                Route::delete('/', AdminDestroyUserController::class)->name('admin.user.delete');
+            });
+        });
+
+        //Tags
+        Route::prefix('tags')->group(function () {
+            Route::get('/', AdminIndexTagController::class)->name('admin.tags');
+            Route::get('/create', AdminCreateTagController::class)->name('admin.tag.create');
+            Route::post('/', AdminStoreTagController::class)->name('admin.tag.store');
+            Route::prefix('{tag}')->group(function () {
+                Route::get('/edit', AdminEditTagController::class)->name('admin.tag.edit');
+                Route::patch('/', AdminUpdateTagController::class)->name('admin.tag.update');
+                Route::delete('/', AdminDestroyTagController::class)->name('admin.tag.delete');
+            });
+        });
+
+        //Roles
+        Route::prefix('roles')->group(function () {
+            Route::get('/', AdminIndexRoleController::class)->name('admin.roles');
+            Route::get('/create', AdminCreateRoleController::class)->name('admin.role.create');
+            Route::post('/', AdminStoreRoleController::class)->name('admin.role.store');
+            Route::prefix('{role}')->group(function () {
+                Route::get('/edit', AdminEditRoleController::class)->name('admin.role.edit');
+                Route::patch('/', AdminUpdateRoleController::class)->name('admin.role.update');
+                Route::delete('/', AdminDestroyRoleController::class)->name('admin.role.delete');
+            });
+        });
+
+        //News
+        Route::prefix('news')->group(function () {
+            Route::get('/', AdminIndexNewsController::class)->name('admin.news');
+            Route::delete('/{news}', AdminDestroyNewsController::class)->name('admin.news.delete');
+        });
+
+        //Projects
+        Route::prefix('projects')->group(function () {
+            Route::get('/', AdminIndexProjectController::class)->name('admin.projects');
+            Route::delete('/{project}', AdminDestroyProjectController::class)->name('admin.project.delete');
+        });
+    });
 });
 //AnotherPages
 Route::get('/about', AboutController::class)->name('aboutProject');
