@@ -73,7 +73,6 @@ class DatabaseSeeder extends Seeder
             Role::create($role);
         }
 
-
         foreach ($statuses as $status) {
             Status::create($status);
         }

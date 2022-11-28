@@ -17,8 +17,8 @@ return new class extends Migration {
             $table->unsignedBigInteger('tag_id');
             $table->index('project_id', 'project_project_tag_idx');
             $table->index('tag_id', 'project_tag_tag_idx');
-            $table->foreign('project_id', 'project_project_tag_fk')->on('projects')->references('id');
-            $table->foreign('tag_id', 'project_tag_tag_fk')->on('tags')->references('id');
+            $table->foreign('project_id', 'project_project_tag_fk')->on('projects')->references('id')->onDelete('cascade');
+            $table->foreign('tag_id', 'project_tag_tag_fk')->on('tags')->references('id')->onDelete('cascade');
         });
     }
 

@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\Private\Status;
 
 use App\Http\Controllers\Controller;
+use App\Models\Status;
 
 class EditController extends Controller
 {
-    public function __invoke()
+    public function __invoke(Status $status)
     {
-        // TODO: Implement __invoke() method.
+        return view('private.statuses.edit',compact('status'));
     }
 }

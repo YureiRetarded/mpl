@@ -29,7 +29,6 @@ use App\Http\Controllers\Private\Tag\EditController as AdminEditTagController;
 use App\Http\Controllers\Private\Tag\IndexController as AdminIndexTagController;
 use App\Http\Controllers\Private\Tag\StoreController as AdminStoreTagController;
 use App\Http\Controllers\Private\Tag\UpdateController as AdminUpdateTagController;
-use App\Http\Controllers\Private\User\DestroyController as AdminDestroyUserController;
 use App\Http\Controllers\Private\User\EditController as AdminEditUserController;
 use App\Http\Controllers\Private\User\IndexController as AdminIndexUserController;
 use App\Http\Controllers\Private\User\UpdateController as AdminUpdateUserController;
@@ -104,7 +103,6 @@ Route::middleware('adminPanel')->group(function () {
             Route::prefix('{user}')->group(function () {
                 Route::get('/edit', AdminEditUserController::class)->name('admin.user.edit');
                 Route::patch('/', AdminUpdateUserController::class)->name('admin.user.update');
-                Route::delete('/', AdminDestroyUserController::class)->name('admin.user.delete');
             });
         });
 

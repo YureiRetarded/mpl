@@ -6,7 +6,7 @@
                   action="{{route('admin.role.delete',['role'=>$role->id])}}">
                 @csrf
                 @method('delete')
-                <a target="_blank" class="btn btn-primary me-2"
+                <a class="btn btn-primary me-2"
                    href="{{route('admin.role.edit',['role'=>$role->id])}}">
                     Редактировать
                 </a>

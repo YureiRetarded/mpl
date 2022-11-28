@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Private\News;
 
 use App\Http\Controllers\Controller;
+use App\Models\News;
 
 class DestroyController extends Controller
 {
-    public function __invoke()
+    public function __invoke(News $news)
     {
-        // TODO: Implement __invoke() method.
+        $news->delete();
+        return redirect()->back();
     }
 }

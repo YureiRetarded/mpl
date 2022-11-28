@@ -6,7 +6,7 @@
                   action="{{route('admin.status.delete',['status'=>$status->id])}}">
                 @csrf
                 @method('delete')
-                <a target="_blank" class="btn btn-primary me-2"
+                <a class="btn btn-primary me-2"
                    href="{{route('admin.status.edit',['status'=>$status->id])}}">
                     Редактировать
                 </a>

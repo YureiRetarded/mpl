@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Private\Tag;
 
 use App\Http\Controllers\Controller;
+use App\Models\Tag;
 
 class DestroyController extends Controller
 {
-    public function __invoke()
+    public function __invoke(Tag $tag)
     {
-        // TODO: Implement __invoke() method.
+        $tag->delete();
+        return redirect()->back();
     }
 }

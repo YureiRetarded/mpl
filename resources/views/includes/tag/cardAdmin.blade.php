@@ -6,7 +6,7 @@
                   action="{{route('admin.tag.delete',['tag'=>$tag->id])}}">
                 @csrf
                 @method('delete')
-                <a target="_blank" class="btn btn-primary me-2"
+                <a class="btn btn-primary me-2"
                    href="{{route('admin.tag.edit',['tag'=>$tag->id])}}">
                     Редактировать
                 </a>

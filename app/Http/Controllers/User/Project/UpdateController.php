@@ -41,7 +41,7 @@ class UpdateController extends Controller
 
                 $rawTags = explode(' ', $data['tags']);
                 foreach (array_unique($rawTags) as $tag) {
-                    $tags[] = Tag::firstOrCreate(['name' => $tag]);
+                    $tags[] = Tag::firstOrCreate(['name' => mb_strtolower($tag)]);
                 }
             }
             unset($data['tags']);
