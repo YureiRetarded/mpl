@@ -10,8 +10,8 @@
 </head>
 <body>
 <div class="container">
-    @include('includes.publicNavbar')
-    <div class="container">
+    @include('includes.privateNavbar')
+    <div class="container-fluid">
         @yield('content')
     </div>
 </div>

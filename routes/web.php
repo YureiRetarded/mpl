@@ -17,6 +17,12 @@ use App\Http\Controllers\Private\Role\EditController as AdminEditRoleController;
 use App\Http\Controllers\Private\Role\IndexController as AdminIndexRoleController;
 use App\Http\Controllers\Private\Role\StoreController as AdminStoreRoleController;
 use App\Http\Controllers\Private\Role\UpdateController as AdminUpdateRoleController;
+use App\Http\Controllers\Private\Status\CreateController as AdminCreateStatusController;
+use App\Http\Controllers\Private\Status\DestroyController as AdminDestroyStatusController;
+use App\Http\Controllers\Private\Status\EditController as AdminEditStatusController;
+use App\Http\Controllers\Private\Status\IndexController as AdminIndexStatusController;
+use App\Http\Controllers\Private\Status\StoreController as AdminStoreStatusController;
+use App\Http\Controllers\Private\Status\UpdateController as AdminUpdateStatusController;
 use App\Http\Controllers\Private\Tag\CreateController as AdminCreateTagController;
 use App\Http\Controllers\Private\Tag\DestroyController as AdminDestroyTagController;
 use App\Http\Controllers\Private\Tag\EditController as AdminEditTagController;
@@ -123,6 +129,17 @@ Route::middleware('adminPanel')->group(function () {
                 Route::get('/edit', AdminEditRoleController::class)->name('admin.role.edit');
                 Route::patch('/', AdminUpdateRoleController::class)->name('admin.role.update');
                 Route::delete('/', AdminDestroyRoleController::class)->name('admin.role.delete');
+            });
+        });
+        //Statuses
+        Route::prefix('statuses')->group(function () {
+            Route::get('/', AdminIndexStatusController::class)->name('admin.statuses');
+            Route::get('/create', AdminCreateStatusController::class)->name('admin.status.create');
+            Route::post('/', AdminStoreStatusController::class)->name('admin.status.store');
+            Route::prefix('{status}')->group(function () {
+                Route::get('/edit', AdminEditStatusController::class)->name('admin.status.edit');
+                Route::patch('/', AdminUpdateStatusController::class)->name('admin.status.update');
+                Route::delete('/', AdminDestroyStatusController::class)->name('admin.status.delete');
             });
         });
 
