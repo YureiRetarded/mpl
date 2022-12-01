@@ -10,10 +10,10 @@ class IndexController extends Controller
     public function __invoke()
     {
         if (isset($_GET['query'])) {
-            $statuses = $this->paginate(Status::where('name', 'like', '%' . $_GET['query'] . '%')->get(), 10, '', ["path" => url()->current()]);
+            $statuses = Status::where('name', 'like', '%' . $_GET['query'] . '%')->paginate(15);
             return view('private.statuses.index', compact('statuses'));
         }
-        $statuses = $this->paginate(Status::all(), 10, '', ["path" => url()->current()]);
+        $statuses = Status::all()->paginate(15);
         return view('private.statuses.index', compact('statuses'));
     }
 }

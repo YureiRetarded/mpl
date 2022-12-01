@@ -3,11 +3,11 @@
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Pages\AboutController;
 use App\Http\Controllers\Pages\HomeController;
-use App\Http\Controllers\Pages\NewsPageController;
+use App\Http\Controllers\Pages\PostsPageController;
 use App\Http\Controllers\Pages\ProjectsPageController;
 use App\Http\Controllers\Pages\UsersController;
-use App\Http\Controllers\Private\News\DestroyController as AdminDestroyNewsController;
-use App\Http\Controllers\Private\News\IndexController as AdminIndexNewsController;
+use App\Http\Controllers\Private\Post\DestroyController as AdminDestroyNewsController;
+use App\Http\Controllers\Private\Post\IndexController as AdminIndexNewsController;
 use App\Http\Controllers\Private\Page\IndexController as AdminPanelIndexController;
 use App\Http\Controllers\Private\Project\DestroyController as AdminDestroyProjectController;
 use App\Http\Controllers\Private\Project\IndexController as AdminIndexProjectController;
@@ -39,14 +39,14 @@ use App\Http\Controllers\User\Information\Contact\IndexController as UserContact
 use App\Http\Controllers\User\Information\Contact\StoreController as UserInformationStoreController;
 use App\Http\Controllers\User\Information\Contact\UpdateController as UserInformationUpdateController;
 use App\Http\Controllers\User\Information\IndexController as UserInformationIndexController;
-use App\Http\Controllers\User\News\CreateController as UserNewsCreateController;
-use App\Http\Controllers\User\News\DestroyController as UserNewsDestroyController;
-use App\Http\Controllers\User\News\EditController as UserNewsEditController;
-use App\Http\Controllers\User\News\IndexController as UserNewsIndexController;
-use App\Http\Controllers\User\News\NewsProjectController as NewsProjectIndexController;
-use App\Http\Controllers\User\News\ShowController as UserNewsShowController;
-use App\Http\Controllers\User\News\StoreController as UserNewsStoreController;
-use App\Http\Controllers\User\News\UpdateController as UserNewsUpdateController;
+use App\Http\Controllers\User\Post\CreateController as UserNewsCreateController;
+use App\Http\Controllers\User\Post\DestroyController as UserNewsDestroyController;
+use App\Http\Controllers\User\Post\EditController as UserNewsEditController;
+use App\Http\Controllers\User\Post\IndexController as UserNewsIndexController;
+use App\Http\Controllers\User\Post\PostsProjectController as NewsProjectIndexController;
+use App\Http\Controllers\User\Post\ShowController as UserNewsShowController;
+use App\Http\Controllers\User\Post\StoreController as UserNewsStoreController;
+use App\Http\Controllers\User\Post\UpdateController as UserNewsUpdateController;
 use App\Http\Controllers\User\Project\CreateController as UserProjectCreateController;
 use App\Http\Controllers\User\Project\DestroyController as UserProjectDestroyController;
 use App\Http\Controllers\User\Project\EditController as UserProjectEditController;
@@ -161,7 +161,7 @@ Route::get('/about', AboutController::class)->name('aboutProject');
 //Projects
 Route::get('/projects', ProjectsPageController::class)->name('projects');
 //News
-Route::get('/news', NewsPageController::class)->name('news');
+Route::get('/news', PostsPageController::class)->name('news');
 
 
 //Data with users

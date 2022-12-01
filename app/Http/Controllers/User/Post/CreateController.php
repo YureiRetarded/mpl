@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\User\News;
+namespace App\Http\Controllers\User\Post;
 
 use App\Http\Controllers\Controller;
 
@@ -10,6 +10,6 @@ class CreateController extends Controller
     {
         $user = auth()->user();
         $projects = $user->projects;
-        return view('public.user.news.create', compact('user', 'projects'));
+        return view('public.user.post.create', compact('user', 'projects'));
     }
 }

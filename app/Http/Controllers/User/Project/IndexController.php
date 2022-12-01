@@ -27,7 +27,7 @@ class IndexController extends Controller
                 $projects = $this->paginate($projectsAll, 10, '', ["path" => url()->current()]);
                 return view('public.user.projects.index', compact('user', 'projects'));
             }
-            $projects = $this->paginate($user->projects->reverse(), 10, '', ["path" => url()->current()]);
+            $projects = $user->projects->reverse()->paginate(15);
             return view('public.user.projects.index', compact('user', 'projects'));
         } else {
             abort(418);

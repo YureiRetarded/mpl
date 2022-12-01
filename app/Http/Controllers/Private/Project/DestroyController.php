@@ -9,7 +9,7 @@ class DestroyController extends Controller
 {
     public function __invoke(Project $project)
     {
-        $project->news()->delete();
+        $project->posts()->delete();
         $project->delete();
         return redirect()->back();
     }

@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\Private\News;
+namespace App\Http\Controllers\Private\Post;
 
 use App\Http\Controllers\Controller;
-use App\Models\News;
+use App\Models\Post;
 
 class DestroyController extends Controller
 {
-    public function __invoke(News $news)
+    public function __invoke(Post $post)
     {
-        $news->delete();
+        $post->delete();
         return redirect()->back();
     }
 }
