@@ -19,11 +19,11 @@
 
         @if($project->posts->count()===0)
             <h5>
-                У проекта нет новостей
+                У проекта нет постов
             </h5>
         @else
             <h5>
-                Новостей: <a class=""
+                Постов: <a class=""
                              href="{{route('user.project.posts.index',['user'=>$project->user->name,'project'=>$project->link])}}">{{$project->posts->count()}}</a>
             </h5>
             <h5>

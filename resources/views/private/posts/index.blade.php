@@ -1,5 +1,5 @@
 @extends('layouts.private')
-@section('title','Новости')
+@section('title','Посты')
 @section('content')
     @include('includes.searchForm')
     @foreach($posts as $post)

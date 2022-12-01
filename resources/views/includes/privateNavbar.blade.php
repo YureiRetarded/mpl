@@ -12,7 +12,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{ (request()->is('posts')) ? 'active' : '' }}"
-                       href="{{route('admin.posts')}}">Новости</a>
+                       href="{{route('admin.posts')}}">Посты</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{ (request()->is('user')) ? 'active' : '' }}" href="{{route('admin.users')}}">Пользователи</a>

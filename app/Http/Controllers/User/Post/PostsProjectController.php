@@ -14,9 +14,8 @@ class PostsProjectController extends Controller
             $user = User::where('name', $username)->first();
             if (Project::where('user_id', $user->id)->where('link', $project_link)->exists()) {
                 $project = Project::where('user_id', $user->id)->where('link', $project_link)->first();
-                $posts = $project->posts;
-                $posts = $this->paginate($posts, 10, '', ["path" => url()->current()]);
-                return view('public.user.post.postsProject', compact('posts', 'user'));
+                $posts = $this->paginate($project->posts, 10, '', ["path" => url()->current()]);
+                return view('public.user.posts.postsProject', compact('posts', 'user'));
             } else {
                 abort(420);
             }

@@ -1,21 +1,21 @@
 @extends('layouts.user.user')
-@section('title','Редактировать новость')
+@section('title','Редактировать пост')
 @section('userContent')
     <form method="POST"
-          action="{{route('user.post.update',['user'=>auth()->user()->name,'project'=>$psot->project->link,'post'=>$post->link])}}">
+          action="{{route('user.post.update',['user'=>auth()->user()->name,'project'=>$post->project->link,'post'=>$post->link])}}">
         @csrf
         @method('patch')
         <div class="mb-3">
-            <label for="postName" class="form-label">Заголовок новости</label>
+            <label for="postName" class="form-label">Заголовок поста</label>
             <input type="text" name="title" class="form-control" id="postName" value="{{$post->title}}"
                    aria-describedby="postHelp">
             @error('title')
             <p class="text-danger">{{$message}}</p>
             @enderror
-            <div id="postHelp" class="form-text">Заголовок для вашей новости</div>
+            <div id="postHelp" class="form-text">Заголовок для вашей поста</div>
         </div>
         <div class="mb-3">
-            <label for="postText" class="form-label">Текст новости</label>
+            <label for="postText" class="form-label">Текст поста</label>
             <textarea name="text" class="form-control" id="postText" rows="2">
                 {{$post->text}}
             </textarea>

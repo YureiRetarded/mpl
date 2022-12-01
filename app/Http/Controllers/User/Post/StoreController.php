@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\User\Post;
 
 use App\Http\Controllers\Controller;
-use App\Models\News;
 use App\Models\Post;
 use App\Models\Project;
 use Illuminate\Validation\ValidationException;
@@ -19,13 +18,13 @@ class StoreController extends Controller
             'project_id' => 'int|required',
         ]);
         $error = ValidationException::withMessages([
-            'title' => ['У вас уже есть новость с таким название'],
+            'title' => ['У вас уже есть пост с таким название'],
         ]);
         if (Project::where('user_id', $user->id)->where('id', $data['project_id'])->exists() && Post::where('project_id', $data['project_id'])->where('link', $this->toEnglishCharacters($data['title']))->exists()) {
             throw $error;
         }
         $data['link'] = $this->toEnglishCharacters($data['title']);
         $post = Post::firstOrCreate($data);
-        return redirect('/users/' . $user->name . '/projects/' . $post->project->link . '/news/' . $post->link);
+        return redirect('/users/' . $user->name . '/projects/' . $post->project->link . '/posts/' . $post->link);
     }
 }

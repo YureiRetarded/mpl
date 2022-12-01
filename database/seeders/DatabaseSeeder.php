@@ -3,16 +3,9 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use App\Models\ContactInformation;
-use App\Models\Language;
-use App\Models\News;
-use App\Models\Project;
 use App\Models\PublicAccessLevel;
 use App\Models\Role;
 use App\Models\Status;
-use App\Models\Tag;
-use App\Models\Technology;
-use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder

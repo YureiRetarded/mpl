@@ -13,7 +13,7 @@ class IndexController extends Controller
             $tags = Tag::where('name', 'like', '%' . $_GET['query'] . '%')->paginate(15);
             return view('private.tags.index', compact('tags'));
         }
-        $tags = Tag::all()->paginate(15);
+        $tags = Tag::paginate(15);
         return view('private.tags.index', compact('tags'));
     }
 }

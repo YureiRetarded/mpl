@@ -13,7 +13,7 @@ class PostsPageController extends Controller
             $posts = Post::where('title', 'like', '%' . $_GET['query'] . '%')->paginate(15);
             return view('public.search.indexPosts', compact('posts'));
         }
-        $posts = Post::all()->reverse()->paginate(15);
+        $posts = Post::orderBy('created_at', 'desc')->paginate(15);
         return view('public.search.indexPosts', compact('posts'));
     }
 }

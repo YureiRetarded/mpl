@@ -1,5 +1,5 @@
 @extends('layouts.public')
-
+@section('Регистрация','Вход')
 @section('content')
 <div class="container">
     <div class="row justify-content-center">

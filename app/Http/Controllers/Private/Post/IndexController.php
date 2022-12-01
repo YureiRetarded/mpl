@@ -13,7 +13,7 @@ class IndexController extends Controller
             $posts = Post::where('title', 'like', '%' . $_GET['query'] . '%')->paginate(15);
             return view('private.posts.index', compact('posts'));
         }
-        $posts = Post::all()->paginate(15);
+        $posts = Post::orderBy('created_at', 'desc')->paginate(15);
         return view('private.posts.index', compact('posts'));
     }
 }

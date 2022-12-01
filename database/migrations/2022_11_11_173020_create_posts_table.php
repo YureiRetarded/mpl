@@ -20,7 +20,6 @@ return new class extends Migration {
             $table->index('project_id', 'posts_project_idx');
             $table->foreign('project_id', 'posts_project_fk')->on('projects')->references('id');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

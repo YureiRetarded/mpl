@@ -10,6 +10,6 @@ class CreateController extends Controller
     {
         $user = auth()->user();
         $projects = $user->projects;
-        return view('public.user.post.create', compact('user', 'projects'));
+        return view('public.user.posts.create', compact('user', 'projects'));
     }
 }

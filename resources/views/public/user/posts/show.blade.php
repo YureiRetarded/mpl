@@ -1,5 +1,5 @@
 @extends('layouts.user.user')
-@section('title','Новости')
+@section('title',$post->title)
 @section('userContent')
     @include('includes.post.postToolbar')
     <h1 class="badText">{{$post->title}}</h1>

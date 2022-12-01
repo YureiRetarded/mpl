@@ -23,7 +23,7 @@ class IndexController extends Controller
             $projects = $this->paginate($projectsAll, 10, '', ["path" => url()->current()]);
             return view('private.projects.index', compact('projects'));
         }
-        $projects = Project::all()->reverse()->paginate(15);
+        $projects = Project::orderBy('created_at', 'desc')->paginate(15);
         return view('private.projects.index', compact('projects'));
     }
 }

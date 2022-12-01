@@ -13,8 +13,8 @@ class EditController extends Controller
             $project = $user->projects->where('link', $project_link)->first();
             if (count($project->posts->where('link', $post_link)) === 1) {
                 $projects = $user->projects;
-                $post = $project->news()->where('link', $post_link)->first();
-                return view('public.user.post.edit', compact('post', 'user', 'projects'));
+                $post = $project->posts()->where('link', $post_link)->first();
+                return view('public.user.posts.edit', compact('post', 'user', 'projects'));
             } else {
                 abort(421);
             }

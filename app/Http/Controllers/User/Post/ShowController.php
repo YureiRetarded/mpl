@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\User\Post;
 
 use App\Http\Controllers\Controller;
-use App\Models\News;
 use App\Models\Post;
 use App\Models\Project;
 use App\Models\User;
@@ -17,8 +16,8 @@ class ShowController extends Controller
             if (Project::where('user_id', $user->id)->where('link', $project_link)->exists()) {
                 $project = Project::where('user_id', $user->id)->where('link', $project_link)->first();
                 if (Post::where('project_id', $project->id)->where('link', $post_link)->exists()) {
-                    $posts = Post::where('project_id', $project->id)->where('link', $post_link)->first();
-                    return view('public.user.news.show', compact('posts', 'user'));
+                    $post = Post::where('project_id', $project->id)->where('link', $post_link)->first();
+                    return view('public.user.posts.show', compact('post', 'user'));
                 } else {
                     abort(421);
                 }

@@ -13,7 +13,7 @@ class IndexController extends Controller
             $statuses = Status::where('name', 'like', '%' . $_GET['query'] . '%')->paginate(15);
             return view('private.statuses.index', compact('statuses'));
         }
-        $statuses = Status::all()->paginate(15);
+        $statuses = Status::paginate(15);
         return view('private.statuses.index', compact('statuses'));
     }
 }

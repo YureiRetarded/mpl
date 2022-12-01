@@ -1,5 +1,5 @@
 @extends('layouts.public')
-@section('title','Новости')
+@section('title','Посты')
 @section('content')
     @include('includes.searchForm')
     @yield('searchContent')
