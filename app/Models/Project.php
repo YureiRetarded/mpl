@@ -13,13 +13,13 @@ class Project extends Model
 
 
     protected $table = 'projects';
-    protected $fillable = ['title', 'text', 'status_id', 'public_access_level_id','description', 'github_link', 'url','link','user_id'];
+    protected $fillable = ['title', 'text', 'status_id', 'public_access_level_id', 'description', 'github_link', 'url', 'link', 'user_id'];
 
     public static function getTagsString($tags): string
     {
         $string = '';
         foreach ($tags as $tag) {
-            $string = $string. $tag->name . ' ';
+            $string = $string . $tag->name . ' ';
         }
         return mb_strimwidth($string, 0, 90, '...');
     }
@@ -34,9 +34,9 @@ class Project extends Model
         return $this->belongsTo(PublicAccessLevel::class);
     }
 
-    public function news()
+    public function posts()
     {
-        return $this->hasMany(News::class);
+        return $this->hasMany(Post::class);
     }
 
     public function user()

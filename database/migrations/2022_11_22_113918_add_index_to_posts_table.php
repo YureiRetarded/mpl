@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('news', function (Blueprint $table) {
+        Schema::table('posts', function (Blueprint $table) {
             $table->index('link', 'link_idx');
         });
     }
@@ -25,7 +25,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('news', function (Blueprint $table) {
+        Schema::table('posts', function (Blueprint $table) {
             $table->dropIndex('link_idx');
         });
     }

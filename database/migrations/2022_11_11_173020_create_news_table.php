@@ -12,13 +12,13 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::create('news', function (Blueprint $table) {
+        Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->string('title');
             $table->longText('text')->nullable();
             $table->unsignedBigInteger('project_id');
-            $table->index('project_id', 'news_project_idx');
-            $table->foreign('project_id', 'news_project_fk')->on('projects')->references('id');
+            $table->index('project_id', 'posts_project_idx');
+            $table->foreign('project_id', 'posts_project_fk')->on('projects')->references('id');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -31,6 +31,6 @@ return new class extends Migration {
      */
     public function down()
     {
-        Schema::dropIfExists('news');
+        Schema::dropIfExists('posts');
     }
 };

@@ -12,11 +12,6 @@ class Tag extends Model
     protected $table = 'tags';
     protected $fillable = ['name'];
 
-    public function news()
-    {
-        return $this->belongsToMany(News::class);
-    }
-
     public function projects()
     {
         return $this->belongsToMany(Project::class);

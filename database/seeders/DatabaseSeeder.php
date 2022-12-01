@@ -33,27 +33,14 @@ class DatabaseSeeder extends Seeder
 
         $roles = [
             [
-                'name' => 'guest',
-                'access_level' => '0'
-            ],
-            [
                 'name' => 'admin',
                 'access_level' => '9'
             ],
-        ];
-        $users = [
             [
-                "name" => "admin",
-                "email" => "admin@mail.ru",
-                "password" => bcrypt("12345678"),
-                "role_id" => 2,
+                'name' => 'guest',
+                'access_level' => '0'
             ],
-            [
-                "name" => "user",
-                "email" => "user@mail.ru",
-                "password" => bcrypt("12345678"),
-                "role_id" => 1,
-            ],
+
         ];
 
         $statuses = [
@@ -78,10 +65,6 @@ class DatabaseSeeder extends Seeder
         }
         foreach ($puplicAccessLeveles as $puplicAccessLevel) {
             PublicAccessLevel::create($puplicAccessLevel);
-        }
-
-        foreach ($users as $user) {
-            User::create($user);
         }
     }
 }
