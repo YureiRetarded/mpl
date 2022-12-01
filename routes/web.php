@@ -6,8 +6,8 @@ use App\Http\Controllers\Pages\HomeController;
 use App\Http\Controllers\Pages\PostsPageController;
 use App\Http\Controllers\Pages\ProjectsPageController;
 use App\Http\Controllers\Pages\UsersController;
-use App\Http\Controllers\Private\Post\DestroyController as AdminDestroyNewsController;
-use App\Http\Controllers\Private\Post\IndexController as AdminIndexNewsController;
+use App\Http\Controllers\Private\Post\DestroyController as AdminDestroyPostController;
+use App\Http\Controllers\Private\Post\IndexController as AdminIndexPostController;
 use App\Http\Controllers\Private\Page\IndexController as AdminPanelIndexController;
 use App\Http\Controllers\Private\Project\DestroyController as AdminDestroyProjectController;
 use App\Http\Controllers\Private\Project\IndexController as AdminIndexProjectController;
@@ -39,14 +39,14 @@ use App\Http\Controllers\User\Information\Contact\IndexController as UserContact
 use App\Http\Controllers\User\Information\Contact\StoreController as UserInformationStoreController;
 use App\Http\Controllers\User\Information\Contact\UpdateController as UserInformationUpdateController;
 use App\Http\Controllers\User\Information\IndexController as UserInformationIndexController;
-use App\Http\Controllers\User\Post\CreateController as UserNewsCreateController;
-use App\Http\Controllers\User\Post\DestroyController as UserNewsDestroyController;
-use App\Http\Controllers\User\Post\EditController as UserNewsEditController;
-use App\Http\Controllers\User\Post\IndexController as UserNewsIndexController;
-use App\Http\Controllers\User\Post\PostsProjectController as NewsProjectIndexController;
-use App\Http\Controllers\User\Post\ShowController as UserNewsShowController;
-use App\Http\Controllers\User\Post\StoreController as UserNewsStoreController;
-use App\Http\Controllers\User\Post\UpdateController as UserNewsUpdateController;
+use App\Http\Controllers\User\Post\CreateController as UserPostCreateController;
+use App\Http\Controllers\User\Post\DestroyController as UserPostDestroyController;
+use App\Http\Controllers\User\Post\EditController as UserPostEditController;
+use App\Http\Controllers\User\Post\IndexController as UserPostIndexController;
+use App\Http\Controllers\User\Post\PostsProjectController as PostProjectIndexController;
+use App\Http\Controllers\User\Post\ShowController as UserPostShowController;
+use App\Http\Controllers\User\Post\StoreController as UserPostStoreController;
+use App\Http\Controllers\User\Post\UpdateController as UserPostUpdateController;
 use App\Http\Controllers\User\Project\CreateController as UserProjectCreateController;
 use App\Http\Controllers\User\Project\DestroyController as UserProjectDestroyController;
 use App\Http\Controllers\User\Project\EditController as UserProjectEditController;
@@ -141,10 +141,10 @@ Route::middleware('adminPanel')->group(function () {
             });
         });
 
-        //News
-        Route::prefix('news')->group(function () {
-            Route::get('/', AdminIndexNewsController::class)->name('admin.news');
-            Route::delete('/{news}', AdminDestroyNewsController::class)->name('admin.news.delete');
+        //Posts
+        Route::prefix('posts')->group(function () {
+            Route::get('/', AdminIndexPostController::class)->name('admin.posts');
+            Route::delete('/{post}', AdminDestroyPostController::class)->name('admin.post.delete');
         });
 
         //Projects
@@ -160,8 +160,8 @@ Route::get('/about', AboutController::class)->name('aboutProject');
 
 //Projects
 Route::get('/projects', ProjectsPageController::class)->name('projects');
-//News
-Route::get('/news', PostsPageController::class)->name('news');
+//Posts
+Route::get('/posts', PostsPageController::class)->name('posts');
 
 
 //Data with users
@@ -181,24 +181,24 @@ Route::prefix('users')->group(function () {
                 });
             });
         });
-        Route::get('/news', UserNewsIndexController::class)->name('user.news.index');
+        Route::get('/posts', UserPostIndexController::class)->name('user.posts.index');
         Route::prefix('projects')->group(function () {
             Route::get('/', UserProjectIndexController::class)->name('user.project.index');
             Route::prefix('{project}')->group(function () {
                 Route::get('/', UserProjectShowController::class)->name('user.project.show');
-                Route::get('/news', NewsProjectIndexController::class)->name('user.project.news.index');
+                Route::get('/posts', PostProjectIndexController::class)->name('user.project.posts.index');
                 Route::middleware('checkUser')->group(function () {
                     Route::get('/edit', UserProjectEditController::class)->name('user.project.edit');
                     Route::patch('/', UserProjectUpdateController::class)->name('user.project.update');
                     Route::delete('/', UserProjectDestroyController::class)->name('user.project.delete');
                 });
-                Route::prefix('news')->group(function () {
-                    Route::get('/{news}', UserNewsShowController::class)->name('user.news.show');
+                Route::prefix('posts')->group(function () {
+                    Route::get('/{post}', UserPostShowController::class)->name('user.post.show');
                     Route::middleware('checkUser')->group(function () {
-                        Route::prefix('{news}')->group(function () {
-                            Route::get('/edit', UserNewsEditController::class)->name('user.news.edit');
-                            Route::patch('/', UserNewsUpdateController::class)->name('user.news.update');
-                            Route::delete('/', UserNewsDestroyController::class)->name('user.news.delete');
+                        Route::prefix('{post}')->group(function () {
+                            Route::get('/edit', UserPostEditController::class)->name('user.post.edit');
+                            Route::patch('/', UserPostUpdateController::class)->name('user.post.update');
+                            Route::delete('/', UserPostDestroyController::class)->name('user.post.delete');
                         });
                     });
                 });
@@ -209,10 +209,10 @@ Route::prefix('users')->group(function () {
         Route::middleware('checkUser')->group(function () {
             //Create pages
             Route::get('/create/project', UserProjectCreateController::class)->name('user.project.create');
-            Route::get('/create/news', UserNewsCreateController::class)->name('user.news.create');
+            Route::get('/create/post', UserPostCreateController::class)->name('user.post.create');
             // Store
             Route::post('/create/project', UserProjectStoreController::class)->name('user.project.store');
-            Route::post('/create/news', UserNewsStoreController::class)->name('user.news.store');
+            Route::post('/create/post', UserPostStoreController::class)->name('user.post.store');
         });
     });
 });

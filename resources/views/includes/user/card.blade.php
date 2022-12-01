@@ -2,6 +2,6 @@
     <div role="button" class="row  " onclick="location.href='{{route('user.index',['user'=>$user->name])}}'">
         <div class="col"> {{$user->name}}</div>
         <div class="col"> Проектов: {{$user->projects->count()}}</div>
-        <div class="col"> Новостей: {{$user->news->count()}}</div>
+        <div class="col"> Новостей: {{$user->posts->count()}}</div>
     </div>
 </div>

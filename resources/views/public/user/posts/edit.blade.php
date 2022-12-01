@@ -2,22 +2,22 @@
 @section('title','Редактировать новость')
 @section('userContent')
     <form method="POST"
-          action="{{route('user.news.update',['user'=>auth()->user()->name,'project'=>$news->project->link,'news'=>$news->link])}}">
+          action="{{route('user.post.update',['user'=>auth()->user()->name,'project'=>$psot->project->link,'post'=>$post->link])}}">
         @csrf
         @method('patch')
         <div class="mb-3">
-            <label for="newsName" class="form-label">Заголовок новости</label>
-            <input type="text" name="title" class="form-control" id="newsName" value="{{$news->title}}"
-                   aria-describedby="newsHelp">
+            <label for="postName" class="form-label">Заголовок новости</label>
+            <input type="text" name="title" class="form-control" id="postName" value="{{$post->title}}"
+                   aria-describedby="postHelp">
             @error('title')
             <p class="text-danger">{{$message}}</p>
             @enderror
-            <div id="newsHelp" class="form-text">Заголовок для вашей новости</div>
+            <div id="postHelp" class="form-text">Заголовок для вашей новости</div>
         </div>
         <div class="mb-3">
-            <label for="newsText" class="form-label">Текст новости</label>
-            <textarea name="text" class="form-control" id="newsText" rows="2">
-                {{$news->text}}
+            <label for="postText" class="form-label">Текст новости</label>
+            <textarea name="text" class="form-control" id="postText" rows="2">
+                {{$post->text}}
             </textarea>
             @error('text')
             <p class="text-danger">{{$message}}</p>
@@ -28,7 +28,7 @@
             <select class="form-select" id="project_id" name="project_id">
                 @foreach($projects as $project)
                     <option name="project_id"
-                            value="{{$project->id}}" {{$news->project_id == $project->id ? ' selected ' : ''}}>
+                            value="{{$project->id}}" {{$post->project_id == $project->id ? ' selected ' : ''}}>
                         {{$project->title}}
                     </option>
                 @endforeach

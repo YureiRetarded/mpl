@@ -2,10 +2,10 @@
 @section('title','Новости')
 @section('content')
     @include('includes.searchForm')
-    @foreach($news as $newsCard)
-        @include('includes.news.cardAdmin')
+    @foreach($posts as $post)
+        @include('includes.post.cardAdmin')
     @endforeach
     <div>
-        {{$news->links()}}
+        {{$posts->links()}}
     </div>
 @endsection

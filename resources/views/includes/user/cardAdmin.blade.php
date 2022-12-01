@@ -2,7 +2,7 @@
     <div role="button" class="row">
         <div class="col"> {{$user->name}}</div>
         <div class="col"> Проектов: {{$user->projects->count()}}</div>
-        <div class="col"> Новостей: {{$user->news->count()}}</div>
+        <div class="col"> Новостей: {{$user->posts->count()}}</div>
         <div class="col"> Роль: {{$user->role->name}}</div>
         <div class="col">
             <a class="btn btn-primary" href="{{route('admin.user.edit',['user'=>$user->id])}}">Редактировать</a>

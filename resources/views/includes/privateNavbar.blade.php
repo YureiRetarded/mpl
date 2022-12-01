@@ -11,8 +11,8 @@
                        href="{{route('admin.projects')}}">Проекты</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ (request()->is('news')) ? 'active' : '' }}"
-                       href="{{route('admin.news')}}">Новости</a>
+                    <a class="nav-link {{ (request()->is('posts')) ? 'active' : '' }}"
+                       href="{{route('admin.posts')}}">Новости</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{ (request()->is('user')) ? 'active' : '' }}" href="{{route('admin.users')}}">Пользователи</a>

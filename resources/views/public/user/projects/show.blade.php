@@ -17,14 +17,14 @@
             <a class="btn btn-primary" role="button" target="_blank" href="{{$project->url}}">Сайт проекта</a>
         @endif
 
-        @if($project->news->count()===0)
+        @if($project->posts->count()===0)
             <h5>
                 У проекта нет новостей
             </h5>
         @else
             <h5>
                 Новостей: <a class=""
-                             href="{{route('user.project.news.index',['user'=>$project->user->name,'project'=>$project->link])}}">{{$project->news->count()}}</a>
+                             href="{{route('user.project.posts.index',['user'=>$project->user->name,'project'=>$project->link])}}">{{$project->posts->count()}}</a>
             </h5>
             <h5>
                 @foreach($project->tags as $tag)

@@ -30,7 +30,7 @@
         </p>
     </div>
     <div class="text-center mt-5">
-        <h2>Новостей: {{$news}}</h2>
+        <h2>Новостей: {{$posts}}</h2>
         <h2>Проектов: {{$projects}}</h2>
         <h2>Пользователей: {{$users}}</h2>
     </div>

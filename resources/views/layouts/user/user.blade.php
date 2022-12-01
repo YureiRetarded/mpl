@@ -5,8 +5,8 @@
         <div class="container">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link {{ (request()->is('users/*/news') == 'news') ? 'active' : '' }}"
-                       href="{{route('user.news.index',['user'=>$user->name])}}">Новости</a>
+                    <a class="nav-link {{ (request()->is('users/*/posts') == 'posts') ? 'active' : '' }}"
+                       href="{{route('user.posts.index',['user'=>$user->name])}}">Новости</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{ (request()->is('users/*/projects') == 'projects') ? 'active' : '' }}"
