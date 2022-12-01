@@ -83,7 +83,7 @@
             @error('tags')
             <p class="text-danger">{{$message}}</p>
             @enderror
-            <div id="projectTags" class="form-text">Используемые технологии, языки, сферы направления и т.д</div>
+            <div id="projectTags" class="form-text">Используемые технологии, языки, сферы направления и т.д (Указывать без знака '#')</div>
         </div>
         <button type="submit" class="btn btn-primary">Создать</button>
     </form>

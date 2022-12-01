@@ -1,4 +1,5 @@
 @extends('layouts.user.user')
+@section('title','Контакты')
 @section('userContent')
     @include('includes.contact.contactToolbar')
     @if(count($user->contactInformation)==0)

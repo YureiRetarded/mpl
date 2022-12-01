@@ -4,7 +4,7 @@
                value="{{$_GET['query']??''}}">
         <button class="btn btn-outline-success
         @if(auth()->user()!==null)
-            @if(request()->is('projects')||request()->is('news'))
+            @if(request()->is('projects')||request()->is('posts'))
                 me-2
             @else
             @if(Request::segment(2) == auth()->user()->name)
@@ -16,13 +16,13 @@
         </button>
         @if(request()->is('projects') && auth()->user()!==null)
             @include('includes.project.projectIndexToolbar')
-        @elseif(request()->is('news') && auth()->user()!==null)
-            @include('includes.news.newsIndexToolbar')
+        @elseif(request()->is('posts') && auth()->user()!==null)
+            @include('includes.post.postIndexToolbar')
         @elseif(auth()->user()!==null && Request::segment(2) == auth()->user()->name)
             @if(Request::segment(3)==='projects')
                 @include('includes.project.projectIndexToolbar')
-            @elseif(Request::segment(3)==='news')
-                @include('includes.news.newsIndexToolbar')
+            @elseif(Request::segment(3)==='posts')
+                @include('includes.post.postIndexToolbar')
             @endif
         @endif
     </form>

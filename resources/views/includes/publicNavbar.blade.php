@@ -11,8 +11,8 @@
                        href="{{route('projects')}}">Проекты</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ (request()->is('news')) ? 'active' : '' }}"
-                       href="{{route('news')}}">Новости</a>
+                    <a class="nav-link {{ (request()->is('posts')) ? 'active' : '' }}"
+                       href="{{route('posts')}}">Посты</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{ (request()->is('user')) ? 'active' : '' }}" href="{{route('users')}}">Пользователи</a>
@@ -58,8 +58,8 @@
                             <a class="dropdown-item" href="{{route('user.project.create',auth()->user()->name)}}">
                                 Создать проект
                             </a>
-                            <a class="dropdown-item" href="{{route('user.news.create',auth()->user()->name)}}">
-                                Создать новость
+                            <a class="dropdown-item" href="{{route('user.post.create',auth()->user()->name)}}">
+                                Создать пост
                             </a>
                             <a class="dropdown-item" href="{{route('user.contact.create',auth()->user()->name)}}">
                                 Новый контакт

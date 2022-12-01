@@ -2,16 +2,10 @@
 @section('title','Проекты')
 @section('userContent')
     @include('includes.searchForm')
-    @if(count($projects)==0)
-        @if(auth()->user()!==null && auth()->user()->name===Request::segment(2))
-            <h3 class="badText">
-                У Вас нет проектов
-            </h3>
-        @else
-            <h3 class="badText">
-                У пользователя {{$user->name}} нет проектов
-            </h3>
-        @endif
+    @if(count($projects)==0 && !isset($_GET['query']))
+        <h3 class="badText">Проектов нет</h3>
+    @elseif(count($projects)==0 && isset($_GET['query']))
+        <h3 class="badText">Проектов с таким названием нет</h3>
     @else
         @foreach($projects as $project)
             @include('includes.project.card')

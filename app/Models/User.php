@@ -6,7 +6,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Facades\DB;
 use Laravel\Sanctum\HasApiTokens;
 use Laravel\Scout\Searchable;
 
@@ -62,9 +61,9 @@ class User extends Authenticatable
         return $this->hasMany(Project::class);
     }
 
-    public function news()
+    public function posts()
     {
-        return $this->hasManyThrough(News::class, Project::class,);
+        return $this->hasManyThrough(Post::class, Project::class,);
     }
 
 }

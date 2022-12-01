@@ -3,16 +3,9 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use App\Models\ContactInformation;
-use App\Models\Language;
-use App\Models\News;
-use App\Models\Project;
 use App\Models\PublicAccessLevel;
 use App\Models\Role;
 use App\Models\Status;
-use App\Models\Tag;
-use App\Models\Technology;
-use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -33,27 +26,14 @@ class DatabaseSeeder extends Seeder
 
         $roles = [
             [
-                'name' => 'guest',
-                'access_level' => '0'
-            ],
-            [
                 'name' => 'admin',
                 'access_level' => '9'
             ],
-        ];
-        $users = [
             [
-                "name" => "admin",
-                "email" => "admin@mail.ru",
-                "password" => bcrypt("12345678"),
-                "role_id" => 2,
+                'name' => 'guest',
+                'access_level' => '0'
             ],
-            [
-                "name" => "user",
-                "email" => "user@mail.ru",
-                "password" => bcrypt("12345678"),
-                "role_id" => 1,
-            ],
+
         ];
 
         $statuses = [
@@ -78,10 +58,6 @@ class DatabaseSeeder extends Seeder
         }
         foreach ($puplicAccessLeveles as $puplicAccessLevel) {
             PublicAccessLevel::create($puplicAccessLevel);
-        }
-
-        foreach ($users as $user) {
-            User::create($user);
         }
     }
 }
