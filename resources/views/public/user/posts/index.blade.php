@@ -2,17 +2,10 @@
 @section('title','Посты')
 @section('userContent')
     @include('includes.searchForm')
-
-    @if(count($posts)==0)
-        @if(auth()->user()!==null && auth()->user()->name===Request::segment(2))
-            <h3 class="badText">
-                У Вас нет постов
-            </h3>
-        @else
-            <h3 class="badText">
-                У пользователя {{$user->name}} нет постов
-            </h3>
-        @endif
+    @if(count($posts)==0 && !isset($_GET['query']))
+        <h3 class="badText">Постов нет</h3>
+    @elseif(count($posts)==0 && isset($_GET['query']))
+        <h3 class="badText">Постов с таким названием нет</h3>
     @else
         @foreach($posts as $post)
             @include('includes.post.card')

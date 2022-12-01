@@ -9,14 +9,14 @@ class ProjectsPageController extends Controller
 {
     public function __invoke()
     {
-        if (isset($_GET['query'])) {
+        if (isset($_GET['query'])&& $_GET['query'] != '') {
             //Берём проекты по тегу
-            $projectTags = Project::whereHas('tags', function ($query) {
+            $projectTags = Project::orderBy('created_at', 'desc')->whereHas('tags', function ($query) {
                 $rawTags = explode(' ', $_GET['query']);
                 $query->whereIn('name', $rawTags);
             })->get();
             //Берём проекты по названию
-            $projectsTitle = Project::where('title', 'like', '%' . $_GET['query'] . '%')->get();
+            $projectsTitle = Project::where('title', 'like', '%' . $_GET['query'] . '%')->orderBy('created_at', 'desc')->get();
             //Объединяем проекты
             $projectsAll = $projectsTitle->merge($projectTags);
             //Ввыводим их

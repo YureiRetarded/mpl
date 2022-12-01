@@ -15,14 +15,14 @@ class IndexController extends Controller
 
         if (User::where('name', $username)->exists()) {
             $user = User::where('name', $username)->first();
-            //К - Костыль
             if (isset($_GET['query']) && $_GET['query'] != '') {
-
+                //К - Костыль
                 $postsIds = DB::table('posts')
                     ->join('projects', 'posts.project_id', '=', 'projects.id')
                     ->join('users', 'projects.user_id', '=', 'users.id')
                     ->where('users.id', '=', $user->id)
                     ->where('posts.title', 'like', '%' . $_GET['query'] . '%')
+                    ->orderBy('posts.created_at', 'desc')
                     ->select('posts.id')
                     ->get();
                 $posts = [];
