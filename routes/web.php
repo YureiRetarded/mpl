@@ -74,6 +74,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 //HomePage
 Route::get('/', HomeController::class)->name('index');
 

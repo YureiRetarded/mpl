@@ -4,7 +4,7 @@
     @include('includes.contact.contactToolbar')
     @if(count($user->contactInformation)==0)
         <h3 class="badText">
-            @if(auth()->user()!==null &&  auth()->user()->name===$user->name)
+            @if(auth()->user()!==null &&  auth()->user()->login===$user->login)
                 У вас нет контактов
             @else
                 Пользователь {{$user->name}} не оставил контактны данные

@@ -14,7 +14,7 @@ class DestroyController extends Controller
             $project = Project::where('user_id', $user->id)->where('link', $project_link)->first();
             $project->posts()->delete();
             $project->delete();
-            return redirect('/users/' . $user->name . '/projects/');
+            return redirect('/users/' . $user->login . '/projects/');
         }
         abort(420);
     }

@@ -2,7 +2,7 @@
 @section('title','Редактировать пост')
 @section('userContent')
     <form method="POST"
-          action="{{route('user.post.update',['user'=>auth()->user()->name,'project'=>$post->project->link,'post'=>$post->link])}}">
+          action="{{route('user.post.update',['user'=>auth()->user()->login,'project'=>$post->project->link,'post'=>$post->link])}}">
         @csrf
         @method('patch')
         <div class="mb-3">

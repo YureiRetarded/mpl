@@ -46,6 +46,6 @@ class StoreController extends Controller
             $tagsIds[] = $tag->id;
         }
         $project->tags()->sync($tagsIds);
-        return redirect('/users/' . $project->user->name . '/projects/' . $project->link);
+        return redirect('/users/' . $project->user->login . '/projects/' . $project->link);
     }
 }

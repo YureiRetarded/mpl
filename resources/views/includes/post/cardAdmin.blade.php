@@ -6,12 +6,12 @@
             </h3>
         </div>
         <div class="card-text mb-2">
-            <a target="_blank" class="no-underline" href="{{route('user.project.show',['user'=>$post->project->user->name,'project'=>$post->project->link])}}">
+            <a target="_blank" class="no-underline" href="{{route('user.project.show',['user'=>$post->project->user->login,'project'=>$post->project->link])}}">
                 Проект: {{mb_strimwidth($post->project->title,0,50,'...')}}
             </a>
         </div>
         <div class="card-text mb-2">
-            <a target="_blank" class="no-underline" href="{{route('user.index',['user'=>$post->project->user->name])}}">
+            <a target="_blank" class="no-underline" href="{{route('user.index',['user'=>$post->project->user->login])}}">
                 Автор: {{mb_strimwidth($post->project->user->name,0,50,'...')}}
             </a>
         </div>
@@ -22,7 +22,7 @@
                 @method('delete')
                 <a target="_blank"
                    class="btn btn-primary  me-2"
-                   href="{{route('user.post.show',['user'=>$post->project->user->name,'project'=>$post->project->link,'post'=>$post->link])}}">
+                   href="{{route('user.post.show',['user'=>$post->project->user->login,'project'=>$post->project->link,'post'=>$post->link])}}">
                     Открыть
                 </a>
                 <button type="submit" class="btn btn-danger">

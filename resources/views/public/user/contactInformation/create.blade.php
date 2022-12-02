@@ -2,7 +2,7 @@
 @section('title','Создать контакт')
 @section('userContent')
 
-    <form method="POST" action="{{route('user.contact.store',['user'=>auth()->user()->name])}}">
+    <form method="POST" action="{{route('user.contact.store',['user'=>auth()->user()->login])}}">
         @csrf
         <div class="mb-3">
             <label for="contactName" class="form-label">Имя контакта</label>

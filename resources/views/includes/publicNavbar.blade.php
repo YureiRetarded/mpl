@@ -38,13 +38,13 @@
                 @guest
                     @if (Route::has('login'))
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            <a class="nav-link" href="{{ route('login') }}">Войти</a>
                         </li>
                     @endif
 
                     @if (Route::has('register'))
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            <a class="nav-link" href="{{ route('register') }}">Присоединиться</a>
                         </li>
                     @endif
                 @else
@@ -55,16 +55,16 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{route('user.project.create',auth()->user()->name)}}">
+                            <a class="dropdown-item" href="{{route('user.project.create',auth()->user()->login)}}">
                                 Создать проект
                             </a>
-                            <a class="dropdown-item" href="{{route('user.post.create',auth()->user()->name)}}">
+                            <a class="dropdown-item" href="{{route('user.post.create',auth()->user()->login)}}">
                                 Создать пост
                             </a>
-                            <a class="dropdown-item" href="{{route('user.contact.create',auth()->user()->name)}}">
+                            <a class="dropdown-item" href="{{route('user.contact.create',auth()->user()->login)}}">
                                 Новый контакт
                             </a>
-                            <a class="dropdown-item" href="{{route('user.index',auth()->user()->name)}}">
+                            <a class="dropdown-item" href="{{route('user.index',auth()->user()->login)}}">
                                 Моя страница
                             </a>
                             <a class="dropdown-item" href="{{route('user.setting')}}">
@@ -73,7 +73,7 @@
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                {{ __('Выход') }}
+                                Выйти
                             </a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                 @csrf

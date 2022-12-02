@@ -7,7 +7,7 @@
             @if(request()->is('projects')||request()->is('posts'))
                 me-2
             @else
-            @if(Request::segment(2) == auth()->user()->name)
+            @if(Request::segment(2) == auth()->user()->login)
                me-2
                @endif
             @endif
@@ -18,7 +18,7 @@
             @include('includes.project.projectIndexToolbar')
         @elseif(request()->is('posts') && auth()->user()!==null)
             @include('includes.post.postIndexToolbar')
-        @elseif(auth()->user()!==null && Request::segment(2) == auth()->user()->name)
+        @elseif(auth()->user()!==null && Request::segment(2) == auth()->user()->login)
             @if(Request::segment(3)==='projects')
                 @include('includes.project.projectIndexToolbar')
             @elseif(Request::segment(3)==='posts')

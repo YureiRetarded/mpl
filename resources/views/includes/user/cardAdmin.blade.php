@@ -6,7 +6,7 @@
         <div class="col"> Роль: {{$user->role->name}}</div>
         <div class="col">
             <a class="btn btn-primary" href="{{route('admin.user.edit',['user'=>$user->id])}}">Редактировать</a>
-            <a target="_blank" class="btn btn-primary" href="{{route('user.index',['user'=>$user->name])}}">Открыть</a>
+            <a target="_blank" class="btn btn-primary" href="{{route('user.index',['user'=>$user->login])}}">Открыть</a>
         </div>
     </div>
 </div>
