@@ -1,9 +1,9 @@
 @extends('layouts.public')
-@section('Регистрация','Вход')
+@section('title','Регистрация')
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">Регистрация</div>
 
@@ -24,28 +24,43 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                     @enderror
-                                    <div id="nameHelp" class="form-text">Имя или Никнейм которое будет отображаться у
+                                    <div id="nameHelp" class="form-text">Имя или прозвище которое будет отображаться у
                                         Вас в профиле
                                     </div>
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label for="login" class="col-md-4 col-form-label text-md-end">Логин</label>
+                                <label for="login" class="col-md-4 col-form-label text-md-end">Ссылка</label>
                                 <div class="col-md-6">
-                                    <input id="login" type="text"
-                                           class="form-control @error('login') is-invalid @enderror" name="login"
-                                           value="{{ old('login') }}" required autocomplete="login"
-                                           aria-describedby="loginHelp">
+                                    <div class="input-group">
+                                        <span class="input-group-text" id="urlPage">https://myprojectlist.ru/users/</span>
+                                        <input id="login" type="text"
+                                               class="form-control @error('login') is-invalid @enderror" name="login"
+                                               value="{{ old('login') }}" required autocomplete="login"
+                                               aria-describedby="loginHelp urlPage">
+                                    </div>
                                     @error('login')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                     @enderror
-                                    <div id="loginHelp" class="form-text">Логин используется для входа и ссылки на Вашу
-                                        страницу
+                                    <div id="loginHelp" class="form-text">
+                                        Ссылка с помощью которой можно перейти на вашу страницу
                                     </div>
                                 </div>
                             </div>
+{{--                            <div class="row mb-3">--}}
+{{--                                <label for="login" class="col-md-4 col-form-label text-md-end">Ссылка</label>--}}
+{{--                                <div class="col-md-6">--}}
+{{--                                    <div class="input-group">--}}
+{{--                                        <span class="input-group-text" id="basic-addon3">https://example.com/users/</span>--}}
+{{--                                        <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+
+
+
                             <div class="row mb-3">
                                 <label for="email"
                                        class="col-md-4 col-form-label text-md-end">Email</label>

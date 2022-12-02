@@ -24,7 +24,7 @@
         @else
             <h5>
                 Постов: <a class=""
-                             href="{{route('user.project.posts.index',['user'=>$project->user->name,'project'=>$project->link])}}">{{$project->posts->count()}}</a>
+                             href="{{route('user.project.posts.index',['user'=>$project->user->login,'project'=>$project->link])}}">{{$project->posts->count()}}</a>
             </h5>
             <h5>
                 @foreach($project->tags as $tag)

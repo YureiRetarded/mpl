@@ -7,7 +7,7 @@ use App\Models\ContactInformation;
 
 class StoreController extends Controller
 {
-    public function __invoke($username)
+    public function __invoke($login)
     {
         $user = auth()->user();
         $data = request()->validate([
@@ -16,6 +16,6 @@ class StoreController extends Controller
         ]);
         $contact = ContactInformation::create($data);
         $user->contactInformation()->attach($contact->id);
-        return redirect('/users/' . $user->name . '/contacts');
+        return redirect('/users/' . $user->login . '/contacts');
     }
 }

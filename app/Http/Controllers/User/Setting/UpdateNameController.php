@@ -10,9 +10,9 @@ class UpdateNameController extends Controller
     {
         $user = auth()->user();
         $data = request()->validate([
-            'name' => 'required|string|max:255|min:3|regex:/^[a-zA-Z0-9_]+$/ui|unique:users',
+            'name' => 'required|string|max:50|min:3|regex:/^[a-zA-Zа-яА-Я0-9_ ]+$/ui',
         ]);
         $user->update($data);
-        return back()->with("statusName", "Имя изменёно");
+        return back()->with("statusName", "Имя изменено");
     }
 }

@@ -43,7 +43,7 @@ class UpdateController extends Controller
                 $data['link'] = $this->toEnglishCharacters($data['title']);
                 $post->update($data);
                 $post->fresh();
-                return redirect('/users/' . $project->user->name . '/projects/' . $post->project->link . '/posts/' . $post->link);
+                return redirect('/users/' . $project->user->login . '/projects/' . $post->project->link . '/posts/' . $post->link);
             } else {
                 abort(421);
             }

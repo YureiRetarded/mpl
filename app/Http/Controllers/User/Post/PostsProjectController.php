@@ -10,10 +10,10 @@ use Illuminate\Support\Facades\DB;
 
 class PostsProjectController extends Controller
 {
-    public function __invoke($username, $project_link)
+    public function __invoke($login, $project_link)
     {
-        if (User::where('name', $username)->exists()) {
-            $user = User::where('name', $username)->first();
+        if (User::where('login', $login)->exists()) {
+            $user = User::where('login', $login)->first();
             if (Project::where('user_id', $user->id)->where('link', $project_link)->exists()) {
                 $project = Project::where('user_id', $user->id)->where('link', $project_link)->first();
 

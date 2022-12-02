@@ -1,7 +1,7 @@
 @extends('layouts.user.user')
 @section('title','Создать проект')
 @section('userContent')
-    <form method="POST" action="{{route('user.project.store',['user'=>auth()->user()->name])}}">
+    <form method="POST" action="{{route('user.project.store',['user'=>auth()->user()->login])}}">
         @csrf
         <div class="mb-3">
             <label for="projectName" class="form-label">Название проекта</label>

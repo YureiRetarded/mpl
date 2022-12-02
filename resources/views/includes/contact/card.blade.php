@@ -14,7 +14,7 @@
         @endif
 
     </div>
-    @if(auth()->user()!==null &&  auth()->user()->name===$user->name)
+    @if(auth()->user()!==null &&  auth()->user()->login===$user->login)
         <div class="card-text">
             <h5>
                 <form method="POST"

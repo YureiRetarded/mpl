@@ -1,6 +1,6 @@
-@if(auth()->user()!==null &&  auth()->user()->name===$post->project->user->name)
+@if(auth()->user()!==null &&  auth()->user()->login===$post->project->user->login)
     <form method="POST"
-          action="{{route('user.post.delete',['user'=>auth()->user()->name,'project'=>$post->project->link,'post'=>$post->link])}}">
+          action="{{route('user.post.delete',['user'=>auth()->user()->login,'project'=>$post->project->link,'post'=>$post->link])}}">
         @csrf
         @method('delete')
         <a class="btn btn-primary m-1" href="{{url()->current().'/edit'}}" role="button">Изменить</a>
