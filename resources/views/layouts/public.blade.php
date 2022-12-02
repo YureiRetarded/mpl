@@ -20,4 +20,9 @@
     </div>
 </div>
 </body>
+<script type="text/javascript" src="/ckeditor/ckeditor.js">
+    $(document).ready(function () {
+        $('.ckeditor').ckeditor();
+    });
+</script>
 </html>

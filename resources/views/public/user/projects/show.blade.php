@@ -56,9 +56,9 @@
         </p>
     @endif
     @if(isset($project->text))
-        <p class="text-xl-start badText">
-            {{$project->text}}
-        </p>
+        <div class="text-xl-start badText">
+            {!! $project->text !!}
+        </div>
     @endif
     @if(!isset($project->text)&&!isset($project->description))
         <h2 class="text-center ">

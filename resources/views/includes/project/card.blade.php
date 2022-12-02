@@ -27,7 +27,7 @@
         @if(Request::segment(1)!=='users')
         <footer>
             <a class="no-underline" href="{{route('user.index',['user'=>$project->user->name])}}">
-                {{mb_strimwidth($project->user->name,0,90,'...')}}
+                Автор: {{mb_strimwidth($project->user->name,0,90,'...')}}
                 @if(auth()->user()!==null&&$project->user->name===auth()->user()->name)
                     (ваш проект)
                 @endif

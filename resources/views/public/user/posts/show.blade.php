@@ -8,8 +8,8 @@
                    href="{{route('user.project.show',['user'=>$post->project->user->name,'project'=>$post->project->link])}}">{{mb_strimwidth($post->project->title,0,30)}}</a>
     </h5>
     @if(isset($post->text))
-        <p class="text-xl-start">
-            {{$post->text}}
-        </p>
+        <div class="text-xl-start">
+            {!! $post->text !!}
+        </div>
     @endif
 @endsection

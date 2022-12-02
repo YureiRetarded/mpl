@@ -14,7 +14,7 @@
         </div>
         <div class="mb-3">
             <label for="PostText" class="form-label">Текст поста</label>
-            <textarea name="text" class="form-control" id="PostText" rows="2">
+            <textarea name="text" class="ckeditor form-control" id="PostText" rows="5">
                 {{old('text')}}
             </textarea>
             @error('text')

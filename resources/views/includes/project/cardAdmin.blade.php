@@ -29,7 +29,7 @@
                 @csrf
                 @method('delete')
                 <a class="no-underline" target="_blank" href="{{route('user.index',['user'=>$project->user->name])}}">
-                    {{mb_strimwidth($project->user->name,0,90,'...')}}
+                    Автор: {{mb_strimwidth($project->user->name,0,90,'...')}}
                 </a>
                 <a target="_blank" class="btn btn-primary me-2"
                    href="{{route('user.project.show',['user'=>$project->user->name,'project'=>$project->link])}}">
