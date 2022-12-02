@@ -26,7 +26,6 @@ return new class extends Migration {
             $table->foreign('status_id', 'project_status_fk')->on('statuses')->references('id');
             $table->foreign('public_access_level_id', 'public_access_level_project_fk')->on('public_access_levels')->references('id');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

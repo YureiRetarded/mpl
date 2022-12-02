@@ -1,5 +1,5 @@
 @extends('layouts.public')
-@section('title','MPL')
+@section('title','MyProjectList')
 @section('content')
     <div>
         <h1 class="text-center">MyProjectList</h1>
@@ -23,14 +23,14 @@
         <ul>
             <li>Перевести все ошибки на русский</li>
             <li>Добавление возможности загружать фото (фото профиля, демонстрация работы проекта и дополнительные
-                материалы для новостных статей)
+                материалы для постов)
             </li>
             <li>Добавление возможности изменить язык</li>
         </ul>
         </p>
     </div>
     <div class="text-center mt-5">
-        <h2>Новостей: {{$news}}</h2>
+        <h2>Постов: {{$posts}}</h2>
         <h2>Проектов: {{$projects}}</h2>
         <h2>Пользователей: {{$users}}</h2>
     </div>

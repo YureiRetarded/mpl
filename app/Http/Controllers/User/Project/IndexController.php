@@ -8,19 +8,19 @@ use App\Models\User;
 
 class IndexController extends Controller
 {
-    public function __invoke($username)
+    public function __invoke($login)
     {
-        if (User::where('name', $username)->exists()) {
-            $user = User::where('name', $username)->first();
-            if (isset($_GET['query'])) {
+        if (User::where('login', $login)->exists()) {
+            $user = User::where('login', $login)->first();
+            if (isset($_GET['query'])&& $_GET['query'] != '') {
 
                 //Берём проекты по тегу
-                $projectTags = Project::whereHas('tags', function ($query) {
+                $projectTags = Project::orderBy('created_at', 'desc')->whereHas('tags', function ($query) {
                     $rawTags = explode(' ', $_GET['query']);
                     $query->whereIn('name', $rawTags);
                 })->where('user_id', $user->id)->get();
                 //Берём проекты по названию
-                $projectsTitle = Project::where('title', 'like', '%' . $_GET['query'] . '%')->where('user_id', $user->id)->get();
+                $projectsTitle = Project::where('title', 'like', '%' . $_GET['query'] . '%')->where('user_id', $user->id)->orderBy('created_at', 'desc')->get();
                 //Объединяем проекты
                 $projectsAll = $projectsTitle->merge($projectTags);
                 //Ввыводим их

@@ -17,14 +17,14 @@
             <a class="btn btn-primary" role="button" target="_blank" href="{{$project->url}}">Сайт проекта</a>
         @endif
 
-        @if($project->news->count()===0)
+        @if($project->posts->count()===0)
             <h5>
-                У проекта нет новостей
+                У проекта нет постов
             </h5>
         @else
             <h5>
-                Новостей: <a class=""
-                             href="{{route('user.project.news.index',['user'=>$project->user->name,'project'=>$project->link])}}">{{$project->news->count()}}</a>
+                Постов: <a class=""
+                             href="{{route('user.project.posts.index',['user'=>$project->user->login,'project'=>$project->link])}}">{{$project->posts->count()}}</a>
             </h5>
             <h5>
                 @foreach($project->tags as $tag)
@@ -56,9 +56,9 @@
         </p>
     @endif
     @if(isset($project->text))
-        <p class="text-xl-start badText">
-            {{$project->text}}
-        </p>
+        <div class="text-xl-start badText">
+            {!! $project->text !!}
+        </div>
     @endif
     @if(!isset($project->text)&&!isset($project->description))
         <h2 class="text-center ">

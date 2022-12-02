@@ -37,8 +37,8 @@
             @endif
 
             <div class="mb-3">
-                <label for="newsNameInput" class="form-label">Новое имя</label>
-                <input name="name" type="text" class="form-control" id="newsNameInput"
+                <label for="newNameInput" class="form-label">Новое имя</label>
+                <input name="name" type="text" class="form-control" id="newNameInput"
                        placeholder="Новое имя">
                 @error('name')
                 <span class="text-danger">{{ $message }}</span>

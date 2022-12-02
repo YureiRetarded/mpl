@@ -9,11 +9,11 @@ class IndexController extends Controller
 {
     public function __invoke()
     {
-        if (isset($_GET['query'])) {
-            $roles = $this->paginate(Role::where('name', 'like', '%' . $_GET['query'] . '%')->get(),10, '', ["path" => url()->current()]);
+        if (isset($_GET['query'])&& $_GET['query'] != '') {
+            $roles = Role::where('name', 'like', '%' . $_GET['query'] . '%')->orderBy('created_at', 'desc')->paginate(15);
             return view('private.roles.index', compact('roles'));
         }
-        $roles = $this->paginate(Role::all(),10, '', ["path" => url()->current()]);
+        $roles = Role::orderBy('created_at', 'desc')->paginate(15);
         return view('private.roles.index', compact('roles'));
     }
 }

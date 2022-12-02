@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Pages;
 
 use App\Http\Controllers\Controller;
-use App\Models\News;
+use App\Models\Post;
 use App\Models\Project;
 use App\Models\User;
 
@@ -29,10 +29,10 @@ class HomeController extends Controller
             return $count >= 1000000 ? $string : $count;
         }
 
-        $news = getSmallString(News::all()->count());
+        $posts = getSmallString(Post::all()->count());
         $projects = getSmallString(Project::all()->count());
         $users = getSmallString(User::all()->count());
 
-        return view('public.index', compact('news', 'projects', 'users'));
+        return view('public.index', compact('posts', 'projects', 'users'));
     }
 }

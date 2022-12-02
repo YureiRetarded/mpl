@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class EditController extends Controller
 {
-    public function __invoke($username,$contactId)
+    public function __invoke($login,$contactId)
     {
         $user=auth()->user();
         $contact=ContactInformation::findOrFail($contactId);

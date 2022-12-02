@@ -12,9 +12,9 @@ class DestroyController extends Controller
         $user = auth()->user();
         if (Project::where('user_id', $user->id)->where('link', $project_link)->exists()) {
             $project = Project::where('user_id', $user->id)->where('link', $project_link)->first();
-            $project->news()->delete();
+            $project->posts()->delete();
             $project->delete();
-            return redirect('/users/' . $user->name . '/projects/');
+            return redirect('/users/' . $user->login . '/projects/');
         }
         abort(420);
     }

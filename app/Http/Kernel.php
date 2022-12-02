@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use App\Http\Middleware\AdminPanel;
+use App\Http\Middleware\CheckBan;
 use App\Http\Middleware\CheckUser;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -66,6 +67,6 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'adminPanel' => AdminPanel::class,
-        'checkUser'=>CheckUser::class
+        'checkUser' => CheckUser::class,
     ];
 }

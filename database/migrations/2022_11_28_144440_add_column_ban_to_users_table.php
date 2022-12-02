@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->boolean('isBan')->default(false);
+            $table->boolean('isBan')->default(false)->after('role_id');
         });
     }
 

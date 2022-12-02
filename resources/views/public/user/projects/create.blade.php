@@ -1,7 +1,7 @@
 @extends('layouts.user.user')
 @section('title','Создать проект')
 @section('userContent')
-    <form method="POST" action="{{route('user.project.store',['user'=>auth()->user()->name])}}">
+    <form method="POST" action="{{route('user.project.store',['user'=>auth()->user()->login])}}">
         @csrf
         <div class="mb-3">
             <label for="projectName" class="form-label">Название проекта</label>
@@ -14,16 +14,16 @@
         </div>
         <div class="mb-3">
             <label for="projectDescription" class="form-label">Описание проекта</label>
-            <textarea name="description" class="form-control" id="projectDescription" rows="2">
+            <input name="description" class="form-control" id="projectDescription" value="{{old('description')}}" aria-describedby="projectHelpDescription">
                 {{old('description')}}
-            </textarea>
             @error('description')
             <p class="text-danger">{{$message}}</p>
             @enderror
+            <div id="projectHelpDescription" class="form-text">Краткое описание вашего проекта</div>
         </div>
         <div class="mb-3">
             <label for="projectText" class="form-label">Текст проекта</label>
-            <textarea name="text" class="form-control" id="projectText" rows="2">
+            <textarea name="text" class="ckeditor form-control" id="projectText" rows="5">
                 {{old('text')}}
             </textarea>
             @error('text')
@@ -83,8 +83,9 @@
             @error('tags')
             <p class="text-danger">{{$message}}</p>
             @enderror
-            <div id="projectTags" class="form-text">Используемые технологии, языки, сферы направления и т.д</div>
+            <div id="projectTags" class="form-text">Используемые технологии, языки, сферы направления и т.д (Указывать без знака '#')</div>
         </div>
         <button type="submit" class="btn btn-primary">Создать</button>
     </form>
+
 @endsection

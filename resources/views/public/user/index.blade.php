@@ -7,7 +7,7 @@
             Проектов: {{$user->projects->count()}}
         </h5>
         <h5>
-            Новостей: {{$user->news->count()}}
+            Постов: {{$user->posts->count()}}
         </h5>
         <div>
             @if(isset($user->about))
