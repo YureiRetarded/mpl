@@ -7,7 +7,7 @@
     <div>
         <p>Вы обнаружили ошибку или хотите предложить идею для сайта</p>
         <ul>
-            <li>Почта: 'Временна не доступна'</li>
+            <li><a href = "mailto: support@myprojectlist.ru">Почта</a></li>
             <li><a target="_blank" href="https://t.me/yureideveloper">Telegram</a></li>
         </ul>
     </div>
