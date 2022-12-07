@@ -6,9 +6,9 @@ use App\Http\Controllers\Pages\HomeController;
 use App\Http\Controllers\Pages\PostsPageController;
 use App\Http\Controllers\Pages\ProjectsPageController;
 use App\Http\Controllers\Pages\UsersController;
+use App\Http\Controllers\Private\Page\IndexController as AdminPanelIndexController;
 use App\Http\Controllers\Private\Post\DestroyController as AdminDestroyPostController;
 use App\Http\Controllers\Private\Post\IndexController as AdminIndexPostController;
-use App\Http\Controllers\Private\Page\IndexController as AdminPanelIndexController;
 use App\Http\Controllers\Private\Project\DestroyController as AdminDestroyProjectController;
 use App\Http\Controllers\Private\Project\IndexController as AdminIndexProjectController;
 use App\Http\Controllers\Private\Role\CreateController as AdminCreateRoleController;
@@ -56,7 +56,6 @@ use App\Http\Controllers\User\Project\StoreController as UserProjectStoreControl
 use App\Http\Controllers\User\Project\UpdateController as UserProjectUpdateController;
 use App\Http\Controllers\User\Setting\IndexController as UserSettingIndexController;
 use App\Http\Controllers\User\Setting\UpdateAboutController as UserUpdateAboutController;
-use App\Http\Controllers\User\Setting\UpdateEmailController as UserUpdateEmailController;
 use App\Http\Controllers\User\Setting\UpdateNameController as UserUpdateNameController;
 use App\Http\Controllers\User\Setting\UpdatePasswordController as UserUpdatePasswordController;
 use Illuminate\Support\Facades\Auth;
@@ -79,7 +78,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', HomeController::class)->name('index');
 
 //Auth
-Auth::routes();
+Auth::routes(
+    [
+        'verify' => true,
+    ]
+);
 Route::post('/logout', LogoutController::class)->name('logout');
 
 //Setting
@@ -88,7 +91,7 @@ Route::middleware('auth')->group(function () {
     Route::prefix('setting')->group(function () {
         Route::get('/', UserSettingIndexController::class)->name('user.setting');
         Route::post('/about', UserUpdateAboutController::class)->name('user.updateAbout');
-        Route::post('/email', UserUpdateEmailController::class)->name('user.updateEmail');
+        //Route::post('/email', UserUpdateEmailController::class)->name('user.updateEmail');
         Route::post('/name', UserUpdateNameController::class)->name('user.updateName');
         Route::post('/password', UserUpdatePasswordController::class)->name('user.updatePassword');
     });
@@ -173,12 +176,14 @@ Route::prefix('users')->group(function () {
         Route::prefix('contacts')->group(function () {
             Route::get('/', UserContactIndexController::class)->name('user.contact.index');
             Route::middleware('checkUser')->group(function () {
-                Route::get('/create', UserInformationCreateController::class)->name('user.contact.create');
-                Route::post('/', UserInformationStoreController::class)->name('user.contact.store');
-                Route::prefix('{contact}')->group(function () {
-                    Route::get('/edit', UserInformationEditController::class)->name('user.contact.edit');
-                    Route::patch('/', UserInformationUpdateController::class)->name('user.contact.update');
-                    Route::delete('/', UserInformationDestroyController::class)->name('user.contact.delete');
+                Route::middleware('verified')->group(function () {
+                    Route::get('/create', UserInformationCreateController::class)->name('user.contact.create');
+                    Route::post('/', UserInformationStoreController::class)->name('user.contact.store');
+                    Route::prefix('{contact}')->group(function () {
+                        Route::get('/edit', UserInformationEditController::class)->name('user.contact.edit');
+                        Route::patch('/', UserInformationUpdateController::class)->name('user.contact.update');
+                        Route::delete('/', UserInformationDestroyController::class)->name('user.contact.delete');
+                    });
                 });
             });
         });
@@ -189,17 +194,21 @@ Route::prefix('users')->group(function () {
                 Route::get('/', UserProjectShowController::class)->name('user.project.show');
                 Route::get('/posts', PostProjectIndexController::class)->name('user.project.posts.index');
                 Route::middleware('checkUser')->group(function () {
-                    Route::get('/edit', UserProjectEditController::class)->name('user.project.edit');
-                    Route::patch('/', UserProjectUpdateController::class)->name('user.project.update');
-                    Route::delete('/', UserProjectDestroyController::class)->name('user.project.delete');
+                    Route::middleware('verified')->group(function () {
+                        Route::get('/edit', UserProjectEditController::class)->name('user.project.edit');
+                        Route::patch('/', UserProjectUpdateController::class)->name('user.project.update');
+                        Route::delete('/', UserProjectDestroyController::class)->name('user.project.delete');
+                    });
                 });
                 Route::prefix('posts')->group(function () {
                     Route::get('/{post}', UserPostShowController::class)->name('user.post.show');
                     Route::middleware('checkUser')->group(function () {
-                        Route::prefix('{post}')->group(function () {
-                            Route::get('/edit', UserPostEditController::class)->name('user.post.edit');
-                            Route::patch('/', UserPostUpdateController::class)->name('user.post.update');
-                            Route::delete('/', UserPostDestroyController::class)->name('user.post.delete');
+                        Route::middleware('verified')->group(function () {
+                            Route::prefix('{post}')->group(function () {
+                                Route::get('/edit', UserPostEditController::class)->name('user.post.edit');
+                                Route::patch('/', UserPostUpdateController::class)->name('user.post.update');
+                                Route::delete('/', UserPostDestroyController::class)->name('user.post.delete');
+                            });
                         });
                     });
                 });
@@ -207,13 +216,15 @@ Route::prefix('users')->group(function () {
             });
 
         });
+        //Create pages
         Route::middleware('checkUser')->group(function () {
-            //Create pages
-            Route::get('/create/project', UserProjectCreateController::class)->name('user.project.create');
-            Route::get('/create/post', UserPostCreateController::class)->name('user.post.create');
-            // Store
-            Route::post('/create/project', UserProjectStoreController::class)->name('user.project.store');
-            Route::post('/create/post', UserPostStoreController::class)->name('user.post.store');
+            Route::middleware('verified')->group(function () {
+                Route::get('/create/project', UserProjectCreateController::class)->name('user.project.create');
+                Route::get('/create/post', UserPostCreateController::class)->name('user.post.create');
+                // Store
+                Route::post('/create/project', UserProjectStoreController::class)->name('user.project.store');
+                Route::post('/create/post', UserPostStoreController::class)->name('user.post.store');
+            });
         });
     });
 });
