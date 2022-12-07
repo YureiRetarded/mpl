@@ -23,8 +23,6 @@
         </form>
     </div>
 
-
-
     <div class="mb-4">
         <form method="POST" action="{{route('user.updateName')}}">
             @csrf
@@ -47,11 +45,6 @@
             <button class="btn btn-primary">Изменить</button>
         </form>
     </div>
-
-
-
-
-
 
     <div class="mb-4">
         <form method="POST" action="{{route('user.updatePassword')}}">
