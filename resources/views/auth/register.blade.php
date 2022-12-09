@@ -5,14 +5,15 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">Регистрация</div>
+                    <div class="card-header">{{__('messages.registration')}}</div>
 
                     <div class="card-body">
                         <form method="POST" action="{{ route('register') }}">
                             @csrf
 
                             <div class="row mb-3">
-                                <label for="name" class="col-md-4 col-form-label text-md-end">Имя</label>
+                                <label for="name"
+                                       class="col-md-4 col-form-label text-md-end">{{__('messages.registration_name')}}</label>
                                 <div class="col-md-6">
                                     <input id="name" type="text"
                                            class="form-control @error('name') is-invalid @enderror" name="name"
@@ -30,10 +31,11 @@
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label for="login" class="col-md-4 col-form-label text-md-end">Ссылка</label>
+                                <label for="login"
+                                       class="col-md-4 col-form-label text-md-end">{{__('messages.registration_link')}}</label>
                                 <div class="col-md-6">
                                     <div class="input-group">
-                                        <span class="input-group-text" id="urlPage">https://myprojectlist.ru/users/</span>
+                                        <span class="input-group-text" id="urlPage">myprojectlist.ru/users/</span>
                                         <input id="login" type="text"
                                                class="form-control @error('login') is-invalid @enderror" name="login"
                                                value="{{ old('login') }}" required autocomplete="login"
@@ -49,21 +51,9 @@
                                     </div>
                                 </div>
                             </div>
-{{--                            <div class="row mb-3">--}}
-{{--                                <label for="login" class="col-md-4 col-form-label text-md-end">Ссылка</label>--}}
-{{--                                <div class="col-md-6">--}}
-{{--                                    <div class="input-group">--}}
-{{--                                        <span class="input-group-text" id="basic-addon3">https://example.com/users/</span>--}}
-{{--                                        <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-
-
-
                             <div class="row mb-3">
                                 <label for="email"
-                                       class="col-md-4 col-form-label text-md-end">Email</label>
+                                       class="col-md-4 col-form-label text-md-end">{{__('messages.registration_email')}}</label>
 
                                 <div class="col-md-6">
                                     <input id="email" type="email"
@@ -80,7 +70,7 @@
 
                             <div class="row mb-3">
                                 <label for="password"
-                                       class="col-md-4 col-form-label text-md-end">Пароль</label>
+                                       class="col-md-4 col-form-label text-md-end">{{__('messages.password')}}</label>
 
                                 <div class="col-md-6">
                                     <input id="password" type="password"
@@ -97,7 +87,7 @@
 
                             <div class="row mb-3">
                                 <label for="password-confirm"
-                                       class="col-md-4 col-form-label text-md-end">Подтвердите пароль</label>
+                                       class="col-md-4 col-form-label text-md-end">{{__('messages.confirm_password')}}</label>
 
                                 <div class="col-md-6">
                                     <input id="password-confirm" type="password" class="form-control"
@@ -108,7 +98,7 @@
                             <div class="row mb-0">
                                 <div class="col-md-6 offset-md-4">
                                     <button type="submit" class="btn btn-primary">
-                                        Присоединиться
+                                        {{__('messages.sign_up')}}
                                     </button>
                                 </div>
                             </div>

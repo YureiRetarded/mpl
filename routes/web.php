@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\Pages\AboutController;
 use App\Http\Controllers\Pages\HomeController;
 use App\Http\Controllers\Pages\PostsPageController;
@@ -76,7 +77,8 @@ use Illuminate\Support\Facades\Route;
 
 //HomePage
 Route::get('/', HomeController::class)->name('index');
-
+//Language change
+Route::get('lang/{lang}', LanguageController::class)->name('lang.switch');
 //Auth
 Auth::routes(
     [

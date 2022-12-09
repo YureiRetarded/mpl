@@ -8,72 +8,72 @@
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link {{ (request()->is('projects')) ? 'active' : '' }}"
-                       href="{{route('projects')}}">Проекты</a>
+                       href="{{route('projects')}}">{{__('messages.navigate_projects')}}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{ (request()->is('posts')) ? 'active' : '' }}"
-                       href="{{route('posts')}}">Посты</a>
+                       href="{{route('posts')}}">{{__('messages.navigate_posts')}}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ (request()->is('user')) ? 'active' : '' }}" href="{{route('users')}}">Пользователи</a>
+                    <a class="nav-link {{ (request()->is('user')) ? 'active' : '' }}" href="{{route('users')}}">{{__('messages.navigate_users')}}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{ (request()->is('about')) ? 'active' : '' }}"
-                       href="{{route('aboutProject')}}">Контакты</a>
+                       href="{{route('aboutProject')}}">{{__('messages.about')}}</a>
                 </li>
                 @can('view',auth()->user())
                     <li class="nav-item">
                         <a class="nav-link {{ (request()->is('adminpanel')) ? 'active' : '' }}"
-                           href="{{route('adminPanel')}}">Админ панель</a>
+                           href="{{route('adminPanel')}}">{{__('messages.navigate_adminpanel')}}</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {{ (request()->is('telescope')) ? 'active' : '' }}"
-                           href="{{'/telescope'}}" target="_blank" >Telescope</a>
+                           href="{{'/telescope'}}" target="_blank">{{__('messages.navigate_telescope')}}</a>
                     </li>
                 @endcan
             </ul>
         </div>
-        <div class="collapse navbar-collapse  order-1 dual-collapse1">
+        <div class="collapse navbar-collapse order-1 dual-collapse1">
             <ul class="navbar-nav ms-auto">
                 @guest
                     @if (Route::has('login'))
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">Войти</a>
+                            <a class="nav-link" href="{{ route('login') }}">{{__('messages.sign_in')}}</a>
                         </li>
                     @endif
 
                     @if (Route::has('register'))
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">Присоединиться</a>
+                            <a class="nav-link" href="{{ route('register') }}">{{__('messages.sign_up')}}</a>
                         </li>
                     @endif
                 @else
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                           data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                           data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             {{ Auth::user()->name }}
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{route('user.project.create',auth()->user()->login)}}">
-                                Создать проект
+                                {{__('messages.create_project')}}
                             </a>
                             <a class="dropdown-item" href="{{route('user.post.create',auth()->user()->login)}}">
-                                Создать пост
+                                {{__('messages.create_post')}}
                             </a>
                             <a class="dropdown-item" href="{{route('user.contact.create',auth()->user()->login)}}">
-                                Новый контакт
+                                {{__('messages.create_contact')}}
                             </a>
                             <a class="dropdown-item" href="{{route('user.index',auth()->user()->login)}}">
-                                Моя страница
+                                {{__('messages.my_page')}}
                             </a>
                             <a class="dropdown-item" href="{{route('user.setting')}}">
-                                Настройки
+                                {{__('messages.setting')}}
                             </a>
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                Выйти
+                                {{__('messages.log_out')}}
                             </a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                 @csrf
@@ -81,6 +81,19 @@
                         </div>
                     </li>
                 @endguest
+            </ul>
+        </div>
+        <div class="collapse  navbar-collapse order-2 dual-collapse1 flex-grow-0">
+            <ul class="navbar-nav ms-auto ">
+                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                   data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{ Config::get('languages')[App::getLocale()] }}
+                </a>
+                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                    @foreach (Config::get('languages') as $lang => $language)
+                        <a class="dropdown-item" href="{{ route('lang.switch', $lang) }}"> {{$language}}</a>
+                    @endforeach
+                </div>
             </ul>
         </div>
     </div>
