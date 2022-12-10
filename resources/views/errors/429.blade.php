@@ -1,5 +1,5 @@
 @extends('layouts.public')
-@section('title', 'Ошибка 429')
+@section('title', __('messages.error429'))
 @section('content')
-    <h1 class="text-center">Слишком много запросов</h1>
+    <h1 class="text-center">{{__('messages.error429text')}}</h1>
 @endsection

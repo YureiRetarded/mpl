@@ -15,7 +15,8 @@
                        href="{{route('posts')}}">{{__('messages.navigate_posts')}}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ (request()->is('user')) ? 'active' : '' }}" href="{{route('users')}}">{{__('messages.navigate_users')}}</a>
+                    <a class="nav-link {{ (request()->is('user')) ? 'active' : '' }}"
+                       href="{{route('users')}}">{{__('messages.navigate_users')}}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{ (request()->is('about')) ? 'active' : '' }}"

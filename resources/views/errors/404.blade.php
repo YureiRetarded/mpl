@@ -1,5 +1,5 @@
 @extends('layouts.public')
-@section('title', 'Ошибка 404')
+@section('title', __('messages.error404'))
 @section('content')
-    <h1 class="text-center">Страница не найдена</h1>
+    <h1 class="text-center">{{__('messages.error404text')}}</h1>
 @endsection

@@ -12,7 +12,7 @@
                @endif
             @endif
         @endif
-        " type="submit">Поиск
+        " type="submit">{{__('messages.search')}}
         </button>
         @if(request()->is('projects') && auth()->user()!==null)
             @include('includes.project.projectIndexToolbar')

@@ -2,7 +2,8 @@
 @section('title','Роли')
 @section('content')
     @include('includes.searchForm')
-    <div class="container mb-3 row"><a class="btn btn-primary" href="{{route('admin.role.create')}}">Создать</a></div>
+    <div class="container mb-3 row"><a class="btn btn-primary"
+                                       href="{{route('admin.role.create')}}">{{__('messages.create')}}</a></div>
     @foreach($roles as $role)
         @include('includes.role.cardAdmin')
     @endforeach

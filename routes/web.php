@@ -83,6 +83,8 @@ Route::get('lang/{lang}', LanguageController::class)->name('lang.switch');
 Auth::routes(
     [
         'verify' => true,
+        'confirm' => false,
+        'email' => false,
     ]
 );
 Route::post('/logout', LogoutController::class)->name('logout');
@@ -93,7 +95,6 @@ Route::middleware('auth')->group(function () {
     Route::prefix('setting')->group(function () {
         Route::get('/', UserSettingIndexController::class)->name('user.setting');
         Route::post('/about', UserUpdateAboutController::class)->name('user.updateAbout');
-        //Route::post('/email', UserUpdateEmailController::class)->name('user.updateEmail');
         Route::post('/name', UserUpdateNameController::class)->name('user.updateName');
         Route::post('/password', UserUpdatePasswordController::class)->name('user.updatePassword');
     });

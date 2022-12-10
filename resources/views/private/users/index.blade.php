@@ -1,5 +1,5 @@
 @extends('layouts.private')
-@section('title','Пользователи')
+@section('title',__('messages.navigate_users'))
 @section('content')
     @include('includes.searchForm')
     @foreach($users as $user)
