@@ -1,18 +1,18 @@
 @extends('layouts.public')
-@section('title','О проекте')
+@section('title',__('messages.about'))
 @section('content')
     <div>
-        <h1>Контакты</h1>
+        <h1>{{__('messages.navigate_contacts')}}</h1>
     </div>
     <div>
-        <p>Вы обнаружили ошибку или хотите предложить идею для сайта</p>
+        <p>{{__('messages.about_text')}}</p>
         <ul>
-            <li><a href = "mailto: support@myprojectlist.ru">Почта</a></li>
+            <li><a href="mailto: support@myprojectlist.ru">Email</a></li>
             <li><a target="_blank" href="https://t.me/yureideveloper">Telegram</a></li>
         </ul>
     </div>
     <div>
-        <p>Хотите поддержать проект? Подпишитесь на наш <a target="_blank" href="https://boosty.to/yureideveloper">Boosty</a>
+        <p>{{__('messages.about_donation_text')}} <a target="_blank" href="https://boosty.to/yureideveloper">Boosty</a>
         </p>
     </div>
 @endsection

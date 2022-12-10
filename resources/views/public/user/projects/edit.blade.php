@@ -86,6 +86,6 @@
             @enderror
             <div id="projectTags" class="form-text">{{__('messages.project_tags_help')}}</div>
         </div>
-        <button type="submit" class="btn btn-primary">{{__('messages.save')}}</button>
+        <button type="submit" class="btn btn-primary">{{__('messages.edit')}}</button>
     </form>
 @endsection

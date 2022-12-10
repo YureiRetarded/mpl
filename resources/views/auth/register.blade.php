@@ -6,7 +6,6 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">{{__('messages.registration')}}</div>
-
                     <div class="card-body">
                         <form method="POST" action="{{ route('register') }}">
                             @csrf
@@ -23,8 +22,8 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                     @enderror
-                                    <div id="nameHelp" class="form-text">Имя или прозвище которое будет отображаться у
-                                        Вас в профиле
+                                    <div id="nameHelp" class="form-text">
+                                        {{__('messages.registration_name_help')}}
                                     </div>
                                 </div>
                             </div>
@@ -45,14 +44,13 @@
                                     </span>
                                     @enderror
                                     <div id="loginHelp" class="form-text">
-                                        Ссылка с помощью которой можно перейти на вашу страницу
+                                        {{__('messages.registration_link_help')}}
                                     </div>
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <label for="email"
                                        class="col-md-4 col-form-label text-md-end">{{__('messages.registration_email')}}</label>
-
                                 <div class="col-md-6">
                                     <input id="email" type="email"
                                            class="form-control @error('email') is-invalid @enderror" name="email"
