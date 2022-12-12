@@ -4,12 +4,22 @@
     @include('includes.project.projectToolbar')
     <h1 class="badText">{{$project->title}}</h1>
     <div>
-        <h5>{{__('messages.status')}}: {{$project->status->name}}</h5>
+        <h5>{{__('messages.status')}}:
+            @if(Config::get('app.locale')=='ru')
+                {{$project->status->name_ru}}
+            @else
+                {{$project->status->name_en}}
+            @endif
+        </h5>
         <h5>{{__('messages.code')}}:
             @if($project->publicAccessLevel->id==1&&isset($project->github_link))
                 <a target="_blank" href="{{$project->github_link}}">{{$project->publicAccessLevel->name}}</a>
             @else
-                {{$project->publicAccessLevel->name}}
+                @if(Config::get('app.locale')=='ru')
+                    {{$project->publicAccessLevel->name_ru}}
+                @else
+                    {{$project->publicAccessLevel->name_en}}
+                @endif
             @endif
         </h5>
         @if(isset($project->url))

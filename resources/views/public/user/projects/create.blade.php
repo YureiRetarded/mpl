@@ -37,7 +37,11 @@
                 @foreach($levels as $level)
                     <option name="level"
                             value="{{$level->id}}" {{old('public_access_level_id') == $level->id ? ' selected ' : ''}}>
-                        {{$level->name}}
+                        @if(Config::get('app.locale')=='ru')
+                            {{$level->name_ru}}
+                        @else
+                            {{$level->name_en}}
+                        @endif
                     </option>
                 @endforeach
             </select>
@@ -51,7 +55,11 @@
                 @foreach($statuses as $status)
                     <option name="status"
                             value="{{$status->id}}" {{old('status_id') == $status->id ? ' selected ' : ''}}>
-                        {{$status->name}}
+                        @if(Config::get('app.locale')=='ru')
+                            {{$status->name_ru}}
+                        @else
+                            {{$status->name_en}}
+                        @endif
                     </option>
                 @endforeach
             </select>

@@ -37,16 +37,16 @@ class DatabaseSeeder extends Seeder
         ];
 
         $statuses = [
-            ['name' => 'В разработке'],
-            ['name' => 'Заморожен'],
-            ['name' => 'Заброшен'],
-            ['name' => 'В планах'],
-            ['name' => 'Работает'],
-            ['name' => 'Удалён'],
+            ['name_ru' => 'В разработке','name_en' => 'In developing'],
+            ['name_ru' => 'Заморожен','name_en' => 'Frozen'],
+            ['name_ru' => 'Заброшен','name_en' => 'Abandoned'],
+            ['name_ru' => 'В планах','name_en' => 'In the plans'],
+            ['name_ru' => 'Работает','name_en' => 'Works'],
+            ['name_ru' => 'Удалён','name_en' => 'Removed'],
         ];
         $puplicAccessLeveles = [
-            ['name' => 'Открыт'],
-            ['name' => 'Закрыт'],
+            ['name_en' => 'Public','name_ru' => 'Открыт'],
+            ['name_en' => 'Private','name_ru' => 'Закрыт'],
         ];
 
         foreach ($roles as $role) {

@@ -14,7 +14,8 @@ return new class extends Migration {
     {
         Schema::create('public_access_levels', function (Blueprint $table) {
             $table->id();
-            $table->string("name");
+            $table->string("name_en");
+            $table->string("name_ru");
             $table->timestamps();
         });
     }

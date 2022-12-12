@@ -63,13 +63,8 @@ use App\Http\Controllers\User\Setting\IndexController as UserSettingIndexControl
 use App\Http\Controllers\User\Setting\UpdateAboutController as UserUpdateAboutController;
 use App\Http\Controllers\User\Setting\UpdateNameController as UserUpdateNameController;
 use App\Http\Controllers\User\Setting\UpdatePasswordController as UserUpdatePasswordController;
-use Illuminate\Auth\Events\PasswordReset;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Str;
 
 
 /*
@@ -95,65 +90,14 @@ Auth::routes(
         'verify' => true,
         'confirm' => false,
         'email' => false,
-        'reset'=>false
+        'reset' => false
     ]
 );
-
-//reset password
-//Route::get('/forgot-password', function () {
-//    return view('auth.passwords.email');
-//})->middleware('guest')->name('password.request');
-//
-//Route::post('/forgot-password', function (Request $request) {
-//    $request->validate(['email' => 'required|email']);
-//
-//    $status = Password::sendResetLink(
-//        $request->only('email')
-//    );
-//
-//    return $status === Password::RESET_LINK_SENT
-//        ? back()->with(['status' => __($status)])
-//        : back()->withErrors(['email' => __($status)]);
-//})->middleware('guest')->name('password.email');
-//Route::get('/reset-password/{token}', function ($token) {
-//    return view('auth.passwords.reset', ['token' => $token]);
-//})->middleware('guest')->name('password.reset');
-//Route::post('/reset-password', function (Request $request) {
-//    $request->validate([
-//        'token' => 'required',
-//        'email' => 'required|email',
-//        'password' => 'required|min:8|confirmed',
-//    ]);
-//
-//    $status = Password::reset(
-//        $request->only('email', 'password', 'password_confirmation', 'token'),
-//        function ($user, $password) {
-//            $user->forceFill([
-//                'password' => Hash::make($password)
-//            ])->setRememberToken(Str::random(60));
-//
-//            $user->save();
-//
-//            event(new PasswordReset($user));
-//        }
-//    );
-//
-//    return $status === Password::PASSWORD_RESET
-//        ? redirect()->route('login')->with('status', __($status))
-//        : back()->withErrors(['email' => [__($status)]]);
-//})->middleware('guest')->name('password.update');
-
-
 
 Route::get('/forgot-password', GetPageController::class)->middleware('guest')->name('password.request');
 Route::post('/forgot-password', GetPageTokenController::class)->middleware('guest')->name('password.email');
 Route::get('/reset-password/{token}', GetPageResetController::class)->middleware('guest')->name('password.reset');
 Route::post('/reset-password', GetPageResetTokenController::class)->middleware('guest')->name('password.update');
-
-
-
-
-
 
 //Log out
 Route::post('/logout', LogoutController::class)->name('logout');
