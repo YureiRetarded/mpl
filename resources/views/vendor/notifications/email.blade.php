@@ -4,9 +4,9 @@
 # {{ $greeting }}
 @else
 @if ($level === 'error')
-# @lang('Упс!')
+# @lang('Whoops!')
 @else
-# @lang('Привет!')
+# @lang('email.greetings')
 @endif
 @endif
 
@@ -25,7 +25,7 @@
     };
 ?>
 <x-mail::button :url="$actionUrl" :color="$color">
-Подтвердить почту
+{{ $actionText }}
 </x-mail::button>
 @endisset
 
@@ -39,7 +39,7 @@
 @if (! empty($salutation))
 {{ $salutation }}
 @else
-@lang('Regards'),<br>
+@lang('email.regards'),<br>
 {{ config('app.name') }}
 @endif
 
@@ -47,10 +47,9 @@
 @isset($actionText)
 <x-slot:subcopy>
 @lang(
-    "Если у вас проблемы с кнопкой подтверждения, скопируйте и вставьте ссылку\n".
-    'в Ваш браузер:',
+    'email.problem',
     [
-        'actionText' => $actionText,
+        'button' => $actionText,
     ]
 ) <span class="break-all">[{{ $displayableActionUrl }}]({{ $actionUrl }})</span>
 </x-slot:subcopy>

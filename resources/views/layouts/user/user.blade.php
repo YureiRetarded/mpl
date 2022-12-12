@@ -14,7 +14,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{ (request()->is('users/*/contacts') == 'contacts') ? 'active' : '' }}"
-                       href="{{route('user.contact.index',['user'=>$user->login])}}">{{__('messages.navigate_contact')}}</a>
+                       href="{{route('user.contact.index',['user'=>$user->login])}}">{{__('messages.navigate_contacts')}}</a>
                 </li>
 
             </ul>
