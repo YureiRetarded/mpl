@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -15,7 +15,7 @@
 <body>
 <div class="container">
     @include('includes.publicNavbar')
-    <div class="container-fluid" >
+    <div class="container-fluid">
         @yield('content')
     </div>
 </div>

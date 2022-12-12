@@ -6,13 +6,15 @@
             </h3>
         </div>
         <div class="card-text mb-2">
-            <a target="_blank" class="no-underline" href="{{route('user.project.show',['user'=>$post->project->user->login,'project'=>$post->project->link])}}">
-                Проект: {{mb_strimwidth($post->project->title,0,50,'...')}}
+            <a target="_blank" class="no-underline"
+               href="{{route('user.project.show',['user'=>$post->project->user->login,'project'=>$post->project->link])}}">
+                {{__('messages.project')}}: {{mb_strimwidth($post->project->title,0,50,'...')}}
             </a>
         </div>
         <div class="card-text mb-2">
-            <a target="_blank" class="no-underline" href="{{route('user.index',['user'=>$post->project->user->login])}}">
-                Автор: {{mb_strimwidth($post->project->user->name,0,50,'...')}}
+            <a target="_blank" class="no-underline"
+               href="{{route('user.index',['user'=>$post->project->user->login])}}">
+                {{__('messages.author')}}: {{mb_strimwidth($post->project->user->name,0,50,'...')}}
             </a>
         </div>
         <div>
@@ -23,10 +25,10 @@
                 <a target="_blank"
                    class="btn btn-primary  me-2"
                    href="{{route('user.post.show',['user'=>$post->project->user->login,'project'=>$post->project->link,'post'=>$post->link])}}">
-                    Открыть
+                    {{__('messages.open')}}
                 </a>
                 <button type="submit" class="btn btn-danger">
-                    Удалить
+                    {{__('messages.delete')}}
                 </button>
             </form>
         </div>

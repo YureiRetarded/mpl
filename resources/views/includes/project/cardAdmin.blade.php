@@ -10,7 +10,7 @@
                 @if(isset($project->description))
                     {{mb_strimwidth($project->description,0,255,'...')}}
                 @else
-                    Нет описания проекта
+                    {{__('messages.no_project_description')}}
                 @endif
             </h5>
         </div>
@@ -19,7 +19,7 @@
                 @if($project->tags->count()>0)
                     {{\App\Models\Project::getTagsString($project->tags)}}
                 @else
-                    Нет тегов
+                    {{__('messages.no_tags')}}
                 @endif
             </footer>
         </blockquote>
@@ -29,14 +29,14 @@
                 @csrf
                 @method('delete')
                 <a class="no-underline" target="_blank" href="{{route('user.index',['user'=>$project->user->login])}}">
-                    Автор: {{mb_strimwidth($project->user->name,0,50,'...')}}
+                    {{__('messages.author')}}: {{mb_strimwidth($project->user->name,0,50,'...')}}
                 </a>
                 <a target="_blank" class="btn btn-primary me-2"
                    href="{{route('user.project.show',['user'=>$project->user->login,'project'=>$project->link])}}">
-                    Открыть
+                    {{__('messages.open')}}
                 </a>
                 <button type="submit" class="btn btn-danger">
-                    Удалить
+                    {{__('messages.delete')}}
                 </button>
             </form>
         </footer>

@@ -1,5 +1,5 @@
 @extends('layouts.public')
-@section('title', 'Ошибка 500')
+@section('title',__('messages.error500'))
 @section('content')
-    <h1 class="text-center">Ошибка на стороне сервера</h1>
+    <h1 class="text-center">{{__('messages.error500text')}}</h1>
 @endsection

@@ -11,7 +11,7 @@
                 @if(isset($project->description))
                     {{mb_strimwidth($project->description,0,255,'...')}}
                 @else
-                    Нет описания проекта
+                    {{__('messages.no_project_description')}}
                 @endif
             </h5>
         </div>
@@ -20,25 +20,25 @@
                 @if($project->tags->count()>0)
                     {{\App\Models\Project::getTagsString($project->tags)}}
                 @else
-                    Нет тегов
+                    {{__('messages.no_tags')}}
                 @endif
             </footer>
         </blockquote>
         @if(Request::segment(1)!=='users')
-        <footer>
-            <a class="no-underline" href="{{route('user.index',['user'=>$project->user->login])}}">
-                Автор: {{mb_strimwidth($project->user->name,0,50,'...')}}
-            </a>
-        </footer>
+            <footer>
+                <a class="no-underline" href="{{route('user.index',['user'=>$project->user->login])}}">
+                    {{__('messages.author')}}: {{mb_strimwidth($project->user->name,0,50,'...')}}
+                </a>
+            </footer>
         @endif
         @if(auth()->user()!==null && auth()->user()->login===$project->user->login && Request::segment(1)=='users')
             <form method="POST"
                   action="{{route('user.project.delete',['user'=>auth()->user()->login,'project'=>$project->link])}}">
                 <a class="btn btn-primary" href="{{url()->current().'/'.$project->link.'/edit'}}"
-                   role="button">Изменить</a>
+                   role="button">{{__('messages.edit')}}</a>
                 @csrf
                 @method('delete')
-                <button class="btn btn-danger" type="submit">Удались</button>
+                <button class="btn btn-danger" type="submit">{{__('messages.delete')}}</button>
             </form>
         @endif
     </div>

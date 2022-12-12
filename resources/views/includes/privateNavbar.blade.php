@@ -8,26 +8,27 @@
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link {{ (request()->is('projects')) ? 'active' : '' }}"
-                       href="{{route('admin.projects')}}">Проекты</a>
+                       href="{{route('admin.projects')}}">{{__('messages.navigate_projects')}}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{ (request()->is('posts')) ? 'active' : '' }}"
-                       href="{{route('admin.posts')}}">Посты</a>
+                       href="{{route('admin.posts')}}">{{__('messages.navigate_posts')}}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ (request()->is('user')) ? 'active' : '' }}" href="{{route('admin.users')}}">Пользователи</a>
+                    <a class="nav-link {{ (request()->is('user')) ? 'active' : '' }}"
+                       href="{{route('admin.users')}}">{{__('messages.navigate_users')}}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{ (request()->is('tags')) ? 'active' : '' }}"
-                       href="{{route('admin.tags')}}">Теги</a>
+                       href="{{route('admin.tags')}}">{{__('messages.tags')}}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{ (request()->is('roles')) ? 'active' : '' }}"
-                       href="{{route('admin.roles')}}">Роли</a>
+                       href="{{route('admin.roles')}}">{{__('messages.roles')}}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{ (request()->is('statuses')) ? 'active' : '' }}"
-                       href="{{route('admin.statuses')}}">Статусы</a>
+                       href="{{route('admin.statuses')}}">{{__('messages.statuses')}}</a>
                 </li>
             </ul>
         </div>
