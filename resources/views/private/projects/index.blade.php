@@ -1,5 +1,5 @@
 @extends('layouts.private')
-@section('title','Проекты')
+@section('title',__('messages.navigate_projects'))
 @section('content')
     @include('includes.searchForm')
     @foreach($projects as $project)

@@ -1,5 +1,5 @@
 @extends('layouts.public')
-@section('title', 'Ошибка 421')
+@section('title', __('messages.error421'))
 @section('content')
-    <h1 class="text-center">У проекта нет такого поста</h1>
+    <h1 class="text-center">{{__('messages.error421text')}}</h1>
 @endsection

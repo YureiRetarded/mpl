@@ -1,6 +1,5 @@
 @extends('layouts.public')
-@section('title', 'Ошибка 419')
+@section('title', __('messages.error419'))
 @section('content')
-    <h1 class="text-center">Время жизни страницы истекло</h1>
-    <h6 class="text-center">(Обновите страницу)</h6>
+    <h1 class="text-center">{{__('messages.error419text')}}</h1>
 @endsection

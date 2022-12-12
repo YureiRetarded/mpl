@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Pages;
 
 use App\Http\Controllers\Controller;
 use App\Models\Project;
+use Illuminate\Support\Facades\App;
 
 class ProjectsPageController extends Controller
 {

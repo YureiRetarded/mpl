@@ -1,5 +1,5 @@
 @extends('layouts.public')
-@section('title', 'БАН')
+@section('title', __('messages.error496'))
 @section('content')
-    <h1 class="text-center">Вы в бане!</h1>
+    <h1 class="text-center">{{__('messages.error496text')}}</h1>
 @endsection

@@ -8,10 +8,10 @@
                 @method('delete')
                 <a class="btn btn-primary me-2"
                    href="{{route('admin.status.edit',['status'=>$status->id])}}">
-                    Редактировать
+                    {{__('messages.edit')}}
                 </a>
                 <button type="submit" class="btn btn-danger">
-                    Удалить
+                    {{__('messages.delete')}}
                 </button>
             </form>
         </div>

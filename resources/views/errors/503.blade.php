@@ -1,5 +1,5 @@
 @extends('layouts.public')
-@section('title', 'Ошибка 503')
+@section('title', __('messages.error503'))
 @section('content')
-    <h1 class="text-center">Сервер недоступен</h1>
+    <h1 class="text-center">{{__('messages.error503text')}}</h1>
 @endsection

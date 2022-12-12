@@ -1,5 +1,5 @@
 @extends('layouts.public')
-@section('title', 'Ошибка 4181')
+@section('title', __('messages.error418'))
 @section('content')
-    <h1 class="text-center">Пользователь не найден</h1>
+    <h1 class="text-center">{{__('messages.error418text')}}</h1>
 @endsection

@@ -4,16 +4,16 @@
     <div class="container-fluid" style="word-wrap: break-word">
         <h1 class="text-center">{{$user->name}}</h1>
         <h5>
-            Проектов: {{$user->projects->count()}}
+            {{__('messages.projects')}}: {{$user->projects->count()}}
         </h5>
         <h5>
-            Постов: {{$user->posts->count()}}
+            {{__('messages.posts')}}: {{$user->posts->count()}}
         </h5>
         <div>
             @if(isset($user->about))
                 <p>{{$user->about}}</p>
             @else
-                <p>{{$user->name}} не написал информации о себе </p>
+                <p>{{$user->name}} {{__('messages.project_no_about')}}</p>
             @endif
         </div>
     </div>

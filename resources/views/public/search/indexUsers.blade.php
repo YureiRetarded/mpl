@@ -1,5 +1,5 @@
 @extends('public.search.users')
-@section('title','Пользователи')
+@section('title',__('messages.navigate_users'))
 @section('searchContent')
     @foreach($users as $user)
         @include('includes.user.card')

@@ -1,6 +1,11 @@
 <?php
 
 use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\Auth\ResetPassword\GetPageController;
+use App\Http\Controllers\Auth\ResetPassword\GetPageResetController;
+use App\Http\Controllers\Auth\ResetPassword\GetPageResetTokenController;
+use App\Http\Controllers\Auth\ResetPassword\GetPageTokenController;
+use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\Pages\AboutController;
 use App\Http\Controllers\Pages\HomeController;
 use App\Http\Controllers\Pages\PostsPageController;
@@ -76,13 +81,25 @@ use Illuminate\Support\Facades\Route;
 
 //HomePage
 Route::get('/', HomeController::class)->name('index');
-
+//Language change
+Route::get('lang/{lang}', LanguageController::class)->name('lang.switch');
 //Auth
+//Basic auth routes config
 Auth::routes(
     [
         'verify' => true,
+        'confirm' => false,
+        'email' => false,
+        'reset' => false
     ]
 );
+
+Route::get('/forgot-password', GetPageController::class)->middleware('guest')->name('password.request');
+Route::post('/forgot-password', GetPageTokenController::class)->middleware('guest')->name('password.email');
+Route::get('/reset-password/{token}', GetPageResetController::class)->middleware('guest')->name('password.reset');
+Route::post('/reset-password', GetPageResetTokenController::class)->middleware('guest')->name('password.update');
+
+//Log out
 Route::post('/logout', LogoutController::class)->name('logout');
 
 //Setting
@@ -91,7 +108,6 @@ Route::middleware('auth')->group(function () {
     Route::prefix('setting')->group(function () {
         Route::get('/', UserSettingIndexController::class)->name('user.setting');
         Route::post('/about', UserUpdateAboutController::class)->name('user.updateAbout');
-        //Route::post('/email', UserUpdateEmailController::class)->name('user.updateEmail');
         Route::post('/name', UserUpdateNameController::class)->name('user.updateName');
         Route::post('/password', UserUpdatePasswordController::class)->name('user.updatePassword');
     });

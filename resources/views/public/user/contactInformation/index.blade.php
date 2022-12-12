@@ -1,13 +1,13 @@
 @extends('layouts.user.user')
-@section('title','Контакты')
+@section('title',__('messages.navigate_contacts'))
 @section('userContent')
     @include('includes.contact.contactToolbar')
     @if(count($user->contactInformation)==0)
         <h3 class="badText">
             @if(auth()->user()!==null &&  auth()->user()->login===$user->login)
-                У вас нет контактов
+                {{__('messages.you_no_contacts')}}
             @else
-                Пользователь {{$user->name}} не оставил контактны данные
+                {{$user->name}} {{__('messages.user_no_contacts')}}
             @endif
         </h3>
     @else
