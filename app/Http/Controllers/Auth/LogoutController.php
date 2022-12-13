@@ -10,8 +10,10 @@ class LogoutController extends Controller
 {
     public function __invoke()
     {
+        $lang = Session::get('applocale');
         Session::flush();
         Auth::logout();
+        Session::put('applocale', $lang);
         return redirect()->back();
     }
 }
