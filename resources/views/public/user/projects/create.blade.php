@@ -68,10 +68,10 @@
             @enderror
         </div>
         <div class="mb-3">
-            <label for="gitLink" class="form-label">{{__('messages.project_code_link')}}</label>
-            <input type="url" name="github_link" value="{{old('github_link')}}" class="form-control" id="gitLink">
-            <div id="gitLink" class="form-text">{{__('messages.project_code_link_help')}}</div>
-            @error('github_link')
+            <label for="codeLink" class="form-label">{{__('messages.project_code_link')}}</label>
+            <input type="url" name="code_link" value="{{old('code_link')}}" class="form-control" id="codeLink">
+            <div id="codeLink" class="form-text">{{__('messages.project_code_link_help')}}</div>
+            @error('code_link')
             <p class="text-danger">{{$message}}</p>
             @enderror
         </div>
