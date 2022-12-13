@@ -52,7 +52,7 @@ class UpdateController extends Controller
             }
             $project->tags()->sync($tagsIds);
             $project->fresh();
-            return redirect('/users/' . $project->user->login . '/projects/' . $project->link);
+            return redirect('/users/' . $project->user->link . '/projects/' . $project->link);
         } else {
             return view('public.error.project404', compact('user'));
         }

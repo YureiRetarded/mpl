@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class UpdateController extends Controller
 {
-    public function __invoke($login,$contactId)
+    public function __invoke($link,$contactId)
     {
         $user = auth()->user();
         $data = request()->validate([
@@ -17,6 +17,6 @@ class UpdateController extends Controller
         ]);
         $contact=ContactInformation::findOrFail($contactId);
         $contact->update($data);
-        return redirect('/users/' . $user->login . '/contacts');
+        return redirect('/users/' . $user->link . '/contacts');
     }
 }

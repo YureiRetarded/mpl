@@ -2,7 +2,7 @@
 @section('title',__('messages.edit_project'))
 @section('userContent')
     <form method="POST"
-          action="{{route('user.project.update',['user'=>auth()->user()->login,'project'=>$project->link])}}">
+          action="{{route('user.project.update',['user'=>auth()->user()->link,'project'=>$project->link])}}">
         @csrf
         @method('patch')
         <div class="mb-3">

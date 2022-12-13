@@ -1,7 +1,7 @@
 @extends('layouts.user.user')
 @section('title',__('messages.create_project'))
 @section('userContent')
-    <form method="POST" action="{{route('user.project.store',['user'=>auth()->user()->login])}}">
+    <form method="POST" action="{{route('user.project.store',['user'=>auth()->user()->link])}}">
         @csrf
         <div class="mb-3">
             <label for="projectName" class="form-label">{{__('messages.project_name')}}</label>

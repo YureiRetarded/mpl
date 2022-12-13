@@ -33,7 +33,7 @@
         @else
             <h5>
                 {{__('messages.posts')}}: <a class=""
-                                             href="{{route('user.project.posts.index',['user'=>$project->user->login,'project'=>$project->link])}}">{{$project->posts->count()}}</a>
+                                             href="{{route('user.project.posts.index',['user'=>$project->user->link,'project'=>$project->link])}}">{{$project->posts->count()}}</a>
             </h5>
             <h5>
                 @foreach($project->tags as $tag)

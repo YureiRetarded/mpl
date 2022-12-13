@@ -9,10 +9,10 @@ use App\Models\User;
 
 class ShowController extends Controller
 {
-    public function __invoke($login, $project_link, $post_link)
+    public function __invoke($link, $project_link, $post_link)
     {
-        if (User::where('login', $login)->exists()) {
-            $user = User::where('login', $login)->first();
+        if (User::where('link', $link)->exists()) {
+            $user = User::where('link', $link)->first();
             if (Project::where('user_id', $user->id)->where('link', $project_link)->exists()) {
                 $project = Project::where('user_id', $user->id)->where('link', $project_link)->first();
                 if (Post::where('project_id', $project->id)->where('link', $post_link)->exists()) {

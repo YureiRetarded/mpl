@@ -28,22 +28,22 @@
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label for="login"
+                                <label for="link"
                                        class="col-md-4 col-form-label text-md-end">{{__('messages.registration_link')}}</label>
                                 <div class="col-md-6">
                                     <div class="input-group">
                                         <span class="input-group-text" id="urlPage">myprojectlist.ru/users/</span>
-                                        <input id="login" type="text"
-                                               class="form-control @error('login') is-invalid @enderror" name="login"
-                                               value="{{ old('login') }}" required autocomplete="login"
-                                               aria-describedby="loginHelp urlPage">
+                                        <input id="link" type="text"
+                                               class="form-control @error('link') is-invalid @enderror" name="link"
+                                               value="{{ old('link') }}" required autocomplete="link"
+                                               aria-describedby="linkHelp urlPage">
                                     </div>
-                                    @error('login')
+                                    @error('link')
                                     <span class="text-danger" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                     @enderror
-                                    <div id="loginHelp" class="form-text">
+                                    <div id="linkHelp" class="form-text">
                                         {{__('messages.registration_link_help')}}
                                     </div>
                                 </div>
