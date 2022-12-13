@@ -6,12 +6,29 @@
 
 // Bootstrap
 @import 'bootstrap/scss/bootstrap';
-body{
+
+body {
     overflow-y: scroll;
 }
-.badText{
+
+.badText {
     word-wrap: break-word;
 }
-.no-underline{
+
+.no-underline {
     text-decoration: none;
+}
+
+footer {
+    background-color: #e6e6e6;
+
+    a {
+        color: #8a8a8a;
+        transition: 0.5s;
+
+        &:hover {
+            transition: 0.5s;
+            color: #575757;
+        }
+    }
 }

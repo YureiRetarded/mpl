@@ -20,6 +20,7 @@
     </div>
 </div>
 </body>
+@include('includes.footer')
 <script type="text/javascript" src="/ckeditor/ckeditor.js">
     $(document).ready(function () {
         $('.ckeditor').ckeditor();
