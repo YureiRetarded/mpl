@@ -39,4 +39,9 @@
         </div>
         <button type="submit" class="btn btn-primary">{{__('messages.edit')}}</button>
     </form>
+    <script type="text/javascript" src="/ckeditor/ckeditor.js">
+        $(document).ready(function () {
+            $('.ckeditor').ckeditor();
+        });
+    </script>
 @endsection

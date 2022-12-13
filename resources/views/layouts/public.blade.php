@@ -13,17 +13,13 @@
     <title>@yield('title')</title>
 </head>
 <body>
-<div class="container">
+<div class="container body">
     @include('includes.publicNavbar')
     <div class="container-fluid">
         @yield('content')
     </div>
 </div>
-</body>
 @include('includes.footer')
-<script type="text/javascript" src="/ckeditor/ckeditor.js">
-    $(document).ready(function () {
-        $('.ckeditor').ckeditor();
-    });
-</script>
+</body>
 </html>
+

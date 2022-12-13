@@ -3,6 +3,7 @@ return [
     'navigate_projects' => 'Проекты',
     'navigate_posts' => 'Посты',
     'navigate_users' => 'Пользователи',
+    'navigate_home' => 'Главная',
     'project' => 'Проект',
     'post' => 'Пост',
     'users' => 'Пользователей',

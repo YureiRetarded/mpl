@@ -3,6 +3,7 @@ return [
     'navigate_projects' => 'Projects',
     'navigate_posts' => 'Posts',
     'navigate_users' => 'Users',
+    'navigate_home' => 'Home',
     'project' => 'Project',
     'post' => 'Post',
     'users' => 'Users',
