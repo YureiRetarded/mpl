@@ -2,7 +2,7 @@
 @section('title',__('messages.edit_contact'))
 @section('userContent')
     <form method="POST"
-          action="{{route('user.contact.update',['user'=>auth()->user()->login,'contact'=>$contact->id])}}">
+          action="{{route('user.contact.update',['user'=>auth()->user()->link,'contact'=>$contact->id])}}">
         @csrf
         @method('patch')
         <div class="mb-3">

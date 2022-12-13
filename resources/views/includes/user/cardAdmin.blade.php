@@ -8,7 +8,7 @@
             <a class="btn btn-primary"
                href="{{route('admin.user.edit',['user'=>$user->id])}}">{{__('messages.edit')}}</a>
             <a target="_blank" class="btn btn-primary"
-               href="{{route('user.index',['user'=>$user->login])}}">{{__('messages.open')}}</a>
+               href="{{route('user.index',['user'=>$user->link])}}">{{__('messages.open')}}</a>
         </div>
     </div>
 </div>

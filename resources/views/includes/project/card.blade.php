@@ -1,5 +1,5 @@
 <div role="button" class="card mb-4"
-     onclick="location.href='{{route('user.project.show',['user'=>$project->user->login,'project'=>$project->link])}}'">
+     onclick="location.href='{{route('user.project.show',['user'=>$project->user->link,'project'=>$project->link])}}'">
     <div class="card-body">
         <div class="card-text ">
             <h3>
@@ -26,14 +26,14 @@
         </blockquote>
         @if(Request::segment(1)!=='users')
             <footer>
-                <a class="no-underline" href="{{route('user.index',['user'=>$project->user->login])}}">
+                <a class="no-underline" href="{{route('user.index',['user'=>$project->user->link])}}">
                     {{__('messages.author')}}: {{mb_strimwidth($project->user->name,0,50,'...')}}
                 </a>
             </footer>
         @endif
-        @if(auth()->user()!==null && auth()->user()->login===$project->user->login && Request::segment(1)=='users')
+        @if(auth()->user()!==null && auth()->user()->link===$project->user->link && Request::segment(1)=='users')
             <form method="POST"
-                  action="{{route('user.project.delete',['user'=>auth()->user()->login,'project'=>$project->link])}}">
+                  action="{{route('user.project.delete',['user'=>auth()->user()->link,'project'=>$project->link])}}">
                 <a class="btn btn-primary" href="{{url()->current().'/'.$project->link.'/edit'}}"
                    role="button">{{__('messages.edit')}}</a>
                 @csrf

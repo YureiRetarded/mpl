@@ -7,11 +7,11 @@ use App\Models\ContactInformation;
 
 class DestroyController extends Controller
 {
-    public function __invoke($login, $contactId)
+    public function __invoke($link, $contactId)
     {
         $contact = ContactInformation::findOrFail($contactId);
         $contact->delete();
         $user = auth()->user();
-        return redirect('/users/' . $user->login . '/contacts');
+        return redirect('/users/' . $user->link . '/contacts');
     }
 }

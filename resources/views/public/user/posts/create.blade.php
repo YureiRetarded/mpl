@@ -1,7 +1,7 @@
 @extends('layouts.user.user')
 @section('title',__('messages.create_post'))
 @section('userContent')
-    <form method="POST" action="{{route('user.post.store',['user'=>auth()->user()->login])}}">
+    <form method="POST" action="{{route('user.post.store',['user'=>auth()->user()->link])}}">
         @csrf
         <div class="mb-3">
             <label for="PostName" class="form-label">{{__('messages.post_name')}}</label>
@@ -37,4 +37,9 @@
         </div>
         <button type="submit" class="btn btn-primary">{{__('messages.create')}}</button>
     </form>
+    <script type="text/javascript" src="/ckeditor/ckeditor.js">
+        $(document).ready(function () {
+            $('.ckeditor').ckeditor();
+        });
+    </script>
 @endsection

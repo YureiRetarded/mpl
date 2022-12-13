@@ -4,7 +4,7 @@
     @include('includes.contact.contactToolbar')
     @if(count($user->contactInformation)==0)
         <h3 class="badText">
-            @if(auth()->user()!==null &&  auth()->user()->login===$user->login)
+            @if(auth()->user()!==null &&  auth()->user()->link===$user->link)
                 {{__('messages.you_no_contacts')}}
             @else
                 {{$user->name}} {{__('messages.user_no_contacts')}}

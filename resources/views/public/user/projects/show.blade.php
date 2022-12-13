@@ -12,8 +12,13 @@
             @endif
         </h5>
         <h5>{{__('messages.code')}}:
-            @if($project->publicAccessLevel->id==1&&isset($project->github_link))
-                <a target="_blank" href="{{$project->github_link}}">{{$project->publicAccessLevel->name}}</a>
+            @if($project->publicAccessLevel->id==1&&isset($project->code_link))
+                <a target="_blank" href="{{$project->code_link}}">
+                    @if(Config::get('app.locale')=='ru')
+                        {{$project->publicAccessLevel->name_ru}}
+                    @else
+                        {{$project->publicAccessLevel->name_en}}
+                    @endif</a>
             @else
                 @if(Config::get('app.locale')=='ru')
                     {{$project->publicAccessLevel->name_ru}}
@@ -24,7 +29,7 @@
         </h5>
         @if(isset($project->url))
             <a class="btn btn-primary" role="button" target="_blank"
-               href="{{$project->url}}">{{__('messages.code')}}</a>
+               href="{{$project->url}}">{{__('messages.project_webpage')}}</a>
         @endif
         @if($project->posts->count()===0)
             <h5>
@@ -33,7 +38,7 @@
         @else
             <h5>
                 {{__('messages.posts')}}: <a class=""
-                                             href="{{route('user.project.posts.index',['user'=>$project->user->login,'project'=>$project->link])}}">{{$project->posts->count()}}</a>
+                                             href="{{route('user.project.posts.index',['user'=>$project->user->link,'project'=>$project->link])}}">{{$project->posts->count()}}</a>
             </h5>
             <h5>
                 @foreach($project->tags as $tag)

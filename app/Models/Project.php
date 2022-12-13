@@ -12,7 +12,7 @@ class Project extends Model
 
 
     protected $table = 'projects';
-    protected $fillable = ['title', 'text', 'status_id', 'public_access_level_id', 'description', 'github_link', 'url', 'link', 'user_id'];
+    protected $fillable = ['title', 'text', 'status_id', 'public_access_level_id', 'description', 'code_link', 'url', 'link', 'user_id'];
 
     public static function getTagsString($tags): string
     {

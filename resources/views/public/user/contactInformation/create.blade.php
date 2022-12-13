@@ -1,7 +1,7 @@
 @extends('layouts.user.user')
 @section('title',__('messages.create_contact'))
 @section('userContent')
-    <form method="POST" action="{{route('user.contact.store',['user'=>auth()->user()->login])}}">
+    <form method="POST" action="{{route('user.contact.store',['user'=>auth()->user()->link])}}">
         @csrf
         <div class="mb-3">
             <label for="contactName" class="form-label">{{__('messages.contact_name')}}</label>

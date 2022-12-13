@@ -20,7 +20,7 @@ class UpdateController extends Controller
                 'text' => 'string|nullable|max:4294967000',
                 'public_access_level_id' => 'int|required',
                 'status_id' => 'int|required',
-                'github_link' => 'url|nullable|max:1000',
+                'code_link' => 'url|nullable|max:1000',
                 'url' => 'url|nullable|max:1000',
                 'tags' => 'string|nullable|min:2|max:2000|regex:/^([a-zA-Z0-9а-яА-Я#@]+\s?)*$/ui',
             ]);
@@ -52,7 +52,7 @@ class UpdateController extends Controller
             }
             $project->tags()->sync($tagsIds);
             $project->fresh();
-            return redirect('/users/' . $project->user->login . '/projects/' . $project->link);
+            return redirect('/users/' . $project->user->link . '/projects/' . $project->link);
         } else {
             return view('public.error.project404', compact('user'));
         }

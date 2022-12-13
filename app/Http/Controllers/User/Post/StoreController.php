@@ -25,6 +25,6 @@ class StoreController extends Controller
         }
         $data['link'] = $this->toEnglishCharacters($data['title']);
         $post = Post::firstOrCreate($data);
-        return redirect('/users/' . $user->login . '/projects/' . $post->project->link . '/posts/' . $post->link);
+        return redirect('/users/' . $user->link . '/projects/' . $post->project->link . '/posts/' . $post->link);
     }
 }
