@@ -7,13 +7,13 @@
         </div>
         <div class="card-text mb-2">
             <a target="_blank" class="no-underline"
-               href="{{route('user.project.show',['user'=>$post->project->user->login,'project'=>$post->project->link])}}">
+               href="{{route('user.project.show',['user'=>$post->project->user->link,'project'=>$post->project->link])}}">
                 {{__('messages.project')}}: {{mb_strimwidth($post->project->title,0,50,'...')}}
             </a>
         </div>
         <div class="card-text mb-2">
             <a target="_blank" class="no-underline"
-               href="{{route('user.index',['user'=>$post->project->user->login])}}">
+               href="{{route('user.index',['user'=>$post->project->user->link])}}">
                 {{__('messages.author')}}: {{mb_strimwidth($post->project->user->name,0,50,'...')}}
             </a>
         </div>
@@ -24,7 +24,7 @@
                 @method('delete')
                 <a target="_blank"
                    class="btn btn-primary  me-2"
-                   href="{{route('user.post.show',['user'=>$post->project->user->login,'project'=>$post->project->link,'post'=>$post->link])}}">
+                   href="{{route('user.post.show',['user'=>$post->project->user->link,'project'=>$post->project->link,'post'=>$post->link])}}">
                     {{__('messages.open')}}
                 </a>
                 <button type="submit" class="btn btn-danger">

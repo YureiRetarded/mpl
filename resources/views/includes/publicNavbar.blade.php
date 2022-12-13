@@ -56,16 +56,16 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{route('user.project.create',auth()->user()->login)}}">
+                            <a class="dropdown-item" href="{{route('user.project.create',auth()->user()->link)}}">
                                 {{__('messages.create_project')}}
                             </a>
-                            <a class="dropdown-item" href="{{route('user.post.create',auth()->user()->login)}}">
+                            <a class="dropdown-item" href="{{route('user.post.create',auth()->user()->link)}}">
                                 {{__('messages.create_post')}}
                             </a>
-                            <a class="dropdown-item" href="{{route('user.contact.create',auth()->user()->login)}}">
+                            <a class="dropdown-item" href="{{route('user.contact.create',auth()->user()->link)}}">
                                 {{__('messages.create_contact')}}
                             </a>
-                            <a class="dropdown-item" href="{{route('user.index',auth()->user()->login)}}">
+                            <a class="dropdown-item" href="{{route('user.index',auth()->user()->link)}}">
                                 {{__('messages.my_page')}}
                             </a>
                             <a class="dropdown-item" href="{{route('user.setting')}}">

@@ -8,10 +8,10 @@ use App\Models\User;
 
 class IndexController extends Controller
 {
-    public function __invoke($login)
+    public function __invoke($link)
     {
-        if (User::where('login', $login)->exists()) {
-            $user = User::where('login', $login)->first();
+        if (User::where('link', $link)->exists()) {
+            $user = User::where('link', $link)->first();
             if (isset($_GET['query'])&& $_GET['query'] != '') {
 
                 //Берём проекты по тегу

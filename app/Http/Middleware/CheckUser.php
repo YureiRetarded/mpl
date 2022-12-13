@@ -20,7 +20,7 @@ class CheckUser
         if (auth()->user() != null) {
             $username = explode('/', strip_tags($request->getRequestUri()));
             $username = $username[2];
-            if (auth()->user()->login === $username) {
+            if (auth()->user()->link === $username) {
                 return $next($request);
             } else {
                 return redirect()->back();

@@ -10,7 +10,7 @@ class Status extends Model
     use HasFactory;
 
     protected $table = 'statuses';
-    protected $fillable = ['name'];
+    protected $fillable = ['name_en','name_ru'];
 
     public function projects()
     {

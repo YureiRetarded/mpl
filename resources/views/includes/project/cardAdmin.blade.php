@@ -28,11 +28,11 @@
                   action="{{route('admin.project.delete',['project'=>$project->id])}}">
                 @csrf
                 @method('delete')
-                <a class="no-underline" target="_blank" href="{{route('user.index',['user'=>$project->user->login])}}">
+                <a class="no-underline" target="_blank" href="{{route('user.index',['user'=>$project->user->link])}}">
                     {{__('messages.author')}}: {{mb_strimwidth($project->user->name,0,50,'...')}}
                 </a>
                 <a target="_blank" class="btn btn-primary me-2"
-                   href="{{route('user.project.show',['user'=>$project->user->login,'project'=>$project->link])}}">
+                   href="{{route('user.project.show',['user'=>$project->user->link,'project'=>$project->link])}}">
                     {{__('messages.open')}}
                 </a>
                 <button type="submit" class="btn btn-danger">

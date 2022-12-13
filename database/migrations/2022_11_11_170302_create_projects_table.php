@@ -19,7 +19,7 @@ return new class extends Migration {
             $table->longText('text')->nullable();
             $table->text('description')->nullable();
             $table->unsignedBigInteger('public_access_level_id');
-            $table->string('github_link')->nullable();
+            $table->string('code_link')->nullable();
             $table->string('url')->nullable();
             $table->index('status_id', 'project_status_idx');
             $table->index('public_access_level_id', 'public_access_level_project_idx');
