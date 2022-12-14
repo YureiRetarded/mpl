@@ -129,4 +129,7 @@ return [
     'post_text' => 'Post text',
     'about_text' => 'You found a bug or want to suggest an idea for a website',
     'about_donation_text' => 'Do you want to support the project? Subscribe to our',
+    'email_confirmed_text' => 'Email has been confirmed',
+    'email_confirmed' => 'Confirmed',
+    'user_banned' => 'User banned',
 ];
