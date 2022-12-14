@@ -1,5 +1,5 @@
 @extends('layouts.public')
-@section('title', __('messages.error496'))
+@section('title', __('messages.error469'))
 @section('content')
-    <h1 class="text-center">{{__('messages.error496text')}}</h1>
+    <h1 class="text-center">{{__('messages.error469text')}}</h1>
 @endsection

@@ -11,6 +11,10 @@ class IndexController extends Controller
     {
         if (User::where('link', $link)->exists()) {
             $user = User::where('link', $link)->first();
+            if (User::banStatus($user)) {
+                $banStatus = true;
+                return view('public.user.contactInformation.index', compact('user', 'banStatus'));
+            }
             return view('public.user.contactInformation.index', compact('user'));
         } else {
             abort(418);

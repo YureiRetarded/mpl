@@ -14,6 +14,9 @@ class PostsProjectController extends Controller
     {
         if (User::where('link', $link)->exists()) {
             $user = User::where('link', $link)->first();
+            if (User::banStatus($user)) {
+                abort(404);
+            }
             if (Project::where('user_id', $user->id)->where('link', $project_link)->exists()) {
                 $project = Project::where('user_id', $user->id)->where('link', $project_link)->first();
 
