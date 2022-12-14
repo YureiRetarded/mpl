@@ -12,9 +12,13 @@ class IndexController extends Controller
 {
     public function __invoke($link)
     {
-
         if (User::where('link', $link)->exists()) {
             $user = User::where('link', $link)->first();
+            if (User::banStatus($user)) {
+                $posts = [];
+                $banStatus = true;
+                return view('public.user.posts.index', compact('user', 'posts', 'banStatus'));
+            }
             if (isset($_GET['query']) && $_GET['query'] != '') {
                 //К - Костыль
                 $postsIds = DB::table('posts')

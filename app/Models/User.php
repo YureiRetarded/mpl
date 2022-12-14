@@ -48,6 +48,11 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
+    public static function banStatus(User $user)
+    {
+        return $user->isBan;
+    }
+
     public function role()
     {
         return $this->belongsTo(Role::class);
@@ -67,10 +72,11 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasManyThrough(Post::class, Project::class,);
     }
+
     public function sendPasswordResetNotification($token)
     {
-
-        $url = config('app.url').'/reset-password/'.$token;
+        $url = config('app.url') . '/reset-password/' . $token;
         $this->notify(new ResetPasswordNotification($url));
     }
+
 }

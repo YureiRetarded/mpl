@@ -3,9 +3,9 @@
 namespace App\Http;
 
 use App\Http\Middleware\AdminPanel;
-use App\Http\Middleware\CheckBan;
 use App\Http\Middleware\CheckUser;
 use App\Http\Middleware\Language;
+use App\Http\Middleware\UserBanStatus;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -70,5 +70,6 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'adminPanel' => AdminPanel::class,
         'checkUser' => CheckUser::class,
+        'userBanStatus' => UserBanStatus::class,
     ];
 }

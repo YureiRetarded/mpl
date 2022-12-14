@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\ResetPassword\GetPageController;
 use App\Http\Controllers\Auth\ResetPassword\GetPageResetController;
 use App\Http\Controllers\Auth\ResetPassword\GetPageResetTokenController;
 use App\Http\Controllers\Auth\ResetPassword\GetPageTokenController;
+use App\Http\Controllers\Auth\VerificationSuccessfulPageController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\Pages\AboutController;
 use App\Http\Controllers\Pages\HomeController;
@@ -104,7 +105,7 @@ Route::post('/logout', LogoutController::class)->name('logout');
 
 //Setting
 Route::middleware('auth')->group(function () {
-
+    Route::get('/verification_successful', VerificationSuccessfulPageController::class)->name('verification_successful');
     Route::prefix('setting')->group(function () {
         Route::get('/', UserSettingIndexController::class)->name('user.setting');
         Route::post('/about', UserUpdateAboutController::class)->name('user.updateAbout');
@@ -191,16 +192,15 @@ Route::prefix('users')->group(function () {
         Route::get('/', UserInformationIndexController::class)->name('user.index');
         Route::prefix('contacts')->group(function () {
             Route::get('/', UserContactIndexController::class)->name('user.contact.index');
-            Route::middleware('checkUser')->group(function () {
-                Route::middleware('verified')->group(function () {
-                    Route::get('/create', UserInformationCreateController::class)->name('user.contact.create');
-                    Route::post('/', UserInformationStoreController::class)->name('user.contact.store');
-                    Route::prefix('{contact}')->group(function () {
-                        Route::get('/edit', UserInformationEditController::class)->name('user.contact.edit');
-                        Route::patch('/', UserInformationUpdateController::class)->name('user.contact.update');
-                        Route::delete('/', UserInformationDestroyController::class)->name('user.contact.delete');
-                    });
+            Route::middleware(['checkUser', 'verified', 'userBanStatus'])->group(function () {
+                Route::get('/create', UserInformationCreateController::class)->name('user.contact.create');
+                Route::post('/', UserInformationStoreController::class)->name('user.contact.store');
+                Route::prefix('{contact}')->group(function () {
+                    Route::get('/edit', UserInformationEditController::class)->name('user.contact.edit');
+                    Route::patch('/', UserInformationUpdateController::class)->name('user.contact.update');
+                    Route::delete('/', UserInformationDestroyController::class)->name('user.contact.delete');
                 });
+
             });
         });
         Route::get('/posts', UserPostIndexController::class)->name('user.posts.index');
@@ -209,23 +209,20 @@ Route::prefix('users')->group(function () {
             Route::prefix('{project}')->group(function () {
                 Route::get('/', UserProjectShowController::class)->name('user.project.show');
                 Route::get('/posts', PostProjectIndexController::class)->name('user.project.posts.index');
-                Route::middleware('checkUser')->group(function () {
-                    Route::middleware('verified')->group(function () {
-                        Route::get('/edit', UserProjectEditController::class)->name('user.project.edit');
-                        Route::patch('/', UserProjectUpdateController::class)->name('user.project.update');
-                        Route::delete('/', UserProjectDestroyController::class)->name('user.project.delete');
-                    });
+                Route::middleware(['checkUser', 'verified', 'userBanStatus'])->group(function () {
+                    Route::get('/edit', UserProjectEditController::class)->name('user.project.edit');
+                    Route::patch('/', UserProjectUpdateController::class)->name('user.project.update');
+                    Route::delete('/', UserProjectDestroyController::class)->name('user.project.delete');
                 });
                 Route::prefix('posts')->group(function () {
                     Route::get('/{post}', UserPostShowController::class)->name('user.post.show');
-                    Route::middleware('checkUser')->group(function () {
-                        Route::middleware('verified')->group(function () {
-                            Route::prefix('{post}')->group(function () {
-                                Route::get('/edit', UserPostEditController::class)->name('user.post.edit');
-                                Route::patch('/', UserPostUpdateController::class)->name('user.post.update');
-                                Route::delete('/', UserPostDestroyController::class)->name('user.post.delete');
-                            });
+                    Route::middleware(['checkUser', 'verified', 'userBanStatus'])->group(function () {
+                        Route::prefix('{post}')->group(function () {
+                            Route::get('/edit', UserPostEditController::class)->name('user.post.edit');
+                            Route::patch('/', UserPostUpdateController::class)->name('user.post.update');
+                            Route::delete('/', UserPostDestroyController::class)->name('user.post.delete');
                         });
+
                     });
                 });
 
@@ -233,14 +230,12 @@ Route::prefix('users')->group(function () {
 
         });
         //Create pages
-        Route::middleware('checkUser')->group(function () {
-            Route::middleware('verified')->group(function () {
-                Route::get('/create/project', UserProjectCreateController::class)->name('user.project.create');
-                Route::get('/create/post', UserPostCreateController::class)->name('user.post.create');
-                // Store
-                Route::post('/create/project', UserProjectStoreController::class)->name('user.project.store');
-                Route::post('/create/post', UserPostStoreController::class)->name('user.post.store');
-            });
+        Route::middleware(['checkUser', 'verified', 'userBanStatus'])->group(function () {
+            Route::get('/create/project', UserProjectCreateController::class)->name('user.project.create');
+            Route::get('/create/post', UserPostCreateController::class)->name('user.post.create');
+            // Store
+            Route::post('/create/project', UserProjectStoreController::class)->name('user.project.store');
+            Route::post('/create/post', UserPostStoreController::class)->name('user.post.store');
         });
     });
 });

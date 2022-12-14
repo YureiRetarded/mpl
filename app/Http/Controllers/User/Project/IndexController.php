@@ -12,7 +12,12 @@ class IndexController extends Controller
     {
         if (User::where('link', $link)->exists()) {
             $user = User::where('link', $link)->first();
-            if (isset($_GET['query'])&& $_GET['query'] != '') {
+            if (User::banStatus($user)) {
+                $projects = [];
+                $banStatus = true;
+                return view('public.user.projects.index', compact('user', 'projects', 'banStatus'));
+            }
+            if (isset($_GET['query']) && $_GET['query'] != '') {
 
                 //Берём проекты по тегу
                 $projectTags = Project::orderBy('created_at', 'desc')->whereHas('tags', function ($query) {
