@@ -38,6 +38,7 @@ use App\Http\Controllers\Private\Tag\UpdateController as AdminUpdateTagControlle
 use App\Http\Controllers\Private\User\EditController as AdminEditUserController;
 use App\Http\Controllers\Private\User\IndexController as AdminIndexUserController;
 use App\Http\Controllers\Private\User\UpdateController as AdminUpdateUserController;
+use App\Http\Controllers\TestController;
 use App\Http\Controllers\User\Information\Contact\CreateController as UserInformationCreateController;
 use App\Http\Controllers\User\Information\Contact\DestroyController as UserInformationDestroyController;
 use App\Http\Controllers\User\Information\Contact\EditController as UserInformationEditController;
@@ -79,7 +80,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
+Route::get('/images',[TestController::class,'index']);
+Route::get('/images/{name}',[\App\Http\Controllers\ImageController::class,'get']);
+Route::post('/images',[TestController::class,'store']);
 //HomePage
 Route::get('/', HomeController::class)->name('index');
 //Language change

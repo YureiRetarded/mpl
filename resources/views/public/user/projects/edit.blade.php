@@ -96,9 +96,21 @@
         </div>
         <button type="submit" class="btn btn-primary">{{__('messages.edit')}}</button>
     </form>
-    <script type="text/javascript" src="/ckeditor/ckeditor.js">
-        $(document).ready(function () {
-            $('.ckeditor').ckeditor();
-        });
+    <script src="{{asset('ckeditor/build/ckeditor.js')}}"></script>
+    @if(Config::get('app.locale')==='ru')
+        <script src="{{asset('ckeditor/build/translations/ru.js')}}"></script>
+    @endif
+    <script>
+        ClassicEditor
+            .create(document.querySelector('.ckeditor'), {
+                @if(Config::get('app.locale')==='ru')
+                language: {
+                    ui: 'ru',
+                }
+                @endif
+            })
+            .then(editor => {
+                window.editor = editor;
+            })
     </script>
 @endsection

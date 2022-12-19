@@ -1,6 +1,7 @@
 @extends('layouts.user.user')
 @section('title',__('messages.create_project'))
 @section('userContent')
+
     <form method="POST" action="{{route('user.project.store',['user'=>auth()->user()->link])}}">
         @csrf
         <div class="mb-3">
@@ -13,6 +14,7 @@
             <div id="projectHelp" class="form-text">{{__('messages.project_name_help')}}</div>
         </div>
         <div class="mb-3">
+
             <label for="projectDescription" class="form-label">{{__('messages.project_description')}}</label>
             <input name="description" class="form-control" id="projectDescription" value="{{old('description')}}"
                    aria-describedby="projectHelpDescription">
@@ -94,9 +96,21 @@
         </div>
         <button type="submit" class="btn btn-primary">{{__('messages.create')}}</button>
     </form>
-    <script type="text/javascript" src="/ckeditor/ckeditor.js">
-        $(document).ready(function () {
-            $('.ckeditor').ckeditor();
-        });
+    <script src="{{asset('ckeditor/build/ckeditor.js')}}"></script>
+    @if(Config::get('app.locale')==='ru')
+        <script src="{{asset('ckeditor/build/translations/ru.js')}}"></script>
+    @endif
+    <script>
+        ClassicEditor
+            .create(document.querySelector('.ckeditor'), {
+                @if(Config::get('app.locale')==='ru')
+                language: {
+                    ui: 'ru',
+                }
+                @endif
+            })
+            .then(editor => {
+                window.editor = editor;
+            })
     </script>
 @endsection
