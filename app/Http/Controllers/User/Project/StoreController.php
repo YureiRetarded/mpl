@@ -22,6 +22,7 @@ class StoreController extends Controller
             'url' => 'url|nullable|max:1000',
             'tags' => 'string|nullable|min:2|max:2000|regex:/^([a-zA-Z0-9а-яА-Я#@]+\s?)*$/ui',
         ]);
+        dd($data);
         $error = ValidationException::withMessages([
             'title' => ['У вас уже есть проект с таким название'],
         ]);

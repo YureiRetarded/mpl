@@ -62,6 +62,7 @@ use App\Http\Controllers\User\Project\StoreController as UserProjectStoreControl
 use App\Http\Controllers\User\Project\UpdateController as UserProjectUpdateController;
 use App\Http\Controllers\User\Setting\IndexController as UserSettingIndexController;
 use App\Http\Controllers\User\Setting\UpdateAboutController as UserUpdateAboutController;
+use App\Http\Controllers\User\Setting\UpdateImageController;
 use App\Http\Controllers\User\Setting\UpdateNameController as UserUpdateNameController;
 use App\Http\Controllers\User\Setting\UpdatePasswordController as UserUpdatePasswordController;
 use Illuminate\Support\Facades\Auth;
@@ -107,6 +108,7 @@ Route::post('/logout', LogoutController::class)->name('logout');
 Route::middleware('auth')->group(function () {
     Route::get('/verification_successful', VerificationSuccessfulPageController::class)->name('verification_successful');
     Route::prefix('setting')->group(function () {
+        Route::post('/',UpdateImageController::class)->name('update.avatar');
         Route::get('/', UserSettingIndexController::class)->name('user.setting');
         Route::post('/about', UserUpdateAboutController::class)->name('user.updateAbout');
         Route::post('/name', UserUpdateNameController::class)->name('user.updateName');
