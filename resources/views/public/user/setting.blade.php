@@ -3,6 +3,22 @@
 @section('content')
     <h5>Настройки</h5>
     <div class="mb-4">
+        <form action="{{route('update.avatar')}}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <div class="mb-3">
+                <label for="File" class="form-label">Аватар</label>
+                <input class="form-control" name="avatar" type="file" id="File" accept="image/png, image/jpeg, image/jpg, image/webp" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Загрузить</button>
+            @if (session('avatar'))
+                <div class="alert alert-success" role="alert">
+                    {{ session('avatar') }}
+                </div>
+            @endif
+            @error('avatar')
+            <p class="text-danger">{{$message}}</p>
+            @enderror
+        </form>
         <form method="POST" action="{{route('user.updateAbout')}}">
             @csrf
             <div class="mb-3">

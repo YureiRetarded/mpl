@@ -38,7 +38,6 @@ use App\Http\Controllers\Private\Tag\UpdateController as AdminUpdateTagControlle
 use App\Http\Controllers\Private\User\EditController as AdminEditUserController;
 use App\Http\Controllers\Private\User\IndexController as AdminIndexUserController;
 use App\Http\Controllers\Private\User\UpdateController as AdminUpdateUserController;
-use App\Http\Controllers\TestController;
 use App\Http\Controllers\User\Information\Contact\CreateController as UserInformationCreateController;
 use App\Http\Controllers\User\Information\Contact\DestroyController as UserInformationDestroyController;
 use App\Http\Controllers\User\Information\Contact\EditController as UserInformationEditController;
@@ -63,6 +62,7 @@ use App\Http\Controllers\User\Project\StoreController as UserProjectStoreControl
 use App\Http\Controllers\User\Project\UpdateController as UserProjectUpdateController;
 use App\Http\Controllers\User\Setting\IndexController as UserSettingIndexController;
 use App\Http\Controllers\User\Setting\UpdateAboutController as UserUpdateAboutController;
+use App\Http\Controllers\User\Setting\UpdateImageController;
 use App\Http\Controllers\User\Setting\UpdateNameController as UserUpdateNameController;
 use App\Http\Controllers\User\Setting\UpdatePasswordController as UserUpdatePasswordController;
 use Illuminate\Support\Facades\Auth;
@@ -80,9 +80,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/images',[TestController::class,'index']);
-Route::get('/images/{name}',[\App\Http\Controllers\ImageController::class,'get']);
-Route::post('/images',[TestController::class,'store']);
+
 //HomePage
 Route::get('/', HomeController::class)->name('index');
 //Language change
@@ -110,6 +108,7 @@ Route::post('/logout', LogoutController::class)->name('logout');
 Route::middleware('auth')->group(function () {
     Route::get('/verification_successful', VerificationSuccessfulPageController::class)->name('verification_successful');
     Route::prefix('setting')->group(function () {
+        Route::post('/',UpdateImageController::class)->name('update.avatar');
         Route::get('/', UserSettingIndexController::class)->name('user.setting');
         Route::post('/about', UserUpdateAboutController::class)->name('user.updateAbout');
         Route::post('/name', UserUpdateNameController::class)->name('user.updateName');
