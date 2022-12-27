@@ -132,4 +132,12 @@ return [
     'email_confirmed_text' => 'Email has been confirmed',
     'email_confirmed' => 'Confirmed',
     'user_banned' => 'User banned',
+    'current_password' => 'Current password',
+    'new_password' => 'New password',
+    'change_password' => 'Change Password',
+    'new_name' => 'New name',
+    'current_name' => 'Current name',
+    'change_name' => 'Change name',
+    'avatar' => 'Avatar',
+    'upload' => 'Upload',
 ];

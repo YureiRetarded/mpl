@@ -132,4 +132,12 @@ return [
     'email_confirmed_text' => 'Электронная почта была подтверждена',
     'email_confirmed' => 'Подтверждено',
     'user_banned' => 'Пользователь забанен',
+    'current_password' => 'Текущий пароль',
+    'new_password' => 'Новый пароль',
+    'change_password' => 'Смена пароль',
+    'new_name' => 'Новое имя',
+    'current_name' => 'Текущие имя',
+    'change_name' => 'Смена имени',
+    'avatar' => 'Аватарка',
+    'upload' => 'Загрузить',
 ];
