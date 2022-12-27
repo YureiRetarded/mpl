@@ -61,13 +61,14 @@ use App\Http\Controllers\User\Project\ShowController as UserProjectShowControlle
 use App\Http\Controllers\User\Project\StoreController as UserProjectStoreController;
 use App\Http\Controllers\User\Project\UpdateController as UserProjectUpdateController;
 use App\Http\Controllers\User\Setting\IndexController as UserSettingIndexController;
+use App\Http\Controllers\User\Setting\ShowAboutController;
 use App\Http\Controllers\User\Setting\UpdateAboutController as UserUpdateAboutController;
 use App\Http\Controllers\User\Setting\UpdateImageController;
+use App\Http\Controllers\User\Setting\UpdateLinkController as UserUpdateLinkController;
 use App\Http\Controllers\User\Setting\UpdateNameController as UserUpdateNameController;
 use App\Http\Controllers\User\Setting\UpdatePasswordController as UserUpdatePasswordController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -108,10 +109,11 @@ Route::post('/logout', LogoutController::class)->name('logout');
 Route::middleware('auth')->group(function () {
     Route::get('/verification_successful', VerificationSuccessfulPageController::class)->name('verification_successful');
     Route::prefix('setting')->group(function () {
-        Route::post('/',UpdateImageController::class)->name('update.avatar');
+        Route::post('/', UpdateImageController::class)->name('update.avatar');
         Route::get('/', UserSettingIndexController::class)->name('user.setting');
         Route::post('/about', UserUpdateAboutController::class)->name('user.updateAbout');
         Route::post('/name', UserUpdateNameController::class)->name('user.updateName');
+        Route::post('/link', UserUpdateLinkController::class)->name('user.updateLink');
         Route::post('/password', UserUpdatePasswordController::class)->name('user.updatePassword');
     });
 });
@@ -192,6 +194,9 @@ Route::prefix('users')->group(function () {
     Route::get('/', UsersController::class)->name('users');
     Route::prefix('{user}')->group(function () {
         Route::get('/', UserInformationIndexController::class)->name('user.index');
+        Route::middleware(['checkUser', 'verified', 'userBanStatus'])->group(function () {
+            Route::get('/description', ShowAboutController::class)->name('user.description');
+        });
         Route::prefix('contacts')->group(function () {
             Route::get('/', UserContactIndexController::class)->name('user.contact.index');
             Route::middleware(['checkUser', 'verified', 'userBanStatus'])->group(function () {

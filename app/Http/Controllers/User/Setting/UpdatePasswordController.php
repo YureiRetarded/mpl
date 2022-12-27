@@ -17,11 +17,11 @@ class UpdatePasswordController extends Controller
         ]);
 
         if ($data['old_password'] === $data['new_password']) {
-            return back()->with("statusPasswordError", "Новый пароль должен отличаться от старого!");
+            return back()->with("statusPasswordError", __('messages.status_password_error1'));
         }
         //Проеверка старого пароля
         if (!Hash::check($data['old_password'], auth()->user()->password)) {
-            return back()->with("statusPasswordError", "Старый пароль неправельный!");
+            return back()->with("statusPasswordError", __('messages.status_password_error2'));
         }
 
 
@@ -30,6 +30,6 @@ class UpdatePasswordController extends Controller
             'password' => Hash::make($data['new_password'])
         ]);
 
-        return back()->with("statusPassword", "Пароль изменён");
+        return back()->with("statusPassword", __('messages.password_changed'));
     }
 }

@@ -4,15 +4,15 @@ namespace App\Http\Controllers\User\Setting;
 
 use App\Http\Controllers\Controller;
 
-class UpdateNameController extends Controller
+class UpdateLinkController extends Controller
 {
     public function __invoke()
     {
         $user = auth()->user();
         $data = request()->validate([
-            'name' => 'required|string|max:50|min:3|regex:/^[a-zA-Zа-яА-Я0-9_ ]+$/ui',
+            'link' => ['required', 'string', 'max:50', 'min:3', 'regex:/^[a-z0-9_]+$/u', 'unique:users', 'lowercase'],
         ]);
         $user->update($data);
-        return back()->with("statusName", __('messages.name_changed'));
+        return back()->with("statusName", __('messages.link_changed'));
     }
 }

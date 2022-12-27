@@ -20,7 +20,7 @@ class UpdateImageController extends Controller
         ]);
 
         //Наименование
-        $str = Str::random(100). '.webp';
+        $str = Str::random(100) . '.webp';
 
         while (Storage::exists('/public/' . $str)) {
             $str = Str::random(100);
@@ -32,9 +32,6 @@ class UpdateImageController extends Controller
         Storage::put('/public/' . $str, $interventionImage);
 
 
-
-
-
         //Записываем в бд
         //Берём авторизированного пользователя и берём его строку из бд
         $currentUser = auth()->user();
@@ -44,6 +41,6 @@ class UpdateImageController extends Controller
         }
         $data['avatar'] = $str;
         $user->update($data);
-        return back()->with("avatar", "Avatar установлен");
+        return back()->with("avatar", __('messages.avatar_changed'));
     }
 }
