@@ -1,5 +1,5 @@
 @extends('layouts.public')
-@section('title','Настройки')
+@section('title',__('messages.setting'))
 @section('content')
     <h5>{{__('messages.setting')}}</h5>
     <div class="mb-4">
@@ -7,7 +7,8 @@
             @csrf
             <div class="mb-3">
                 <label for="File" class="form-label">{{__('messages.avatar')}}</label>
-                <input class="form-control" name="avatar" type="file" id="File" accept="image/png, image/jpeg, image/jpg, image/webp" required >
+                <input class="form-control" name="avatar" type="file" id="File"
+                       accept="image/png, image/jpeg, image/jpg, image/webp" required>
             </div>
             <button type="submit" class="btn btn-primary">{{__('messages.upload')}}</button>
             @if (session('avatar'))
@@ -19,26 +20,7 @@
             <p class="text-danger">{{$message}}</p>
             @enderror
         </form>
-        <form method="POST" action="{{route('user.updateAbout')}}">
-            @csrf
-            <div class="mb-3">
-                <label for="about" class="form-label">Обо мне</label>
-                @if (session('statusAbout'))
-                    <div class="alert alert-success" role="alert">
-                        {{ session('statusAbout') }}
-                    </div>
-                @endif
-                <textarea name="about" class="form-control" id="about" rows="10">
-                {{auth()->user()->about}}
-            </textarea>
-                @error('about')
-                <p class="text-danger">{{$message}}</p>
-                @enderror
-            </div>
-            <button type="submit" class="btn btn-primary">Изменить</button>
-        </form>
     </div>
-
     <div class="mb-4">
         <form method="POST" action="{{route('user.updateName')}}">
             @csrf
@@ -61,6 +43,30 @@
             <button class="btn btn-primary">{{__('messages.edit')}}</button>
         </form>
     </div>
+
+    <div class="mb-4">
+        <form method="POST" action="{{route('user.updateLink')}}">
+            @csrf
+            <label class="form-label">{{__('messages.change_link')}}</label>
+            <p>{{__('messages.current_link')}}: {{auth()->user()->link}}</p>
+            @if (session('statusLink'))
+                <div class="alert alert-success" role="alert">
+                    {{ session('statusLink') }}
+                </div>
+            @endif
+
+            <div class="mb-3">
+                <label for="newLinkInput" class="form-label">{{__('messages.new_link')}}</label>
+                <input name="link" type="text" class="form-control" id="newLinkInput"
+                       placeholder="{{__('messages.new_link')}}">
+                @error('link')
+                <span class="text-danger">{{ $message }}</span>
+                @enderror
+            </div>
+            <button class="btn btn-primary">{{__('messages.edit')}}</button>
+        </form>
+    </div>
+
 
     <div class="mb-4">
         <form method="POST" action="{{route('user.updatePassword')}}">

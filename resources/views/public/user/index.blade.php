@@ -18,6 +18,10 @@
                         <h2>{{$user->name}}</h2>
                         <h2>{{__('messages.projects')}}: {{$user->projects->count()}}</h2>
                         <h2>{{__('messages.posts')}}: {{$user->posts->count()}}</h2>
+                        @if(Request::segment(2) == auth()->user()->link)
+                            <a class="btn btn-primary"
+                               href="{{route('user.description',['user'=>auth()->user()->link])}}">{{__('messages.change_about')}}</a>
+                        @endif
                     </div>
                 </div>
             </div>
