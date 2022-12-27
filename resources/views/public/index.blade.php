@@ -7,12 +7,6 @@
     <div>
         <p>{{__('index.p1')}}</p>
         <p>{{__('index.p2')}}</p>
-        <p>
-        {{__('index.p3')}}
-        <ul>
-            <li>{{__('index.li')}}</li>
-        </ul>
-        </p>
     </div>
     <div class="text-center mt-5">
         <h2>{{__('messages.posts')}}: {{$posts}}</h2>
