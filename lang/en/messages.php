@@ -153,4 +153,5 @@ return [
     'change_about' => 'Change about',
     'about_me' => 'About me',
     'description' => 'Description',
+    'no_user_description' => "didn't leave a description about self",
 ];

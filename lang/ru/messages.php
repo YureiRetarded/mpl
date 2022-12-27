@@ -153,4 +153,5 @@ return [
     'change_about' => 'Изменить описание',
     'about_me' => 'Обо мне',
     'description' => 'Описание',
+    'no_user_description' => ' не оставил описания о себе',
 ];

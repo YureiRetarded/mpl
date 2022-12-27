@@ -4,7 +4,6 @@
     @if($user->isBan===1)
         @include('includes.user.userBan')
     @else
-
         <div style="word-wrap: break-word">
             <div class="row g-0">
                 <div class="col-md-2 border rounded">
@@ -33,21 +32,5 @@
                 <p>{{$user->name}} {{__('messages.project_no_about')}}</p>
             @endif
         </div>
-        {{--            <img src="{{url('/images/no_image.png')}}'" class="img-thumbnail" alt="">--}}
-        {{--            <h1 class="text-center">{{$user->name}}</h1>--}}
-        {{--            <h5>--}}
-        {{--                {{__('messages.projects')}}: {{$user->projects->count()}}--}}
-        {{--            </h5>--}}
-        {{--            <h5>--}}
-        {{--                {{__('messages.posts')}}: {{$user->posts->count()}}--}}
-        {{--            </h5>--}}
-        {{--            <div>--}}
-        {{--                @if(isset($user->about))--}}
-        {{--                    <p>{{$user->about}}</p>--}}
-        {{--                @else--}}
-        {{--                    <p>{{$user->name}} {{__('messages.project_no_about')}}</p>--}}
-        {{--                @endif--}}
-        {{--            </div>--}}
-        {{--        </div>--}}
     @endif
 @endsection
