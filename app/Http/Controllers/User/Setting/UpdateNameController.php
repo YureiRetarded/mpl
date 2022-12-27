@@ -13,6 +13,6 @@ class UpdateNameController extends Controller
             'name' => 'required|string|max:50|min:3|regex:/^[a-zA-Zа-яА-Я0-9_ ]+$/ui',
         ]);
         $user->update($data);
-        return back()->with("statusName", "Имя изменено");
+        return back()->with("statusName", __('messages.name_changed'));
     }
 }

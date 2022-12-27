@@ -14,6 +14,6 @@ class UpdateAboutController extends Controller
         ]);
 
         $user->update($data);
-        return back()->with("statusAbout", "Описание изменено");
+        return back()->with("statusAbout", __('messages.description_changed'));
     }
 }
